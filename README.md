@@ -57,7 +57,8 @@ except BrokenLatchError as error:
 
 A `Gate` is a manual switch that, once opened, stays open for every waiter.
 `opening()` guards a run-once initialisation: it opens on success and aborts
-on failure, so waiters never hang on a crashed initialiser:
+on any failure (cancellation included), so waiters never hang on a crashed
+initialiser:
 
 ```python
 from latchkit import Gate

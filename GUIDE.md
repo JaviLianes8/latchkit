@@ -78,8 +78,11 @@ release of Java's `Phaser.forceTermination()`:
 - Every later `wait` raises it too, immediately.
 - `error.reason` is the reason object. When it is an exception, it is chained
   as `__cause__`, so tracebacks show the original failure.
-- Each waiter gets its own error instance; no traceback is shared across
-  threads.
+- Each waiter gets its own `BrokenLatchError` instance. The `reason` object
+  itself (and so `__cause__`) is the same object for every waiter.
+- The error message is built in the waiting thread after the primitive's lock
+  is released, so a `reason.__str__` that reads the primitive, is slow, or
+  raises can never deadlock it or hide the abort.
 - After an abort, `open`, `set` and `count_down` are silent no-ops. Signallers
   never fail because a coordinator gave up.
 
@@ -98,8 +101,9 @@ LatchError(Exception)
 - Spurious wakeups are absorbed: a wait returns only on open, abort or the
   deadline.
 - `None` waits forever. Negative values behave like zero, as in `threading`.
-- Infinity and values above `threading.TIMEOUT_MAX` mean "forever"; the stdlib
-  would raise `OverflowError` for them.
+- Infinity means "forever". Finite values larger than `threading.TIMEOUT_MAX`
+  (about 49.7 days on Windows) are honoured exactly; the stdlib would raise
+  `OverflowError` for them.
 - `NaN` raises `ValueError`; in the stdlib it makes `Condition.wait_for` spin a
   CPU core forever.
 - A wait on an already settled primitive never blocks, whatever the timeout.
@@ -117,10 +121,18 @@ members as their threaded twins; only `wait` and `wait_or_raise` are coroutines.
   `loop.call_soon_threadsafe`, so one primitive can serve waiters on several
   event loops in different threads.
 - Cancelling a waiting task raises `CancelledError` as usual, removes that
-  waiter and leaves the primitive untouched. A timed-out waiter is removed too;
-  nothing leaks.
-- A waiter whose loop was closed is skipped silently when the primitive settles.
-- The context helpers work with both `with` and `async with`.
+  waiter and leaves the primitive untouched. As everywhere in asyncio, a
+  cancel delivered after the primitive opened but before the task resumed
+  still wins for that task; every other waiter is still released, since each
+  waiter has its own future and no wakeup can be stolen. A timed-out waiter is
+  removed too; nothing leaks.
+- A waiter whose loop was closed is skipped silently when the primitive
+  settles. A waiter whose loop was stopped but not closed stays registered
+  until the primitive settles.
+- The context helpers work with both `with` and `async with`. They treat any
+  exception as a failure, including `CancelledError`, `KeyboardInterrupt` and
+  `SystemExit`: a cancelled initialiser inside `opening()` aborts the gate, so
+  waiters are told instead of hanging. Use a new gate to retry.
 
 ## Memory ordering
 

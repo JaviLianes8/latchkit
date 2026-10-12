@@ -5,10 +5,12 @@
 toolkit for one-shot synchronization in both threaded and asyncio code, while
 staying typed, zero-dependency and small.
 
-Everything is additive. Every 0.1.0 signature keeps working and keeps its
-behaviour for callers that never use the new features. The one widened return
-type is `Gate.open()`, which now returns `bool` (the winner flag) instead of
-`None`; code that ignored the result is unaffected.
+Everything is additive. Every 0.1.0 signature keeps working. Behaviour changes
+only where 0.1.0 failed: a timeout above `threading.TIMEOUT_MAX` used to raise
+`OverflowError` and is now honoured, and a `NaN` timeout used to spin forever
+and now raises `ValueError`. The one widened return type is `Gate.open()`,
+which now returns `bool` (the winner flag) instead of `None`; code that
+ignored the result is unaffected.
 
 ## Ground truth
 
@@ -77,8 +79,9 @@ latch can never re-open (the .NET `TryAddCount` contract).
 ### 7. Robust, documented timeouts (medium value)
 All waits use the monotonic clock (`threading.Condition.wait_for` and the event
 loop clock are monotonic). Timeouts are normalized: negative behaves like zero
-(as in `threading`), infinity and values above `threading.TIMEOUT_MAX` mean
-"forever" instead of raising `OverflowError`, and `NaN` raises `ValueError`
+(as in `threading`), infinity means "forever", finite values above
+`threading.TIMEOUT_MAX` are honoured instead of raising `OverflowError`, and
+`NaN` raises `ValueError`
 (the stdlib would spin a CPU core forever in `Condition.wait_for` on `NaN`).
 
 ### 8. Documented happens-before guarantees (medium value)

@@ -32,9 +32,11 @@ All notable changes to this project are documented here. The format follows
 
 - `Gate.open()` now returns `True` if the call opened the gate (previously
   `None`).
-- Timeouts are normalized: infinity and values above `threading.TIMEOUT_MAX`
-  wait forever instead of raising `OverflowError`, and `NaN` raises
-  `ValueError` instead of spinning.
+- Timeouts are normalized: infinity waits forever, finite values above
+  `threading.TIMEOUT_MAX` are honoured instead of raising `OverflowError`, and
+  `NaN` raises `ValueError` instead of spinning.
+- Abort reasons are formatted outside the primitive's lock, so a reason whose
+  `__str__` reads the primitive or raises cannot deadlock or mask the abort.
 
 ## [0.1.0]
 
