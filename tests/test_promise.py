@@ -12,7 +12,7 @@ import threading
 from typing import Any
 
 import pytest
-from _kinds import KIND_IDS, KINDS, Kind
+from _kinds import GUARD, KIND_IDS, KINDS, Kind, parked, until
 
 from latchkit import BrokenLatchError, LatchError, LatchTimeoutError
 
@@ -100,22 +100,73 @@ def test_negative_timeout_behaves_like_zero(kind: Kind) -> None:
     assert kind.wait(kind.make(), -1.0) is False
 
 
-def test_infinite_timeout_waits_until_opened(kind: Kind) -> None:
+@pytest.mark.parametrize("timeout", [None, math.inf, 1e9], ids=["none", "inf", "huge"])
+def test_a_blocked_waiter_is_released_by_open(kind: Kind, timeout: float | None) -> None:
     prim = kind.make()
     results: list[bool] = []
-    entered = threading.Event()
+    thread = threading.Thread(target=lambda: results.append(kind.wait(prim, timeout)))
+    thread.start()
+    until(lambda: parked(prim) == 1)  # the waiter is really blocked
+    kind.fire(prim)
+    thread.join(GUARD)
+    assert not thread.is_alive()
+    assert results == [True]
+    assert parked(prim) == 0
+
+
+def test_a_blocked_waiter_is_released_by_abort(kind: Kind) -> None:
+    prim = kind.make()
+    errors: list[BaseException] = []
 
     def waiter() -> None:
-        entered.set()
-        results.append(kind.wait(prim, math.inf))
+        try:
+            kind.wait(prim, None)
+        except BrokenLatchError as error:
+            errors.append(error)
 
     thread = threading.Thread(target=waiter)
     thread.start()
-    entered.wait()
-    kind.fire(prim)
-    thread.join(timeout=30)
+    until(lambda: parked(prim) == 1)
+    prim.abort("stop")
+    thread.join(GUARD)
     assert not thread.is_alive()
-    assert results == [True]
+    assert [e.reason for e in errors] == ["stop"]  # type: ignore[attr-defined]
+
+
+def test_a_reason_that_reads_the_primitive_does_not_deadlock(kind: Kind) -> None:
+    prim = kind.make()
+
+    class Reason:
+        def __str__(self) -> str:
+            return f"seen {prim!r}"
+
+    prim.abort(Reason())
+    errors: list[BaseException] = []
+
+    def waiter() -> None:
+        try:
+            kind.wait(prim, 0)
+        except BrokenLatchError as error:
+            errors.append(error)
+
+    thread = threading.Thread(target=waiter)
+    thread.start()
+    thread.join(GUARD)
+    assert not thread.is_alive(), "waiting deadlocked on the reason's __str__"
+    assert str(errors[0]) == f"aborted: seen <{kind.name} broken>"
+
+
+def test_a_reason_with_a_failing_str_still_raises_broken(kind: Kind) -> None:
+    class Reason:
+        def __str__(self) -> str:
+            raise RuntimeError("bad str")
+
+    prim = kind.make()
+    reason = Reason()
+    prim.abort(reason)
+    with pytest.raises(BrokenLatchError, match=r"^aborted: <Reason>$") as info:
+        kind.wait(prim, 0)
+    assert info.value.reason is reason
 
 
 def test_repr_names_the_state(kind: Kind) -> None:

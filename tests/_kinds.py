@@ -7,11 +7,29 @@ to both families without mocks: every wait below is a real wait.
 from __future__ import annotations
 
 import asyncio
+import time
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
 
 import latchkit
+
+GUARD = 60.0
+
+
+def until(predicate: Callable[[], bool]) -> None:
+    """Poll until ``predicate`` holds; the deadline is only a deadlock guard."""
+    deadline = time.monotonic() + GUARD
+    while not predicate():
+        assert time.monotonic() < deadline, "deadlock guard tripped"
+        time.sleep(0.001)
+
+
+def parked(prim: Any) -> int:
+    """How many waiters are blocked inside ``prim`` right now."""
+    if hasattr(prim, "_waiters"):
+        return len(prim._waiters)
+    return len(prim._cond._waiters)  # CPython's Condition keeps its waiter deque here
 
 
 @dataclass(frozen=True)

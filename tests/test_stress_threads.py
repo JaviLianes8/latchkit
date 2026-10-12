@@ -10,6 +10,7 @@ import threading
 from collections.abc import Callable, Sequence
 
 import pytest
+from _kinds import parked, until
 
 from latchkit import BrokenLatchError, CountDownLatch, Gate, OneShotEvent
 
@@ -124,23 +125,50 @@ def test_exactly_one_transition_wins_among_set_and_abort(round_: int) -> None:
 
 
 @ROUNDS_PARAM
-def test_count_up_racing_count_down_never_opens_with_work_in_flight(round_: int) -> None:
-    latch = CountDownLatch(1)
-    started: list[int] = []
-    finished: list[int] = []
-    snapshot: list[tuple[int, int]] = []
+def test_counted_up_work_in_flight_keeps_the_latch_closed(round_: int) -> None:
+    latch = CountDownLatch(1)  # the root token, held by this thread
+    holding: list[int] = []
+    release = threading.Event()
+    returned: list[bool] = []
 
-    def spawn() -> None:
-        if latch.try_count_up():
-            started.append(1)
-            finished.append(1)
-            latch.count_down()
+    def holder() -> None:
+        assert latch.try_count_up() is True  # the root token is still held
+        holding.append(1)
+        release.wait(GUARD)
+        latch.count_down()
 
     def wait() -> None:
-        assert latch.wait(GUARD) is True
-        snapshot.append((len(started), len(finished)))
+        returned.append(latch.wait(GUARD))
 
-    run_all([spawn] * SIGNALERS + [latch.count_down] + [wait] * 4)
-    assert len(snapshot) == 4
-    assert all(s == f for s, f in snapshot)
+    waiters = [threading.Thread(target=wait) for _ in range(WAITERS)]
+    holders = [threading.Thread(target=holder) for _ in range(SIGNALERS)]
+    for thread in waiters + holders:
+        thread.start()
+    until(lambda: len(holding) == SIGNALERS)
+    latch.count_down()  # drop the root token while all work is in flight
+    assert latch.remaining == SIGNALERS
+    assert latch.wait(0) is False
+    assert returned == []
+    release.set()
+    for thread in holders + waiters:
+        thread.join(GUARD)
+        assert not thread.is_alive()
+    assert returned == [True] * WAITERS
     assert latch.try_count_up() is False
+
+
+@ROUNDS_PARAM
+def test_parked_waiters_are_all_woken_by_concurrent_signals(round_: int) -> None:
+    latch = CountDownLatch(SIGNALERS)
+    returned: list[bool] = []
+    waiters = [
+        threading.Thread(target=lambda: returned.append(latch.wait(GUARD))) for _ in range(WAITERS)
+    ]
+    for thread in waiters:
+        thread.start()
+    until(lambda: parked(latch) == WAITERS)  # every waiter is blocked first
+    run_all([latch.count_down] * SIGNALERS)
+    for thread in waiters:
+        thread.join(GUARD)
+        assert not thread.is_alive()
+    assert returned == [True] * WAITERS

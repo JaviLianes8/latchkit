@@ -43,6 +43,22 @@ def test_cancelling_a_waiter_leaves_the_primitive_pending_and_clean() -> None:
     asyncio.run(main())
 
 
+def test_a_cancel_after_open_wins_for_that_task_only() -> None:
+    async def main() -> None:
+        event = AsyncOneShotEvent()
+        doomed = asyncio.create_task(event.wait())
+        others = [asyncio.create_task(event.wait()) for _ in range(5)]
+        await asyncio.sleep(0)
+        assert event.set() is True
+        doomed.cancel()  # same tick: delivered before the task resumes
+        with pytest.raises(asyncio.CancelledError):
+            await doomed
+        assert await asyncio.wait_for(asyncio.gather(*others), GUARD) == [True] * 5
+        assert event._waiters == {}
+
+    asyncio.run(main())
+
+
 def test_a_timed_out_waiter_is_removed() -> None:
     async def main() -> None:
         event = AsyncOneShotEvent()
