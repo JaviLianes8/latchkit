@@ -1,6 +1,8 @@
 # latchkit
 
-One-shot thread synchronization primitives: a counting latch and a gate, zero-dependency and typed
+One-shot synchronization primitives for threads and asyncio: a count-down
+latch, a gate and a fire-once event, each with abort-with-reason, typed errors
+and timeouts that behave. Zero dependencies, fully typed.
 
 ## Install
 
@@ -14,71 +16,130 @@ Wait for a fixed number of workers to finish before moving on:
 
 ```python
 import threading
+
 from latchkit import CountDownLatch
 
 latch = CountDownLatch(3)
 
+
 def worker(i: int) -> None:
-    # ... do the work ...
-    latch.count_down()
+    with latch.arrival():  # counts down when the block exits, even on error
+        ...  # do the work
+
 
 for i in range(3):
     threading.Thread(target=worker, args=(i,)).start()
 
-latch.wait()            # blocks until all three have counted down
-print("all workers done")
+latch.wait()  # blocks until all three have counted down
 ```
 
-`wait` takes a timeout and returns whether the latch opened in time:
+`wait` takes a timeout and returns whether the latch opened in time;
+`wait_or_raise` raises `LatchTimeoutError` (a `TimeoutError`) instead:
 
 ```python
 if not latch.wait(timeout=5.0):
-    raise TimeoutError("workers did not finish in 5 seconds")
+    print("still waiting")
+latch.wait_or_raise(timeout=5.0)
 ```
 
-A `Gate` is a manual switch that, once opened, stays open for every waiter:
+When something goes wrong, abort instead of leaving everyone blocked. Every
+current and future waiter raises `BrokenLatchError` with your reason:
+
+```python
+from latchkit import BrokenLatchError
+
+latch.abort(RuntimeError("database unreachable"))
+try:
+    latch.wait()
+except BrokenLatchError as error:
+    print(error.reason)  # the RuntimeError, also chained as __cause__
+```
+
+A `Gate` is a manual switch that, once opened, stays open for every waiter.
+`opening()` guards a run-once initialisation: it opens on success and aborts
+on failure, so waiters never hang on a crashed initialiser:
 
 ```python
 from latchkit import Gate
 
-gate = Gate()
-# worker threads call gate.wait(); a controller calls gate.open() once.
-gate.open()
-gate.wait()             # returns at once, now and forever
+ready = Gate()
+
+with ready.opening():
+    ...  # load config, warm caches
+
+ready.wait()  # returns at once, now and forever
 ```
 
-A `OneShotEvent` fires exactly once and tells the caller who won the race,
-which makes run-once initialisation and first-wins handoffs trivial:
+A `OneShotEvent` fires exactly once and tells the caller who won the race:
 
 ```python
 from latchkit import OneShotEvent
 
-ready = OneShotEvent()
-if ready.set():         # True for the first caller only
-    initialise_shared_resource()
-ready.wait()            # every other thread blocks until the winner is done
+claimed = OneShotEvent()
+if claimed.set():  # True for the first caller only
+    print("this thread won")
 ```
+
+Every primitive has an asyncio twin with the same API. Signalling is
+thread-safe, so worker threads can release coroutines:
+
+```python
+import asyncio
+
+from latchkit import AsyncCountDownLatch
+
+
+async def main() -> None:
+    latch = AsyncCountDownLatch(4)
+    loop = asyncio.get_running_loop()
+    for _ in range(4):
+        loop.run_in_executor(None, latch.count_down)
+    await latch.wait(timeout=10)
+
+
+asyncio.run(main())
+```
+
+The [guide](GUIDE.md) covers each primitive, abort and errors, asyncio and
+thread bridging, timeouts, and the exact memory-ordering guarantees.
+
+## API at a glance
+
+| Thread-based | asyncio | What it is |
+| --- | --- | --- |
+| `CountDownLatch(n)` | `AsyncCountDownLatch(n)` | Opens after `n` signals: `count_down`, `try_count_up`, `remaining`, `is_open`, `arrival()` |
+| `Gate()` | `AsyncGate()` | Opens once on demand: `open`, `is_open`, `opening()` |
+| `OneShotEvent()` | `AsyncOneShotEvent()` | Fires once, names the winner: `set`, `is_set` |
+
+All six share `wait(timeout)`, `wait_or_raise(timeout)`, `abort(reason)`,
+`is_broken` and `abort_reason`. Errors: `LatchError`, `BrokenLatchError`,
+`LatchTimeoutError`.
 
 ## Why
 
-The standard library gives you `threading.Event` and `threading.Barrier`, but
-neither is a count-down latch. `Barrier` is reusable and cyclic, and every
-participant must both arrive and wait at the same rendezvous, so you cannot have
-one thread wait while N unrelated threads each signal once. `Event` is a single
-boolean with no counting and can be cleared and reused, so a late waiter can miss
-the signal. The classic "wait for N things, then proceed, once" primitive, called
-`CountDownLatch` in Java and C#, has no counterpart in Python's stdlib.
+The standard library has `threading.Event`, `threading.Barrier`,
+`threading.Condition` and their asyncio cousins, and none of them is a
+count-down latch:
 
-There is also no maintained standalone package for it on PyPI: the pattern lives
-only embedded inside larger projects (the Hazelcast client, OpenStack taskflow),
-so people hand-roll a `Condition` plus a counter in every codebase and get the
-edge cases (counting past zero, waking all waiters, timeouts) subtly wrong.
+- `threading.Barrier` is cyclic and symmetric: every participant must both
+  arrive and wait, so one thread cannot wait while N unrelated threads each
+  signal once. If you need a rendezvous, use it; latchkit does not duplicate it.
+- `threading.Event` and `asyncio.Event` are a single resettable boolean with no
+  count, no notion of failure and no winner. A `clear()` can make a late waiter
+  miss the signal, and a crashed producer leaves waiters blocked forever.
+  `asyncio.Event` is also not thread-safe, so a worker thread cannot set it.
+- `threading.Condition` is the right building block, which is why people
+  hand-roll a counter plus a condition in every codebase and get the edge cases
+  (counting past zero, waking everyone, failure, timeouts) subtly wrong.
 
-`latchkit` is that primitive done once, correctly: `CountDownLatch` for the
-count-down, `Gate` for a one-shot manual event that stays open, and
-`OneShotEvent` for fire-once, first-caller-wins handoffs. All three are
-`Condition`-based, thread-safe, fully typed, and depend on nothing but the
-standard library.
+The "wait for N things, then proceed, once" primitive is `CountDownLatch` in
+Java and `CountdownEvent` in .NET. latchkit is that primitive done once,
+correctly, for both threads and asyncio, plus the two one-shot shapes that come
+up next to it, and an abort path modelled on `threading.Barrier.abort()` so
+failures reach waiters instead of hanging them.
+
+There is no CLI: these are in-process primitives, and a command line could not
+share one with anything.
 
 ## License
 

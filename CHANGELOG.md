@@ -6,6 +6,36 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0]
+
+### Added
+
+- `abort(reason=None)` on every primitive: current and future waiters raise
+  `BrokenLatchError`, which carries `reason` and chains it as `__cause__` when
+  it is an exception. The first transition (open or abort) wins for good.
+  New read-only `is_broken` and `abort_reason`.
+- Typed errors: `LatchError`, `BrokenLatchError` and `LatchTimeoutError`
+  (also a `TimeoutError`).
+- `wait_or_raise(timeout=None)` on every primitive.
+- asyncio counterparts `AsyncCountDownLatch`, `AsyncGate` and
+  `AsyncOneShotEvent` with the same API. Signalling is thread-safe and waiters
+  on several event loops are supported.
+- `CountDownLatch.try_count_up(n=1)` for work that spawns more work, and
+  `CountDownLatch.is_open`.
+- Context helpers `CountDownLatch.arrival(abort_on_error=False)` and
+  `Gate.opening()`, usable with `with` and `async with`; their return type is
+  the exported `SignalScope`.
+- Readable `repr` on every primitive.
+- `GUIDE.md` with semantics, timeouts, asyncio and happens-before guarantees.
+
+### Changed
+
+- `Gate.open()` now returns `True` if the call opened the gate (previously
+  `None`).
+- Timeouts are normalized: infinity and values above `threading.TIMEOUT_MAX`
+  wait forever instead of raising `OverflowError`, and `NaN` raises
+  `ValueError` instead of spinning.
+
 ## [0.1.0]
 
 - First release.
