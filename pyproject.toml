@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "latchkit"
-version = "0.1.0"
-description = "One-shot thread synchronization primitives: a counting latch and a gate, zero-dependency and typed"
+version = "0.2.0"
+description = "One-shot synchronization primitives for threads and asyncio: count-down latch, gates, abort with reason, zero-dependency and typed"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
