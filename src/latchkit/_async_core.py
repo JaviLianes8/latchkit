@@ -6,8 +6,8 @@ import asyncio
 import contextlib
 import threading
 
-from ._errors import broken, normalize_timeout, timed_out
-from ._state import BROKEN, OPEN, PENDING, STATE_NAMES
+from ._errors import normalize_timeout, outcome, timed_out
+from ._state import BROKEN, PENDING, STATE_NAMES
 
 __all__ = ["AsyncOneShot"]
 
@@ -72,16 +72,21 @@ class AsyncOneShot:
         elapse first, and raise :class:`~latchkit.BrokenLatchError` if it was
         aborted. Returns without suspending when already settled. Cancelling
         the waiting task raises :class:`asyncio.CancelledError` as usual and
-        leaves the primitive untouched. Timeouts follow the same rules as the
-        threaded classes and use the event loop's monotonic clock.
+        leaves the primitive untouched; a cancel delivered after the primitive
+        opened but before the task resumed still wins, as everywhere in
+        asyncio. Timeouts follow the same rules as the threaded classes and
+        use the event loop's monotonic clock. A waiter whose loop stops
+        without closing stays registered until the primitive settles.
         """
         limit = normalize_timeout(timeout)
         loop = asyncio.get_running_loop()
         with self._lock:
-            if self._state != PENDING or limit == 0.0:
-                return self._outcome_locked()
-            future: asyncio.Future[None] = loop.create_future()
-            self._waiters[future] = loop
+            state, reason = self._state, self._abort_reason
+            if state == PENDING and limit != 0.0:
+                future: asyncio.Future[None] = loop.create_future()
+                self._waiters[future] = loop
+        if state != PENDING or limit == 0.0:
+            return outcome(state, reason)
         timer = None if limit is None else loop.call_later(limit, _resolve, future)
         try:
             await future
@@ -90,8 +95,8 @@ class AsyncOneShot:
                 timer.cancel()
             with self._lock:
                 self._waiters.pop(future, None)
-        with self._lock:
-            return self._outcome_locked()
+                state, reason = self._state, self._abort_reason
+        return outcome(state, reason)
 
     async def wait_or_raise(self, timeout: float | None = None) -> None:
         """Like :meth:`wait`, but raise instead of returning ``False``.
@@ -129,10 +134,3 @@ class AsyncOneShot:
         self._abort_reason = reason if state == BROKEN else None
         waiters, self._waiters = self._waiters, {}
         return waiters
-
-    def _outcome_locked(self) -> bool:
-        if self._state == OPEN:
-            return True
-        if self._state == BROKEN:
-            raise broken(self._abort_reason)
-        return False

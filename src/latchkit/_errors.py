@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import math
-import threading
+
+from ._state import BROKEN, OPEN
 
 __all__ = ["BrokenLatchError", "LatchError", "LatchTimeoutError"]
 
@@ -21,8 +22,7 @@ class BrokenLatchError(LatchError):
     """
 
     def __init__(self, reason: object = None) -> None:
-        message = "aborted" if reason is None else f"aborted: {reason}"
-        super().__init__(message)
+        super().__init__(_describe(reason))
         self.reason = reason
 
 
@@ -31,6 +31,29 @@ class LatchTimeoutError(LatchError, TimeoutError):
 
     It subclasses :class:`TimeoutError`, so ``except TimeoutError`` catches it.
     """
+
+
+def _describe(reason: object) -> str:
+    if reason is None:
+        return "aborted"
+    try:
+        return f"aborted: {reason}"
+    except Exception:  # a broken __str__ must not hide the abort itself
+        return f"aborted: <{type(reason).__name__}>"
+
+
+def outcome(state: int, reason: object) -> bool:
+    """Turn a state read under the lock into a wait result, outside the lock.
+
+    ``True`` when open, ``False`` when still pending, and a fresh
+    :class:`BrokenLatchError` raised when broken. Callers release the lock
+    first, so user code in ``reason.__str__`` never runs while it is held.
+    """
+    if state == OPEN:
+        return True
+    if state == BROKEN:
+        raise broken(reason)
+    return False
 
 
 def broken(reason: object) -> BrokenLatchError:
@@ -49,16 +72,17 @@ def timed_out(timeout: float | None) -> LatchTimeoutError:
 def normalize_timeout(timeout: float | None) -> float | None:
     """Return the effective timeout in seconds, or ``None`` for "wait forever".
 
-    Negative values behave like zero, as in :mod:`threading`. Infinity and any
-    value above :data:`threading.TIMEOUT_MAX` mean "forever" instead of raising
-    :class:`OverflowError`. ``NaN`` is rejected with :class:`ValueError`, since
-    it would otherwise make ``Condition.wait_for`` spin forever.
+    Negative values behave like zero, as in :mod:`threading`. Infinity means
+    "forever". Large finite values are honoured exactly (the threaded wait
+    sleeps in chunks of at most :data:`threading.TIMEOUT_MAX`). ``NaN`` is
+    rejected with :class:`ValueError`, since it would otherwise make
+    ``Condition.wait_for`` spin forever.
     """
     if timeout is None:
         return None
     value = float(timeout)
     if math.isnan(value):
         raise ValueError("timeout must not be NaN")
-    if value > threading.TIMEOUT_MAX:
+    if math.isinf(value) and value > 0:
         return None
     return max(0.0, value)

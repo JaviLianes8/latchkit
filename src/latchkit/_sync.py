@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import threading
+import time
 
-from ._errors import broken, normalize_timeout, timed_out
-from ._state import BROKEN, OPEN, PENDING, STATE_NAMES
+from ._errors import normalize_timeout, outcome, timed_out
+from ._state import BROKEN, PENDING, STATE_NAMES
 
 __all__ = ["SyncOneShot"]
 
@@ -55,12 +56,23 @@ class SyncOneShot:
         aborted. Returns at once when already open. ``None`` waits forever;
         the deadline uses the monotonic clock and is immune to wall-clock
         changes and spurious wakeups. Negative timeouts behave like zero,
-        infinity means forever, and ``NaN`` raises :class:`ValueError`.
+        infinity means forever, timeouts longer than
+        :data:`threading.TIMEOUT_MAX` are honoured, and ``NaN`` raises
+        :class:`ValueError`.
         """
         limit = normalize_timeout(timeout)
         with self._cond:
-            self._cond.wait_for(self._settled, limit)
-            return self._outcome_locked()
+            if limit is None:
+                self._cond.wait_for(self._settled)
+            else:
+                deadline = time.monotonic() + limit
+                while not self._settled():
+                    left = deadline - time.monotonic()
+                    if left <= 0:
+                        break
+                    self._cond.wait(min(left, threading.TIMEOUT_MAX))
+            state, reason = self._state, self._abort_reason
+        return outcome(state, reason)
 
     def wait_or_raise(self, timeout: float | None = None) -> None:
         """Like :meth:`wait`, but raise instead of returning ``False``.
@@ -89,10 +101,3 @@ class SyncOneShot:
         self._abort_reason = reason if state == BROKEN else None
         self._cond.notify_all()
         return True
-
-    def _outcome_locked(self) -> bool:
-        if self._state == OPEN:
-            return True
-        if self._state == BROKEN:
-            raise broken(self._abort_reason)
-        return False
