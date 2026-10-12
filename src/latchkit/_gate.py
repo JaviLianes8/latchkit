@@ -2,76 +2,72 @@
 
 from __future__ import annotations
 
-import threading
+from ._scope import SignalScope
+from ._state import OPEN
+from ._sync import SyncOneShot
 
 __all__ = ["Gate", "OneShotEvent"]
 
 
-class Gate:
+class Gate(SyncOneShot):
     """A manual, one-shot gate: callers :meth:`wait` until someone :meth:`open` s it.
 
     Like :class:`threading.Event` but acyclic: it cannot be cleared, so a waiter
-    that arrives after it opens returns at once and it never closes again.
-    """
+    that arrives after it opens returns at once and it never closes again. It
+    can be aborted instead, which makes every waiter raise
+    :class:`~latchkit.BrokenLatchError`.
 
-    def __init__(self) -> None:
-        self._cond = threading.Condition()
-        self._open = False
+    Memory ordering: actions before :meth:`open` or :meth:`abort` happen-before
+    actions following a return from :meth:`wait` in another thread.
+    """
 
     @property
     def is_open(self) -> bool:
         """Whether the gate has been opened."""
         with self._cond:
-            return self._open
+            return self._state == OPEN
 
-    def open(self) -> None:
-        """Open the gate and release every waiter. Idempotent."""
-        with self._cond:
-            self._open = True
-            self._cond.notify_all()
+    def open(self) -> bool:
+        """Open the gate and release every waiter. Idempotent.
 
-    def wait(self, timeout: float | None = None) -> bool:
-        """Block until the gate is open.
-
-        Return ``True`` if it is open, ``False`` if ``timeout`` elapsed first.
-        A ``None`` timeout waits forever.
+        Return ``True`` if this call opened it, ``False`` if it was already
+        open or had been aborted (an aborted gate never opens).
         """
         with self._cond:
-            return self._cond.wait_for(lambda: self._open, timeout)
+            return self._settle_locked(OPEN)
+
+    def opening(self) -> SignalScope:
+        """Return a context manager that opens the gate when its block succeeds.
+
+        If the block raises, the gate is aborted with the exception as reason,
+        so waiters fail fast instead of hanging. The exception still propagates.
+        This is the run-once initialisation guard. Works with ``with`` and
+        ``async with``.
+        """
+        return SignalScope(self.open, self.abort)
 
 
-class OneShotEvent:
+class OneShotEvent(SyncOneShot):
     """An event that fires exactly once and names the caller that fired it.
 
     The first :meth:`set` returns ``True`` (the winner), later calls return
     ``False`` without reopening anything. This expresses run-once init and
     first-wins races, which :class:`threading.Event` (cyclic, no winner) cannot.
-    """
 
-    def __init__(self) -> None:
-        self._cond = threading.Condition()
-        self._set = False
+    Memory ordering: actions before :meth:`set` or :meth:`abort` happen-before
+    actions following a return from :meth:`wait` in another thread.
+    """
 
     @property
     def is_set(self) -> bool:
         """Whether the event has fired."""
         with self._cond:
-            return self._set
+            return self._state == OPEN
 
     def set(self) -> bool:
-        """Fire the event. Return ``True`` for the first caller, ``False`` after."""
-        with self._cond:
-            if self._set:
-                return False
-            self._set = True
-            self._cond.notify_all()
-            return True
+        """Fire the event. Return ``True`` for the first caller, ``False`` after.
 
-    def wait(self, timeout: float | None = None) -> bool:
-        """Block until the event fires.
-
-        Return ``True`` if it has fired, ``False`` if ``timeout`` elapsed first.
-        A ``None`` timeout waits forever.
+        Also ``False`` once the event has been aborted: it never fires then.
         """
         with self._cond:
-            return self._cond.wait_for(lambda: self._set, timeout)
+            return self._settle_locked(OPEN)
