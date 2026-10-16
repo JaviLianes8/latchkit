@@ -65,3 +65,39 @@ def test_the_wheel_ships_type_information(venv_python: Path) -> None:
         [str(venv_python), "-I", "-c", code], capture_output=True, text=True, timeout=60, check=True
     )
     assert result.stdout.strip() == "True"
+
+
+UPGRADE = os.environ.get("LATCHKIT_E2E") == "1"
+
+
+def _run_consumer(python: Path, cwd: Path) -> list[str]:
+    env = {k: v for k, v in os.environ.items() if k != "PYTHONPATH"}
+    result = subprocess.run(
+        [str(python), "-I", str(_CONSUMER)],
+        cwd=cwd,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=300,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    return result.stdout.splitlines()
+
+
+@pytest.mark.skipif(not UPGRADE, reason="needs PyPI: set LATCHKIT_E2E=1")
+def test_upgrade_in_place_from_the_pypi_release(
+    venv_python: Path, tmp_path_factory: pytest.TempPathFactory
+) -> None:
+    work = tmp_path_factory.mktemp("latchkit_upgrade")
+    env_dir = work / "venv"
+    venv.create(env_dir, with_pip=True)
+    python = env_dir / ("Scripts/python.exe" if _IS_WINDOWS else "bin/python")
+    pip = [str(python), "-m", "pip", "-q", "--disable-pip-version-check"]
+    subprocess.run([*pip, "install", "latchkit==0.2.0"], check=True, timeout=600)
+    before = _run_consumer(python, work)
+    assert before[0] == "install ok 0.2.0"
+    wheels = sorted((venv_python.parents[2] / "wheels").glob("latchkit-*.whl"))
+    subprocess.run([*pip, "install", "--no-index", str(wheels[0])], check=True, timeout=300)
+    after = _run_consumer(python, work)
+    assert after[0] == f"install ok {latchkit.__version__}"
+    assert before[1:] == after[1:] == ["threads ok", "abort ok", "event ok", "asyncio ok", "all ok"]

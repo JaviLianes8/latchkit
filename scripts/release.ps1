@@ -1,15 +1,24 @@
-# Build and upload to PyPI. Run scripts/check.ps1 first.
-# The name must not already exist on PyPI; the token is read from a secret store, never git.
+# Build and upload to PyPI from a clean clone of main; runs scripts/check.ps1 first.
+# The token is read from a secret store at release time, never from git.
 $ErrorActionPreference = "Stop"
 
-# Works on both Windows PowerShell 5.1 and pwsh 7 (generic catch, no PS7-only types).
-$taken = $true
-try {
-    Invoke-WebRequest -UseBasicParsing "https://pypi.org/pypi/latchkit/json" | Out-Null
-} catch {
-    if ($_.Exception.Response.StatusCode.value__ -eq 404) { $taken = $false } else { throw }
+function Step([string]$name, [scriptblock]$command) {
+    & $command
+    if ($LASTEXITCODE -ne 0) { throw "$name failed with exit code $LASTEXITCODE" }
 }
-if ($taken) { throw "The name 'latchkit' already exists on PyPI. Choose another before publishing." }
+
+Set-Location (Split-Path $PSScriptRoot -Parent)
+$version = (Select-String -Path src/latchkit/__init__.py -Pattern '__version__ = "(.+)"').Matches[0].Groups[1].Value
+try {
+    Invoke-WebRequest -UseBasicParsing "https://pypi.org/pypi/latchkit/$version/json" | Out-Null
+    throw "latchkit $version is already on PyPI. Bump the version first."
+} catch [System.Net.WebException], [Microsoft.PowerShell.Commands.HttpResponseException] {
+    if ($_.Exception.Response.StatusCode.value__ -ne 404) { throw }
+}
+
+if (git status --porcelain) { throw "The working tree is not clean." }
+if ((git rev-parse --abbrev-ref HEAD) -ne "main") { throw "Release only from main." }
+& "$PSScriptRoot\check.ps1"
 
 $token = $env:PYPI_TOKEN
 if (-not $token -and (Test-Path "C:\secrets\pypi-token.txt")) {
@@ -20,9 +29,12 @@ if (-not $token) {
 }
 
 Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue
-python -m build
-python -m twine check dist/*
+Step "build" { python -m build }
+Step "twine check" { python -m twine check --strict dist/* }
 
 $env:TWINE_USERNAME = "__token__"
 $env:TWINE_PASSWORD = $token
-try { python -m twine upload dist/* } finally { Remove-Item Env:\TWINE_PASSWORD -ErrorAction SilentlyContinue }
+try { Step "upload" { python -m twine upload dist/* } } finally {
+    Remove-Item Env:\TWINE_PASSWORD -ErrorAction SilentlyContinue
+    Remove-Item Env:\TWINE_USERNAME -ErrorAction SilentlyContinue
+}

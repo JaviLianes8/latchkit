@@ -2,7 +2,7 @@
 
 One-shot synchronization primitives for threads and asyncio: a count-down
 latch, a gate and a fire-once event, each with abort-with-reason, typed errors
-and timeouts that behave. Zero dependencies, fully typed.
+and timeouts that behave. Zero dependencies, fully typed, Python 3.10 and up.
 
 ## Install
 
@@ -10,7 +10,7 @@ and timeouts that behave. Zero dependencies, fully typed.
 pip install latchkit
 ```
 
-## Usage
+## Quick start
 
 Wait for a fixed number of workers to finish before moving on:
 
@@ -48,9 +48,10 @@ current and future waiter raises `BrokenLatchError` with your reason:
 ```python
 from latchkit import BrokenLatchError
 
-latch.abort(RuntimeError("database unreachable"))
+jobs = CountDownLatch(3)
+jobs.abort(RuntimeError("database unreachable"))
 try:
-    latch.wait()
+    jobs.wait()
 except BrokenLatchError as error:
     print(error.reason)  # the RuntimeError, also chained as __cause__
 ```
@@ -101,8 +102,11 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
-The [guide](GUIDE.md) covers each primitive, abort and errors, asyncio and
-thread bridging, timeouts, and the exact memory-ordering guarantees.
+The [guide](https://github.com/JaviLianes8/latchkit/blob/main/GUIDE.md) covers
+each primitive, abort and errors, argument rules, asyncio and thread bridging,
+timeouts, the exact memory-ordering guarantees and how the semantics compare
+with Java, .NET, C++ and Go. Changes are listed in the
+[changelog](https://github.com/JaviLianes8/latchkit/blob/main/CHANGELOG.md).
 
 ## API at a glance
 
@@ -114,7 +118,8 @@ thread bridging, timeouts, and the exact memory-ordering guarantees.
 
 All six share `wait(timeout)`, `wait_or_raise(timeout)`, `abort(reason)`,
 `is_broken` and `abort_reason`. Errors: `LatchError`, `BrokenLatchError`,
-`LatchTimeoutError`.
+`LatchTimeoutError`. `SignalScope` is the context manager that `arrival()` and
+`opening()` return.
 
 ## Why
 
@@ -128,23 +133,30 @@ count-down latch:
 - `threading.Event` and `asyncio.Event` are a single resettable boolean with no
   count, no notion of failure and no winner. A `clear()` can make a late waiter
   miss the signal, and a crashed producer leaves waiters blocked forever.
-  `asyncio.Event` is also not thread-safe, so a worker thread cannot set it.
+  asyncio's primitives are documented as not thread-safe, so a worker thread
+  cannot set an `asyncio.Event` directly.
 - `threading.Condition` is the right building block, which is why people
-  hand-roll a counter plus a condition in every codebase and get the edge cases
-  (counting past zero, waking everyone, failure, timeouts) subtly wrong.
+  hand-roll a counter plus a condition and get the edge cases (counting past
+  zero, waking everyone, failure, timeouts) subtly wrong. Even the standard
+  waits have sharp edges: on the CPython 3.10 to 3.14 builds we tested (Windows)
+  `Event.wait(float("inf"))`
+  raises `OverflowError`, and `Condition.wait_for(predicate, float("nan"))`
+  spins without ever sleeping. latchkit treats infinity as "forever" and
+  refuses NaN.
 
 The "wait for N things, then proceed, once" primitive is `CountDownLatch` in
-Java and `CountdownEvent` in .NET. latchkit is that primitive done once,
-correctly, for both threads and asyncio, plus the two one-shot shapes that come
-up next to it, and an abort path modelled on `threading.Barrier.abort()` so
-failures reach waiters instead of hanging them.
+Java, `CountdownEvent` in .NET and `std::latch` in C++20. latchkit is that
+primitive for both threads and asyncio, checked against the Java and .NET
+implementations, plus the two one-shot shapes that come up next to it, and an
+abort path modelled on `threading.Barrier.abort()` so failures reach waiters
+instead of hanging them.
 
 There is no CLI: these are in-process primitives, and a command line could not
 share one with anything.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](https://github.com/JaviLianes8/latchkit/blob/main/LICENSE).
 
 ## Links
 
