@@ -13,7 +13,22 @@ class SignalScope:
 
     When ``on_error`` is ``None`` a failing block runs ``on_success`` too, the
     ``try``/``finally`` shape. The exception is never swallowed. Usable with
-    both ``with`` and ``async with``, since signalling never blocks.
+    both ``with`` and ``async with``, since signalling never blocks. Built by
+    ``CountDownLatch.arrival`` and ``Gate.opening``, and usable on its own with
+    any callables.
+
+    >>> from latchkit import SignalScope
+    >>> log = []
+    >>> scope = SignalScope(lambda: log.append("done"), lambda exc: log.append(repr(exc)))
+    >>> with scope:
+    ...     pass
+    >>> try:
+    ...     with scope:
+    ...         raise KeyError("k")
+    ... except KeyError:
+    ...     pass
+    >>> log
+    ['done', "KeyError('k')"]
     """
 
     __slots__ = ("_on_error", "_on_success")

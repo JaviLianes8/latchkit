@@ -6,6 +6,7 @@ import threading
 import time
 
 import pytest
+from _kinds import GUARD, parked, until
 
 from latchkit import CountDownLatch
 
@@ -20,12 +21,13 @@ def test_waiters_release_only_after_the_last_count_down() -> None:
 
     t = threading.Thread(target=waiter)
     t.start()
+    until(lambda: parked(latch) == 1)
     latch.count_down()
     latch.count_down()
-    time.sleep(0.05)
-    assert not released.is_set()  # still one signal short
+    assert parked(latch) == 1  # still parked: one signal short, nobody was woken
+    assert not released.is_set()
     latch.count_down()
-    t.join(timeout=2.0)
+    t.join(GUARD)
     assert released.is_set()
 
 
@@ -86,7 +88,7 @@ def test_many_waiters_all_release() -> None:
     lock = threading.Lock()
 
     def waiter() -> None:
-        assert latch.wait(timeout=2.0) is True
+        assert latch.wait(timeout=GUARD) is True
         with lock:
             done.append(True)
 
@@ -95,5 +97,5 @@ def test_many_waiters_all_release() -> None:
         t.start()
     latch.count_down()
     for t in threads:
-        t.join(timeout=2.0)
+        t.join(GUARD)
     assert len(done) == 5

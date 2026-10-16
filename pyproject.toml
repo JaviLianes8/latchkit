@@ -4,16 +4,19 @@ build-backend = "hatchling.build"
 
 [project]
 name = "latchkit"
-version = "0.2.0"
+dynamic = ["version"]
 description = "One-shot synchronization primitives for threads and asyncio: count-down latch, gates, abort with reason, zero-dependency and typed"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "Javier Lianes", email = "javier@lianes8studio.com" }]
-keywords = ["threading", "asyncio", "concurrency", "latch", "countdownlatch", "gate", "synchronization"]
+keywords = [
+    "threading", "asyncio", "concurrency", "latch", "countdownlatch", "countdown", "gate",
+    "event", "abort", "synchronization",
+]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Framework :: AsyncIO",
     "Operating System :: OS Independent",
@@ -23,6 +26,8 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries",
     "Typing :: Typed",
 ]
@@ -33,17 +38,34 @@ dev = ["ruff", "mypy", "pytest", "build", "twine"]
 
 [project.urls]
 Homepage = "https://lianes8studio.com"
-Repository = "https://github.com/JaviLianes8/latchkit"
+Source = "https://github.com/JaviLianes8/latchkit"
 Issues = "https://github.com/JaviLianes8/latchkit/issues"
 Changelog = "https://github.com/JaviLianes8/latchkit/blob/main/CHANGELOG.md"
 LinkedIn = "https://www.linkedin.com/in/jlianes/"
 Funding = "https://buymeacoffee.com/jlianesglrs"
 
+[tool.hatch.version]
+path = "src/latchkit/__init__.py"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/latchkit"]
 
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.github",
+    "/dist",
+    "/tests/sources/*.html",
+    "/tests/sources/*.cs",
+    "/tests/sources/*.go",
+    "/tests/sources/*.txt",
+    "/tests/sources/*.rst",
+    "/IMPROVEMENTS-round.md",
+    "/CERT-1.0-REPORT.md",
+]
+
 [tool.ruff]
 line-length = 100
+extend-exclude = ["tests/sources"]
 target-version = "py310"
 
 [tool.ruff.lint]
@@ -53,6 +75,7 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 python_version = "3.10"
 strict = true
 mypy_path = "src"
+exclude = ["tests/sources/"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

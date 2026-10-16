@@ -1,16 +1,22 @@
-"""Typed errors and the timeout rules shared by every primitive."""
+"""Typed errors and how a settled state becomes a wait result."""
 
 from __future__ import annotations
-
-import math
 
 from ._state import BROKEN, OPEN
 
 __all__ = ["BrokenLatchError", "LatchError", "LatchTimeoutError"]
 
+REASON_PREVIEW = 200
+"""At most this many characters of ``str(reason)`` appear in a message."""
+
 
 class LatchError(Exception):
-    """Base class for every error raised by latchkit."""
+    """Base class for every error raised by latchkit.
+
+    >>> from latchkit import BrokenLatchError, LatchError, LatchTimeoutError
+    >>> issubclass(BrokenLatchError, LatchError), issubclass(LatchTimeoutError, LatchError)
+    (True, True)
+    """
 
 
 class BrokenLatchError(LatchError):
@@ -18,18 +24,39 @@ class BrokenLatchError(LatchError):
 
     ``reason`` is the value passed to ``abort``. When it is an exception it is
     also chained as ``__cause__``, so tracebacks show why the primitive broke.
-    Each waiter receives its own instance, never a shared one.
+    Each waiter receives its own instance, never a shared one. The message
+    shows at most the first 200 characters of ``str(reason)``.
+
+    >>> from latchkit import BrokenLatchError, Gate
+    >>> gate = Gate()
+    >>> gate.abort("config missing")
+    True
+    >>> try:
+    ...     gate.wait()
+    ... except BrokenLatchError as error:
+    ...     print(error, "|", error.reason)
+    aborted: config missing | config missing
     """
 
     def __init__(self, reason: object = None) -> None:
         super().__init__(_describe(reason))
         self.reason = reason
 
+    def __reduce__(self) -> tuple[type[BrokenLatchError], tuple[object]]:
+        return (type(self), (self.reason,))
+
 
 class LatchTimeoutError(LatchError, TimeoutError):
     """Raised by ``wait_or_raise`` when the timeout elapses before opening.
 
     It subclasses :class:`TimeoutError`, so ``except TimeoutError`` catches it.
+
+    >>> from latchkit import CountDownLatch
+    >>> try:
+    ...     CountDownLatch(1).wait_or_raise(timeout=0)
+    ... except TimeoutError as error:
+    ...     print(type(error).__name__, "|", error)
+    LatchTimeoutError | not opened within 0 seconds
     """
 
 
@@ -37,9 +64,12 @@ def _describe(reason: object) -> str:
     if reason is None:
         return "aborted"
     try:
-        return f"aborted: {reason}"
+        text = str(reason)
     except Exception:  # a broken __str__ must not hide the abort itself
-        return f"aborted: <{type(reason).__name__}>"
+        return f"aborted: <{type(reason).__name__:.40}>"
+    if len(text) > REASON_PREVIEW:
+        text = text[:REASON_PREVIEW] + "..."
+    return f"aborted: {text}"
 
 
 def outcome(state: int, reason: object) -> bool:
@@ -64,25 +94,6 @@ def broken(reason: object) -> BrokenLatchError:
     return error
 
 
-def timed_out(timeout: float | None) -> LatchTimeoutError:
-    """Build the error raised by ``wait_or_raise``."""
-    return LatchTimeoutError(f"not opened within {timeout} seconds")
-
-
-def normalize_timeout(timeout: float | None) -> float | None:
-    """Return the effective timeout in seconds, or ``None`` for "wait forever".
-
-    Negative values behave like zero, as in :mod:`threading`. Infinity means
-    "forever". Large finite values are honoured exactly (the threaded wait
-    sleeps in chunks of at most :data:`threading.TIMEOUT_MAX`). ``NaN`` is
-    rejected with :class:`ValueError`, since it would otherwise make
-    ``Condition.wait_for`` spin forever.
-    """
-    if timeout is None:
-        return None
-    value = float(timeout)
-    if math.isnan(value):
-        raise ValueError("timeout must not be NaN")
-    if math.isinf(value) and value > 0:
-        return None
-    return max(0.0, value)
+def timed_out(limit: float) -> LatchTimeoutError:
+    """Build the error raised by ``wait_or_raise`` after waiting ``limit`` seconds."""
+    return LatchTimeoutError(f"not opened within {limit:.6g} seconds")

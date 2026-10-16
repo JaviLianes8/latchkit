@@ -16,6 +16,15 @@ class AsyncGate(AsyncOneShot):
     :meth:`wait` and :meth:`wait_or_raise` are coroutines. Unlike
     :class:`asyncio.Event` it can never be cleared, and :meth:`open` and
     :meth:`abort` are safe to call from any thread.
+
+    >>> import asyncio
+    >>> from latchkit import AsyncGate
+    >>> async def main() -> bool:
+    ...     gate = AsyncGate()
+    ...     asyncio.get_running_loop().call_soon(gate.open)
+    ...     return await gate.wait(timeout=60)
+    >>> asyncio.run(main())
+    True
     """
 
     @property
@@ -43,6 +52,14 @@ class AsyncOneShotEvent(AsyncOneShot):
     Same API and semantics as :class:`~latchkit.OneShotEvent`, except that
     :meth:`wait` and :meth:`wait_or_raise` are coroutines. :meth:`set` and
     :meth:`abort` are safe to call from any thread.
+
+    >>> import asyncio
+    >>> from latchkit import AsyncOneShotEvent
+    >>> async def main() -> list[bool]:
+    ...     event = AsyncOneShotEvent()
+    ...     return [event.set(), event.set(), await event.wait(timeout=0)]
+    >>> asyncio.run(main())
+    [True, False, True]
     """
 
     @property

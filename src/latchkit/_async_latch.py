@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from ._async_core import AsyncOneShot
-from ._latch import check_count, check_step
+from ._check import check_count, check_step, count_text
 from ._scope import SignalScope
 from ._state import OPEN, PENDING
 
@@ -18,6 +18,17 @@ class AsyncCountDownLatch(AsyncOneShot):
     :class:`asyncio.Event`, :meth:`count_down`, :meth:`try_count_up` and
     :meth:`abort` are thread-safe, so worker threads (for example inside
     ``loop.run_in_executor``) can signal coroutines waiting on any loop.
+
+    >>> import asyncio
+    >>> from latchkit import AsyncCountDownLatch
+    >>> async def main() -> bool:
+    ...     latch = AsyncCountDownLatch(4)
+    ...     loop = asyncio.get_running_loop()
+    ...     for _ in range(4):
+    ...         loop.run_in_executor(None, latch.count_down)
+    ...     return await latch.wait(timeout=60)
+    >>> asyncio.run(main())
+    True
     """
 
     def __init__(self, count: int) -> None:
@@ -44,7 +55,7 @@ class AsyncCountDownLatch(AsyncOneShot):
         Same rules as :meth:`latchkit.CountDownLatch.count_down`. Never blocks
         and is safe to call from any thread.
         """
-        check_step(n)
+        n = check_step(n)
         with self._lock:
             if self._state != PENDING:
                 return self._remaining
@@ -57,7 +68,7 @@ class AsyncCountDownLatch(AsyncOneShot):
 
     def try_count_up(self, n: int = 1) -> bool:
         """Raise the count by ``n`` while pending; ``False`` once open or broken."""
-        check_step(n)
+        n = check_step(n)
         with self._lock:
             if self._state != PENDING:
                 return False
@@ -75,5 +86,5 @@ class AsyncCountDownLatch(AsyncOneShot):
 
     def _describe_locked(self) -> str:
         if self._state == PENDING:
-            return f"remaining={self._remaining}"
+            return f"remaining={count_text(self._remaining)}"
         return super()._describe_locked()

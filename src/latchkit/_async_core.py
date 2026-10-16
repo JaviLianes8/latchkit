@@ -6,7 +6,8 @@ import asyncio
 import contextlib
 import threading
 
-from ._errors import normalize_timeout, outcome, timed_out
+from ._check import normalize_timeout
+from ._errors import outcome, timed_out
 from ._state import BROKEN, PENDING, STATE_NAMES
 
 __all__ = ["AsyncOneShot"]
@@ -78,7 +79,20 @@ class AsyncOneShot:
         use the event loop's monotonic clock. A waiter whose loop stops
         without closing stays registered until the primitive settles.
         """
+        return outcome(*await self._wait(normalize_timeout(timeout)))
+
+    async def wait_or_raise(self, timeout: float | None = None) -> None:
+        """Like :meth:`wait`, but raise instead of returning ``False``.
+
+        Raise :class:`~latchkit.LatchTimeoutError` (a :class:`TimeoutError`)
+        when ``timeout`` elapses first, and
+        :class:`~latchkit.BrokenLatchError` when the primitive was aborted.
+        """
         limit = normalize_timeout(timeout)
+        if not outcome(*await self._wait(limit)):
+            raise timed_out(limit or 0.0)
+
+    async def _wait(self, limit: float | None) -> tuple[int, object]:
         loop = asyncio.get_running_loop()
         with self._lock:
             state, reason = self._state, self._abort_reason
@@ -86,7 +100,7 @@ class AsyncOneShot:
                 future: asyncio.Future[None] = loop.create_future()
                 self._waiters[future] = loop
         if state != PENDING or limit == 0.0:
-            return outcome(state, reason)
+            return state, reason
         timer = None if limit is None else loop.call_later(limit, _resolve, future)
         try:
             await future
@@ -96,17 +110,7 @@ class AsyncOneShot:
             with self._lock:
                 self._waiters.pop(future, None)
                 state, reason = self._state, self._abort_reason
-        return outcome(state, reason)
-
-    async def wait_or_raise(self, timeout: float | None = None) -> None:
-        """Like :meth:`wait`, but raise instead of returning ``False``.
-
-        Raise :class:`~latchkit.LatchTimeoutError` (a :class:`TimeoutError`)
-        when ``timeout`` elapses first, and
-        :class:`~latchkit.BrokenLatchError` when the primitive was aborted.
-        """
-        if not await self.wait(timeout):
-            raise timed_out(timeout)
+        return state, reason
 
     def __repr__(self) -> str:
         with self._lock:

@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import threading
-import time
+
+from _kinds import GUARD, parked, until
 
 from latchkit import Gate, OneShotEvent
 
@@ -18,10 +19,10 @@ def test_gate_releases_a_waiter_when_opened() -> None:
 
     t = threading.Thread(target=waiter)
     t.start()
-    time.sleep(0.05)
+    until(lambda: parked(gate) == 1)
     assert not released.is_set()
     gate.open()
-    t.join(timeout=2.0)
+    t.join(GUARD)
     assert released.is_set()
 
 
@@ -62,10 +63,10 @@ def test_one_shot_event_releases_waiters_on_set() -> None:
 
     t = threading.Thread(target=waiter)
     t.start()
-    time.sleep(0.05)
+    until(lambda: parked(event) == 1)
     assert not released.is_set()
     event.set()
-    t.join(timeout=2.0)
+    t.join(GUARD)
     assert released.is_set()
 
 
@@ -90,5 +91,5 @@ def test_one_shot_event_names_a_single_winner_under_contention() -> None:
     for t in threads:
         t.start()
     for t in threads:
-        t.join(timeout=2.0)
+        t.join(GUARD)
     assert wins.count(True) == 1
