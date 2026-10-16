@@ -10,3 +10,11 @@ dist/
 .ruff_cache/
 .coverage
 htmlcov/
+
+# Third-party copies fetched by scripts/fetch_sources.py: never committed.
+tests/sources/*
+!tests/sources/MANIFEST.json
+# Oracle build output
+tests/oracle/dotnet/bin/
+tests/oracle/dotnet/obj/
+*.class

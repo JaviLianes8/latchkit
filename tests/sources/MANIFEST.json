@@ -1,0 +1,65 @@
+{
+ "cppreference-latch-count_down.html": {
+  "fetched": "2026-10-16",
+  "licence": "CC-BY-SA",
+  "sha256": "7841e2a18c223059d1cc8632b740d54fb06722c6ee42230144298968c1334f81",
+  "size": 61683,
+  "url": "https://en.cppreference.com/w/cpp/thread/latch/count_down.html"
+ },
+ "cppreference-latch.html": {
+  "fetched": "2026-10-16",
+  "licence": "CC-BY-SA",
+  "sha256": "35a41f73a6d0a821ba45526cde80b978205b96da587b5cbbeb8caacd1adaed12",
+  "size": 77732,
+  "url": "https://en.cppreference.com/w/cpp/thread/latch.html"
+ },
+ "cpython3.13-asyncio-sync.rst": {
+  "fetched": "2026-10-16",
+  "licence": "PSF-2.0",
+  "sha256": "7e205516c22215d1a6571c76d229e1dd72ff24b735999cf0723486c34be752dd",
+  "size": 12820,
+  "url": "https://raw.githubusercontent.com/python/cpython/v3.13.2/Doc/library/asyncio-sync.rst"
+ },
+ "cpython3.13-threading.py.txt": {
+  "fetched": "2026-10-16",
+  "licence": "PSF-2.0",
+  "sha256": "dbc5f71103224bac1b650da8c3c306a44a1963315bcdbd9bee8e3421f42fff00",
+  "size": 55167,
+  "url": "https://raw.githubusercontent.com/python/cpython/v3.13.2/Lib/threading.py"
+ },
+ "dotnet9-CountdownEvent.cs": {
+  "fetched": "2026-10-16",
+  "licence": "MIT",
+  "sha256": "4903b1945244d96833253b598adeb7ea9d0713f47935d2b35c61dca433bf84be",
+  "size": 26067,
+  "url": "https://raw.githubusercontent.com/dotnet/runtime/v9.0.0/src/libraries/System.Threading/src/System/Threading/CountdownEvent.cs"
+ },
+ "go1.23-waitgroup.go": {
+  "fetched": "2026-10-16",
+  "licence": "BSD-3-Clause",
+  "sha256": "8c93cdfd66c456745dba90fa4a0deccbbf76f2deb3a321c891ef642b8254937c",
+  "size": 4086,
+  "url": "https://raw.githubusercontent.com/golang/go/go1.23.0/src/sync/waitgroup.go"
+ },
+ "java21-CountDownLatch.html": {
+  "fetched": "2026-10-16",
+  "licence": "Oracle documentation",
+  "sha256": "3e8d63c3acbdeef0baea1af7b1ff8d24c9cfb4d90e8110b042d1d0c120162cc1",
+  "size": 25620,
+  "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CountDownLatch.html"
+ },
+ "java21-CyclicBarrier.html": {
+  "fetched": "2026-10-16",
+  "licence": "Oracle documentation",
+  "sha256": "92d0f2a4654890a4748c28bb7682e166ec37c12d278db23834941951b3d7f4c5",
+  "size": 31734,
+  "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CyclicBarrier.html"
+ },
+ "java21-Phaser.html": {
+  "fetched": "2026-10-16",
+  "licence": "Oracle documentation",
+  "sha256": "54d925ea6276b20937a50016ddf35fc1b2112812841c89cc55358127c8bb5fa4",
+  "size": 55335,
+  "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Phaser.html"
+ }
+}
