@@ -26,8 +26,9 @@ twins `AsyncCountDownLatch`, `AsyncGate`, `AsyncOneShotEvent`, with `wait`,
   `Fraction`, all accepted or failing obscurely before, now raise `TypeError`.
   In 0.2.0 `CountDownLatch(2.5)` opened after three signals.
 - `timeout` must be `None` or a real number other than `bool`. A string such
-  as `"5"` (accepted in 0.2.0), a `Decimal`, `True` or a complex number now
-  raise `TypeError`, even on a settled primitive. An integer too large for a
+  as `"5"` or `True` (both accepted in 0.2.0, `True` as one second), a
+  `Decimal` or a complex number now raise `TypeError`, even on a settled
+  primitive. An integer too large for a
   float now means "forever" (or zero when negative) instead of raising
   `OverflowError`.
 - An async `wait` checks its timeout before it looks for a running loop.
@@ -35,8 +36,8 @@ twins `AsyncCountDownLatch`, `AsyncGate`, `AsyncOneShotEvent`, with `wait`,
   error messages about wrong arguments never echo the value.
 - The `LatchTimeoutError` message shows the effective timeout (negative values
   read as 0) rather than the argument as given.
-- `BrokenLatchError` now survives pickling with its reason; in 0.2.0 the copy
-  took the message as its reason.
+- `BrokenLatchError` now pickles cleanly; in 0.2.0 the copy's message read
+  `aborted: aborted: ...`.
 - The public classes report `latchkit` as their module, and the package no
   longer exposes the stray name `annotations`.
 - `repr` of a latch whose count is beyond 64 bits shows the bit size rather

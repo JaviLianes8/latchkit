@@ -116,3 +116,11 @@ def test_async_wait_checks_its_argument_before_needing_a_loop() -> None:
         with pytest.raises(error):
             coroutine.send(None)  # no event loop: the check comes first
     assert latch._waiters == {}
+
+
+@pytest.mark.parametrize("cls", LATCHES)
+def test_repr_shows_counts_up_to_64_bits_and_the_size_beyond(cls: Any) -> None:
+    name = cls.__name__
+    assert repr(cls(2**64 - 1)) == f"<{name} remaining={2**64 - 1}>"
+    assert repr(cls(2**64)) == f"<{name} remaining=<65-bit int>>"
+    assert repr(cls(10**5000)) == f"<{name} remaining=<16610-bit int>>"

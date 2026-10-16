@@ -145,3 +145,16 @@ def test_settled_primitives_return_without_suspending() -> None:
         assert gate._waiters == {} and broken._waiters == {}
 
     asyncio.run(main())
+
+
+def test_a_zero_timeout_on_a_pending_primitive_never_suspends() -> None:
+    async def main() -> None:
+        for prim in (AsyncGate(), AsyncCountDownLatch(1), AsyncOneShotEvent()):
+            for timeout in (0, -1, -0.0):
+                coroutine = prim.wait(timeout)
+                with pytest.raises(StopIteration) as done:
+                    coroutine.send(None)  # finished on the first step: no await happened
+                assert done.value.value is False
+                assert prim._waiters == {}
+
+    asyncio.run(main())

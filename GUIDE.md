@@ -249,9 +249,10 @@ builds as well as with the GIL.
 
 ## Compared with other languages
 
-The test suite replays 800 seeded scenarios recorded from Java 21's
-`CountDownLatch` and .NET 9's `CountdownEvent` on both latchkit latches
-(`tests/fixtures/oracle_runs.json`, captured by `scripts/capture_oracles.py`).
+The test suite replays seeded scenarios recorded from Java 21's
+`CountDownLatch` (400) and .NET 9's `CountdownEvent` (800, raising the count
+too) on both latchkit latches (`tests/fixtures/oracle_runs.json`, captured by
+`scripts/capture_oracles.py` from the programs in `tests/oracle/`).
 
 | Behaviour | latchkit | Java `CountDownLatch` | .NET `CountdownEvent` | C++20 `std::latch` | Go `sync.WaitGroup` |
 | --- | --- | --- | --- | --- | --- |
