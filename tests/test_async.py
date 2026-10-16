@@ -129,8 +129,10 @@ def test_a_waiter_on_a_closed_loop_does_not_break_signalling() -> None:
     loop.run_until_complete(asyncio.sleep(0))
     loop.close()
     task._log_destroy_pending = False  # type: ignore[attr-defined]  # abandoned on purpose
+    assert len(gate._waiters) == 1
     assert gate.open() is True
     assert gate.is_open is True
+    assert gate._waiters == {}, "settling forgets waiters that can never resume"
 
 
 def test_settled_primitives_return_without_suspending() -> None:
