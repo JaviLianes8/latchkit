@@ -26,14 +26,14 @@ twins `AsyncCountDownLatch`, `AsyncGate`, `AsyncOneShotEvent`, with `wait`,
   `Fraction`, all accepted or failing obscurely before, now raise `TypeError`.
   In 0.2.0 `CountDownLatch(2.5)` opened after three signals.
 - `timeout` must be `None` or a real number other than `bool`. A string such
-  as `"5"` or `True` (both accepted in 0.2.0, `True` as one second), a
-  `Decimal` or a complex number now raise `TypeError`, even on a settled
-  primitive. An integer too large for a
+  as `"5"`, `True` (waited one second) and a `Decimal`, all accepted in 0.2.0,
+  now raise `TypeError` with a short message, even on a settled primitive. An integer too large for a
   float now means "forever" (or zero when negative) instead of raising
   `OverflowError`.
-- An async `wait` checks its timeout before it looks for a running loop.
 - `BrokenLatchError` messages show at most 200 characters of the reason, and
-  error messages about wrong arguments never echo the value.
+  the type name in angle brackets when `str(reason)` is empty (a bare
+  `CancelledError` from a cancelled `opening()` block, say). Error messages
+  about wrong arguments never echo the value.
 - The `LatchTimeoutError` message shows the effective timeout (negative values
   read as 0) rather than the argument as given.
 - `BrokenLatchError` now pickles cleanly; in 0.2.0 the copy's message read
@@ -45,13 +45,15 @@ twins `AsyncCountDownLatch`, `AsyncGate`, `AsyncOneShotEvent`, with `wait`,
 
 ### Added
 
-- Docstring examples on every public name, run as doctests.
+- Docstring examples on every public class, method and property, run as
+  doctests.
 - Ground-truth tests: 400 seeded scenarios recorded from Java 21's
   `CountDownLatch` and 800 from .NET 9's `CountdownEvent`, replayed on both
   latches, plus live checks against `threading.Barrier` and `asyncio.Barrier`.
 - `GUIDE.md` sections on argument rules and on how the semantics compare with
   Java, .NET, C++20 and Go.
-- Python 3.14 in the classifiers.
+- Python 3.14 in the classifiers; the development status is now
+  Production/Stable.
 
 ## [0.2.0] - 2026-10-14
 

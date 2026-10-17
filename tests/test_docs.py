@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import doctest
 import importlib
+import inspect
 import pkgutil
 import re
 from pathlib import Path
@@ -30,6 +31,23 @@ def test_every_public_name_carries_doctests_that_pass() -> None:
     owners = {test.name.split(".")[1] for test in tested if test.name.count(".") >= 1}
     assert owners >= set(latchkit.__all__)
     assert sum(len(test.examples) for test in tested) >= 50
+
+
+def test_every_public_member_has_its_own_example() -> None:
+    missing = []
+    for name in latchkit.__all__:
+        cls = getattr(latchkit, name)
+        for member in dir(cls):
+            if member.startswith("_") or member in dir(OSError):
+                continue
+            doc = (
+                getattr(cls, member).__doc__
+                if not isinstance(inspect.getattr_static(cls, member), property)
+                else inspect.getattr_static(cls, member).__doc__
+            )
+            if ">>> " not in (doc or ""):
+                missing.append(f"{name}.{member}")
+    assert missing == []
 
 
 @pytest.mark.parametrize("name", MODULES)

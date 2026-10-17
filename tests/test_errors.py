@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import math
 import pickle
 from fractions import Fraction
@@ -27,7 +28,8 @@ def test_hierarchy() -> None:
         ("stop", "aborted: stop"),
         (ValueError("bad value"), "aborted: bad value"),
         (42, "aborted: 42"),
-        ("", "aborted: "),
+        ("", "aborted: <str>"),
+        (asyncio.CancelledError(), "aborted: <CancelledError>"),
     ],
 )
 def test_message_names_the_reason(reason: object, message: str) -> None:
@@ -92,7 +94,7 @@ def test_timeout_error_pickles() -> None:
         (-3, "0"),
         (-(10**400), "0"),
         (0.0015, "0.0015"),
-        (Fraction(1, 3) / 100, "0.00333333"),
+        (Fraction(1, 3) / 100, "0.00333333333333333"),
         (-math.inf, "0"),
     ],
 )
@@ -103,6 +105,13 @@ def test_timeout_message_shows_the_effective_timeout(
         kind.wait_or_raise(kind.make(), timeout)
     assert str(info.value) == f"not opened within {shown} seconds"
     assert info.value.__cause__ is None
+
+
+def test_long_timeouts_are_shown_in_full_without_an_exponent() -> None:
+    from latchkit._errors import timed_out
+
+    assert str(timed_out(1234567.25)) == "not opened within 1234567.25 seconds"
+    assert str(timed_out(86400 * 365.0)) == "not opened within 31536000 seconds"
 
 
 @pytest.mark.parametrize("kind", KINDS, ids=KIND_IDS)

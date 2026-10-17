@@ -28,13 +28,27 @@ class SyncOneShot:
 
     @property
     def is_broken(self) -> bool:
-        """Whether :meth:`abort` broke the primitive before it opened."""
+        """Whether :meth:`abort` broke the primitive before it opened.
+
+        >>> from latchkit import Gate
+        >>> gate = Gate()
+        >>> gate.is_broken, gate.abort(), gate.is_broken
+        (False, True, True)
+        """
         with self._cond:
             return self._state == BROKEN
 
     @property
     def abort_reason(self) -> object:
-        """The reason given to :meth:`abort`, or ``None`` if it is not broken."""
+        """The reason given to :meth:`abort`, or ``None`` if it is not broken.
+
+        >>> from latchkit import OneShotEvent
+        >>> event = OneShotEvent()
+        >>> event.abort(KeyError("k"))
+        True
+        >>> event.abort_reason
+        KeyError('k')
+        """
         with self._cond:
             return self._abort_reason
 

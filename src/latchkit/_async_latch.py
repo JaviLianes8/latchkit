@@ -39,13 +39,23 @@ class AsyncCountDownLatch(AsyncOneShot):
 
     @property
     def remaining(self) -> int:
-        """Signals still needed before the latch opens (never negative)."""
+        """Signals still needed before the latch opens (never negative).
+
+        >>> from latchkit import AsyncCountDownLatch
+        >>> AsyncCountDownLatch(3).remaining
+        3
+        """
         with self._lock:
             return self._remaining
 
     @property
     def is_open(self) -> bool:
-        """Whether the count has reached zero."""
+        """Whether the count has reached zero.
+
+        >>> from latchkit import AsyncCountDownLatch
+        >>> AsyncCountDownLatch(0).is_open, AsyncCountDownLatch(1).is_open
+        (True, False)
+        """
         with self._lock:
             return self._state == OPEN
 
@@ -54,6 +64,11 @@ class AsyncCountDownLatch(AsyncOneShot):
 
         Same rules as :meth:`latchkit.CountDownLatch.count_down`. Never blocks
         and is safe to call from any thread.
+
+        >>> from latchkit import AsyncCountDownLatch
+        >>> latch = AsyncCountDownLatch(2)
+        >>> latch.count_down(), latch.count_down(9), latch.is_open
+        (1, 0, True)
         """
         n = check_step(n)
         with self._lock:
@@ -67,7 +82,13 @@ class AsyncCountDownLatch(AsyncOneShot):
         return remaining
 
     def try_count_up(self, n: int = 1) -> bool:
-        """Raise the count by ``n`` while pending; ``False`` once open or broken."""
+        """Raise the count by ``n`` while pending; ``False`` once open or broken.
+
+        >>> from latchkit import AsyncCountDownLatch
+        >>> latch = AsyncCountDownLatch(1)
+        >>> latch.try_count_up(), latch.remaining
+        (True, 2)
+        """
         n = check_step(n)
         with self._lock:
             if self._state != PENDING:
@@ -80,6 +101,16 @@ class AsyncCountDownLatch(AsyncOneShot):
 
         Same rules as :meth:`latchkit.CountDownLatch.arrival`; usable with
         ``with`` and ``async with``.
+
+        >>> import asyncio
+        >>> from latchkit import AsyncCountDownLatch
+        >>> async def main() -> int:
+        ...     latch = AsyncCountDownLatch(2)
+        ...     async with latch.arrival():
+        ...         pass
+        ...     return latch.remaining
+        >>> asyncio.run(main())
+        1
         """
         on_error = self.abort if abort_on_error else None
         return SignalScope(self.count_down, on_error)

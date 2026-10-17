@@ -25,7 +25,8 @@ class BrokenLatchError(LatchError):
     ``reason`` is the value passed to ``abort``. When it is an exception it is
     also chained as ``__cause__``, so tracebacks show why the primitive broke.
     Each waiter receives its own instance, never a shared one. The message
-    shows at most the first 200 characters of ``str(reason)``.
+    shows at most the first 200 characters of ``str(reason)``, or the type
+    name in angle brackets when that text is empty or cannot be computed.
 
     >>> from latchkit import BrokenLatchError, Gate
     >>> gate = Gate()
@@ -66,6 +67,8 @@ def _describe(reason: object) -> str:
     try:
         text = str(reason)
     except Exception:  # a broken __str__ must not hide the abort itself
+        text = ""
+    if not text:  # an empty text (a bare CancelledError, say) shows the type instead
         return f"aborted: <{type(reason).__name__:.40}>"
     if len(text) > REASON_PREVIEW:
         text = text[:REASON_PREVIEW] + "..."
@@ -96,4 +99,4 @@ def broken(reason: object) -> BrokenLatchError:
 
 def timed_out(limit: float) -> LatchTimeoutError:
     """Build the error raised by ``wait_or_raise`` after waiting ``limit`` seconds."""
-    return LatchTimeoutError(f"not opened within {limit:.6g} seconds")
+    return LatchTimeoutError(f"not opened within {limit:.15g} seconds")
