@@ -31,6 +31,7 @@ def test_hierarchy() -> None:
         ("", "aborted: <str>"),
         (" \n\t", "aborted: <str>"),
         (" x ", "aborted:  x "),
+        ("  ", "aborted: <str>"),
         (asyncio.CancelledError(), "aborted: <CancelledError>"),
     ],
 )
