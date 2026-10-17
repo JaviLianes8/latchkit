@@ -166,3 +166,25 @@ test thread is a daemon, every child process of the wheel test is bounded and ki
 tree on timeout, and `faulthandler_timeout = 120` makes any slow test dump its stacks.
 The same run exposed that the wheel test passed the Windows venv launcher's variable to
 its children and could build from a tree without sources; both are fixed and pinned.
+
+## QA lenses (item 19)
+
+Five independent reviews, one at a time, each reading the certification rules, running
+the code and reporting only to the maintainer. Later rounds confirm the earlier findings
+and sweep at most 40 new mutations on the code changed since.
+
+| Lens | Round | Head | Verdict | Findings and outcome |
+| --- | --- | --- | --- | --- |
+| a. API and docs | 1 | 3d653fc | FAIL | 31 public members without their own example; a CHANGELOG line claiming a change 0.2.0 already had; complex timeouts listed as newly refused; `aborted: ` with an empty reason; exponent form in long timeout messages; status classifier not in the CHANGELOG. Fixed in aa5efb7 |
+| a | 2 | aa5efb7 | FAIL | all six confirmed; the examples of 12 public methods never ran (the doctest finder skips methods of classes that report another module); 24 mutants, 2 needing contracts. Fixed in cac0939 (every public docstring run directly, each must show more than an import) |
+| a | 3 | cac0939 | PASS | 15 mutants: 10 killed, 4 equivalent, 1 (other whitespace as blank) closed by a contract in 1ef651e and dcdb0c3 |
+| b. Correctness and ground truth | 1 | dcdb0c3 | FAIL | own Java, .NET and Python reference programs agree with latchkit everywhere, 0 undocumented differences; the project fixture reproduces byte for byte; 40 mutants on the semantic core, 4 needing contracts (a wait without timeout giving up, an asyncio timeout 100 times early, the double-resolve guard, the timer cancel) and 2 equivalent; the C++ negative-count fact cited from a page that does not state it. Fixed in 816ab20 and b7c2ab4 (constructor page fetched and tested; abort after open documented) |
+| b | 2 | b7c2ab4 | PASS | the four survivors and a slow hang now fail within a second |
+| c. Adversarial and robustness | 1 | b7c2ab4 | FAIL | 126 to 144 hostile probes per interpreter, 10k to 200k waiters linear, no leak over 40k waits, 150 contention rounds on 3.14t, 28 full suites under load without a flake; a lost wake-up past a closed loop not pinned; a `str` subclass from `__str__` bypassing the message bound; closed-loop waiters undocumented; hangs not failing. Fixed in 28dd7bf (pytest-timeout, 300 s per test) |
+| c | 2 | 28dd7bf | FAIL | all four confirmed; 21 mutants, the type name of a blank reason not read as plain text. Fixed in 42b667b |
+| c | 3 | 42b667b | FAIL | 10 mutants, 2 needing contracts (a type name that raises). Added in f08b2cb |
+| c | 4 | f08b2cb | PASS | both killed |
+| d. Packaging and real e2e | 1 | f08b2cb | FAIL | wheel and sdist contents and metadata clean, `twine check --strict`, the sdist suite against the installed wheel with the wheel e2e and the upgrade from PyPI 0.2.0 on 3.10.19, 3.11.5, 3.12.12, 3.13.2, 3.14.2 and 3.14.2t, sdist install, a strict typed consumer of every name, every CHANGELOG item against the real 0.2.0; `release.ps1` carried on when the gate failed; the gate used whatever tools came first on PATH; counts typed narrower than accepted. Fixed in 7ea79cd and 8a7a285 |
+| d | 2 | 7ea79cd | PASS | the release stops on a failing gate (10 script mutants caught); counts accept `SupportsIndex` for type checkers; 3.13.2 rerun green |
+| e. Contract strength (blind) | 1 | 8a7a285 | FAIL | 134 own mutants over every module: 126 killed (5 by the time limit), 3 equivalent (state constant values, a lock-free single read, a deadline compared with `<`), 5 needing contracts: chaining of a `BaseException` reason, a settle while a waiter registers, the asyncio timer deadline, lost count-downs under threads, slotted scopes. Added in 3e6673e |
+| e | 2 | 3e6673e | PASS | all five killed, the three equivalents argued |
