@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import SupportsIndex
+
 from ._async_core import AsyncOneShot
 from ._check import check_count, check_step, count_text
 from ._scope import SignalScope
@@ -31,7 +33,7 @@ class AsyncCountDownLatch(AsyncOneShot):
     True
     """
 
-    def __init__(self, count: int) -> None:
+    def __init__(self, count: SupportsIndex) -> None:
         super().__init__()
         self._remaining = check_count(count)
         if self._remaining == 0:
@@ -59,7 +61,7 @@ class AsyncCountDownLatch(AsyncOneShot):
         with self._lock:
             return self._state == OPEN
 
-    def count_down(self, n: int = 1) -> int:
+    def count_down(self, n: SupportsIndex = 1) -> int:
         """Record ``n`` signals and return the signals still needed.
 
         Same rules as :meth:`latchkit.CountDownLatch.count_down`. Never blocks
@@ -81,7 +83,7 @@ class AsyncCountDownLatch(AsyncOneShot):
             self._wake_all(waiters)
         return remaining
 
-    def try_count_up(self, n: int = 1) -> bool:
+    def try_count_up(self, n: SupportsIndex = 1) -> bool:
         """Raise the count by ``n`` while pending; ``False`` once open or broken.
 
         >>> from latchkit import AsyncCountDownLatch

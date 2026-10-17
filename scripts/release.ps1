@@ -19,6 +19,7 @@ try {
 if (git status --porcelain) { throw "The working tree is not clean." }
 if ((git rev-parse --abbrev-ref HEAD) -ne "main") { throw "Release only from main." }
 & "$PSScriptRoot\check.ps1"
+if ($LASTEXITCODE) { throw "check.ps1 failed with exit code $LASTEXITCODE" }
 
 $token = $env:PYPI_TOKEN
 if (-not $token -and (Test-Path "C:\secrets\pypi-token.txt")) {

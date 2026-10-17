@@ -26,9 +26,9 @@ SHARED = {
     "wait_or_raise": "(self, timeout: 'float | None' = None) -> 'None'",
 }
 LATCH = {
-    "__init__": "(self, count: 'int') -> 'None'",
-    "count_down": "(self, n: 'int' = 1) -> 'int'",
-    "try_count_up": "(self, n: 'int' = 1) -> 'bool'",
+    "__init__": "(self, count: 'SupportsIndex') -> 'None'",
+    "count_down": "(self, n: 'SupportsIndex' = 1) -> 'int'",
+    "try_count_up": "(self, n: 'SupportsIndex' = 1) -> 'bool'",
     "arrival": "(self, *, abort_on_error: 'bool' = False) -> 'SignalScope'",
 }
 GATE = {"open": "(self) -> 'bool'", "opening": "(self) -> 'SignalScope'"}

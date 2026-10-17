@@ -25,6 +25,8 @@ twins `AsyncCountDownLatch`, `AsyncGate`, `AsyncOneShotEvent`, with `wait`,
   `float` such as `2.5` or `2.0`, a `bool`, a string, a `Decimal` or a
   `Fraction`, all accepted or failing obscurely before, now raise `TypeError`.
   In 0.2.0 `CountDownLatch(2.5)` opened after three signals.
+  They are now annotated `SupportsIndex` rather than `int`, so type checkers
+  accept the same objects the runtime does.
 - `timeout` must be `None` or a real number other than `bool`. A string such
   as `"5"`, `True` (waited one second) and a `Decimal`, all accepted in 0.2.0,
   now raise `TypeError` with a short message, even on a settled primitive. An integer too large for a

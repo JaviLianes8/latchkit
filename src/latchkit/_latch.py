@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import SupportsIndex
+
 from ._check import check_count, check_step, count_text
 from ._scope import SignalScope
 from ._state import OPEN, PENDING
@@ -38,7 +40,7 @@ class CountDownLatch(SyncOneShot):
     (0, True)
     """
 
-    def __init__(self, count: int) -> None:
+    def __init__(self, count: SupportsIndex) -> None:
         super().__init__()
         self._remaining = check_count(count)
         if self._remaining == 0:
@@ -68,7 +70,7 @@ class CountDownLatch(SyncOneShot):
         with self._cond:
             return self._state == OPEN
 
-    def count_down(self, n: int = 1) -> int:
+    def count_down(self, n: SupportsIndex = 1) -> int:
         """Record ``n`` signals and return the signals still needed.
 
         ``n`` must be an ``int`` of at least one (same errors as ``count``).
@@ -90,7 +92,7 @@ class CountDownLatch(SyncOneShot):
                 self._settle_locked(OPEN)
             return self._remaining
 
-    def try_count_up(self, n: int = 1) -> bool:
+    def try_count_up(self, n: SupportsIndex = 1) -> bool:
         """Raise the count by ``n`` while the latch is still pending.
 
         Return ``True`` on success. Return ``False``, changing nothing, once the
