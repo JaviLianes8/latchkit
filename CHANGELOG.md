@@ -6,7 +6,7 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
-## [1.0.0] - 2026-10-16
+## [1.0.0] - 2026-10-17
 
 The API is now stable: every public name, signature, default and error type
 below is kept for the 1.x series. Everything written against 0.2.0 keeps
@@ -26,7 +26,8 @@ twins `AsyncCountDownLatch`, `AsyncGate`, `AsyncOneShotEvent`, with `wait`,
   `Fraction`, all accepted or failing obscurely before, now raise `TypeError`.
   In 0.2.0 `CountDownLatch(2.5)` opened after three signals.
   They are now annotated `SupportsIndex` rather than `int`, so type checkers
-  accept the same objects the runtime does.
+  accept the same objects the runtime does. `timeout` is annotated
+  `float | numbers.Real | None` for the same reason (a `Fraction` passes).
 - `timeout` must be `None` or a real number other than `bool`. A string such
   as `"5"`, `True` (waited one second) and a `Decimal`, all accepted in 0.2.0,
   now raise `TypeError` with a short message, even on a settled primitive. An integer too large for a

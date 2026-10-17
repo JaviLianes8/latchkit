@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import contextlib
 import threading
+from numbers import Real
 
 from ._check import normalize_timeout
 from ._errors import outcome, timed_out
@@ -90,7 +91,7 @@ class AsyncOneShot:
         """
         return self._settle(BROKEN, reason)
 
-    async def wait(self, timeout: float | None = None) -> bool:
+    async def wait(self, timeout: float | Real | None = None) -> bool:
         """Wait until the primitive opens or breaks.
 
         Return ``True`` once it is open, ``False`` if ``timeout`` seconds
@@ -116,7 +117,7 @@ class AsyncOneShot:
         """
         return outcome(*await self._wait(normalize_timeout(timeout)))
 
-    async def wait_or_raise(self, timeout: float | None = None) -> None:
+    async def wait_or_raise(self, timeout: float | Real | None = None) -> None:
         """Like :meth:`wait`, but raise instead of returning ``False``.
 
         Raise :class:`~latchkit.LatchTimeoutError` (a :class:`TimeoutError`)

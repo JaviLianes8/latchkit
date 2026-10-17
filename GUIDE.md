@@ -123,7 +123,7 @@ release of Java's `Phaser.forceTermination()`:
 - Each waiter gets its own `BrokenLatchError` instance. The `reason` object
   itself (and so `__cause__`) is the same object for every waiter.
 - The message is `aborted` or `aborted: <str(reason)>`, showing at most 200
-  characters of the reason. A reason whose `__str__` raises or returns an
+  characters of the reason. A reason whose `__str__` raises or returns a
   blank string (a bare `CancelledError`) shows its type name instead, as in
   `aborted: <CancelledError>`. The message is built in the waiting thread after the lock is
   released, so a `__str__` that reads the primitive or is slow can never

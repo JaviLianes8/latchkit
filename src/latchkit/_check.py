@@ -6,7 +6,15 @@ import math
 import numbers
 import operator
 
-__all__ = ["check_count", "check_step", "count_text", "normalize_timeout"]
+__all__ = ["check_count", "check_step", "count_text", "normalize_timeout", "type_name"]
+
+
+def type_name(value: object) -> str:
+    """The name of ``value``'s type, as plain text of at most 40 characters."""
+    try:  # a metaclass may make __name__ anything at all, or raise
+        return str.__str__(type(value).__name__)[:40]
+    except Exception:
+        return "unnamed type"
 
 
 def _whole(value: object, name: str) -> int:
@@ -15,7 +23,7 @@ def _whole(value: object, name: str) -> int:
     try:
         return operator.index(value)  # type: ignore[arg-type]
     except TypeError:
-        raise TypeError(f"{name} must be an int, not {type(value).__name__:.40}") from None
+        raise TypeError(f"{name} must be an int, not {type_name(value)}") from None
 
 
 def check_count(count: object) -> int:
@@ -46,7 +54,7 @@ def normalize_timeout(timeout: object) -> float | None:
     if timeout is None:
         return None
     if isinstance(timeout, bool) or not isinstance(timeout, numbers.Real):
-        raise TypeError(f"timeout must be a real number or None, not {type(timeout).__name__:.40}")
+        raise TypeError(f"timeout must be a real number or None, not {type_name(timeout)}")
     try:
         value = float(timeout)
     except OverflowError:

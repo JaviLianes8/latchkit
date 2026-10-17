@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from ._check import type_name
 from ._state import BROKEN, OPEN
 
 __all__ = ["BrokenLatchError", "LatchError", "LatchTimeoutError"]
@@ -71,17 +72,10 @@ def _describe(reason: object) -> str:
     except Exception:  # a broken __str__ must not hide the abort itself
         text = ""
     if not text.strip():  # a blank text (a bare CancelledError, say) shows the type
-        return f"aborted: <{_type_name(reason)}>"
+        return f"aborted: <{type_name(reason)}>"
     if len(text) > REASON_PREVIEW:
         text = text[:REASON_PREVIEW] + "..."
     return "aborted: " + text
-
-
-def _type_name(reason: object) -> str:
-    try:  # a metaclass may make __name__ anything at all
-        return str.__str__(type(reason).__name__)[:40]
-    except Exception:
-        return "unnamed type"
 
 
 def outcome(state: int, reason: object) -> bool:

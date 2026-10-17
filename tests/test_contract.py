@@ -22,8 +22,8 @@ PUBLIC_API: list[str] = [
 
 SHARED = {
     "abort": "(self, reason: 'object' = None) -> 'bool'",
-    "wait": "(self, timeout: 'float | None' = None) -> 'bool'",
-    "wait_or_raise": "(self, timeout: 'float | None' = None) -> 'None'",
+    "wait": "(self, timeout: 'float | Real | None' = None) -> 'bool'",
+    "wait_or_raise": "(self, timeout: 'float | Real | None' = None) -> 'None'",
 }
 LATCH = {
     "__init__": "(self, count: 'SupportsIndex') -> 'None'",

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import threading
 import time
+from numbers import Real
 
 from ._check import normalize_timeout
 from ._errors import outcome, timed_out
@@ -70,7 +71,7 @@ class SyncOneShot:
         with self._cond:
             return self._settle_locked(BROKEN, reason)
 
-    def wait(self, timeout: float | None = None) -> bool:
+    def wait(self, timeout: float | Real | None = None) -> bool:
         """Block until the primitive opens or breaks.
 
         Return ``True`` once it is open, ``False`` if ``timeout`` seconds
@@ -94,7 +95,7 @@ class SyncOneShot:
         """
         return outcome(*self._wait(normalize_timeout(timeout)))
 
-    def wait_or_raise(self, timeout: float | None = None) -> None:
+    def wait_or_raise(self, timeout: float | Real | None = None) -> None:
         """Like :meth:`wait`, but raise instead of returning ``False``.
 
         Raise :class:`~latchkit.LatchTimeoutError` (a :class:`TimeoutError`)
