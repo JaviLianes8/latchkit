@@ -108,7 +108,7 @@ def test_waiters_on_several_loops_are_all_released() -> None:
 
         results.append(asyncio.run(main()))
 
-    threads = [threading.Thread(target=run_loop) for _ in range(loops)]
+    threads = [threading.Thread(target=run_loop, daemon=True) for _ in range(loops)]
     for thread in threads:
         thread.start()
     parked.wait(GUARD)

@@ -19,7 +19,7 @@ def test_waiters_release_only_after_the_last_count_down() -> None:
         latch.wait()
         released.set()
 
-    t = threading.Thread(target=waiter)
+    t = threading.Thread(target=waiter, daemon=True)
     t.start()
     until(lambda: parked(latch) == 1)
     latch.count_down()
@@ -92,7 +92,7 @@ def test_many_waiters_all_release() -> None:
         with lock:
             done.append(True)
 
-    threads = [threading.Thread(target=waiter) for _ in range(5)]
+    threads = [threading.Thread(target=waiter, daemon=True) for _ in range(5)]
     for t in threads:
         t.start()
     latch.count_down()

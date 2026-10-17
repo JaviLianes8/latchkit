@@ -81,6 +81,8 @@ exclude = ["tests/sources/"]
 testpaths = ["tests"]
 pythonpath = ["src"]
 addopts = "-q"
+# A test slower than this dumps every thread's stack, so a hang is never silent.
+faulthandler_timeout = 120
 filterwarnings = [
     "error::pytest.PytestUnhandledThreadExceptionWarning",
     "error::pytest.PytestUnraisableExceptionWarning",

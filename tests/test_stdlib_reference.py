@@ -29,7 +29,7 @@ def _barrier_waiter_outcome(barrier: threading.Barrier, seen: list[str]) -> None
 def test_barrier_abort_fails_parked_and_later_waiters() -> None:
     barrier = threading.Barrier(2)
     seen: list[str] = []
-    thread = threading.Thread(target=_barrier_waiter_outcome, args=(barrier, seen))
+    thread = threading.Thread(target=_barrier_waiter_outcome, args=(barrier, seen), daemon=True)
     thread.start()
     until(lambda: barrier.n_waiting == 1)
     barrier.abort()
@@ -51,7 +51,7 @@ def test_latchkit_abort_matches_the_barrier_model(kind: Kind) -> None:
         except BrokenLatchError:
             seen.append("broken")
 
-    thread = threading.Thread(target=waiter)
+    thread = threading.Thread(target=waiter, daemon=True)
     thread.start()
     until(lambda: parked(prim) == 1)
     prim.abort()
@@ -112,7 +112,7 @@ def test_condition_wait_for_spins_on_nan_and_latchkit_refuses_it() -> None:
 def test_infinity_is_forever_for_latchkit_whatever_threading_does() -> None:
     gate = Gate()
     results: list[bool] = []
-    thread = threading.Thread(target=lambda: results.append(gate.wait(math.inf)))
+    thread = threading.Thread(target=lambda: results.append(gate.wait(math.inf)), daemon=True)
     thread.start()
     until(lambda: parked(gate) == 1)
     gate.open()

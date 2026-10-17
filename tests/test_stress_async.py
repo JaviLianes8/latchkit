@@ -142,11 +142,11 @@ def test_waiters_on_many_loops_all_release(round_: int) -> None:
 
         results.append(asyncio.run(main()))
 
-    threads = [threading.Thread(target=run_loop) for _ in range(loops)]
+    threads = [threading.Thread(target=run_loop, daemon=True) for _ in range(loops)]
     for thread in threads:
         thread.start()
     parked.wait(GUARD)
-    signalers = [threading.Thread(target=latch.count_down) for _ in range(SIGNALERS)]
+    signalers = [threading.Thread(target=latch.count_down, daemon=True) for _ in range(SIGNALERS)]
     for thread in signalers:
         thread.start()
     for thread in signalers + threads:

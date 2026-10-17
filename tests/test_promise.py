@@ -104,7 +104,7 @@ def test_negative_timeout_behaves_like_zero(kind: Kind) -> None:
 def test_a_blocked_waiter_is_released_by_open(kind: Kind, timeout: float | None) -> None:
     prim = kind.make()
     results: list[bool] = []
-    thread = threading.Thread(target=lambda: results.append(kind.wait(prim, timeout)))
+    thread = threading.Thread(target=lambda: results.append(kind.wait(prim, timeout)), daemon=True)
     thread.start()
     until(lambda: parked(prim) == 1)  # the waiter is really blocked
     kind.fire(prim)
@@ -124,7 +124,7 @@ def test_a_blocked_waiter_is_released_by_abort(kind: Kind) -> None:
         except BrokenLatchError as error:
             errors.append(error)
 
-    thread = threading.Thread(target=waiter)
+    thread = threading.Thread(target=waiter, daemon=True)
     thread.start()
     until(lambda: parked(prim) == 1)
     prim.abort("stop")
@@ -149,7 +149,7 @@ def test_a_reason_that_reads_the_primitive_does_not_deadlock(kind: Kind) -> None
         except BrokenLatchError as error:
             errors.append(error)
 
-    thread = threading.Thread(target=waiter)
+    thread = threading.Thread(target=waiter, daemon=True)
     thread.start()
     thread.join(GUARD)
     assert not thread.is_alive(), "waiting deadlocked on the reason's __str__"

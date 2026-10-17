@@ -17,7 +17,7 @@ def test_gate_releases_a_waiter_when_opened() -> None:
         gate.wait()
         released.set()
 
-    t = threading.Thread(target=waiter)
+    t = threading.Thread(target=waiter, daemon=True)
     t.start()
     until(lambda: parked(gate) == 1)
     assert not released.is_set()
@@ -61,7 +61,7 @@ def test_one_shot_event_releases_waiters_on_set() -> None:
         event.wait()
         released.set()
 
-    t = threading.Thread(target=waiter)
+    t = threading.Thread(target=waiter, daemon=True)
     t.start()
     until(lambda: parked(event) == 1)
     assert not released.is_set()
@@ -87,7 +87,7 @@ def test_one_shot_event_names_a_single_winner_under_contention() -> None:
         with lock:
             wins.append(won)
 
-    threads = [threading.Thread(target=racer) for _ in range(8)]
+    threads = [threading.Thread(target=racer, daemon=True) for _ in range(8)]
     for t in threads:
         t.start()
     for t in threads:
