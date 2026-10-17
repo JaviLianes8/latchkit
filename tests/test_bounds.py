@@ -98,3 +98,29 @@ def test_racing_wakeups_never_raise_inside_the_loop() -> None:
         return errors
 
     assert asyncio.run(main()) == []
+
+
+def test_an_abort_right_after_opening_reaches_no_waiter() -> None:
+    async def main() -> list[bool]:
+        gate = AsyncGate()
+        tasks = [asyncio.create_task(gate.wait()) for _ in range(5)]
+        await asyncio.sleep(0)
+        assert gate.open() is True
+        assert gate.abort("too late") is False  # before any waiter has resumed
+        return list(await asyncio.wait_for(asyncio.gather(*tasks), GUARD))
+
+    assert asyncio.run(main()) == [True] * 5
+    gate = Gate()
+    results: list[bool] = []
+    threads = [
+        threading.Thread(target=lambda: results.append(gate.wait()), daemon=True) for _ in range(5)
+    ]
+    for thread in threads:
+        thread.start()
+    until(lambda: parked(gate) == 5)
+    with gate._cond:  # open and abort while every waiter is still parked
+        gate._settle_locked(1)
+        assert gate._settle_locked(2, "too late") is False
+    for thread in threads:
+        thread.join(GUARD)
+    assert results == [True] * 5
