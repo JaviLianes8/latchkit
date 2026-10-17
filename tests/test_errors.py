@@ -160,3 +160,38 @@ def test_a_str_subclass_from_str_is_read_as_plain_text() -> None:
     assert str(BrokenLatchError(LoudText("short"))) == "aborted: short"
     assert str(BrokenLatchError(Speaks(LoudText("x" * 300)))) == "aborted: " + "x" * 200 + "..."
     assert str(BrokenLatchError(Speaks(LoudText("  ")))) == "aborted: <Speaks>"
+
+
+class LoudName(str):
+    def __format__(self, spec: str) -> str:
+        return "N" * 1_000_000
+
+    def __getitem__(self, key: object) -> str:
+        return LoudName(str.__getitem__(self, key))  # type: ignore[index]
+
+
+class LoudMeta(type):
+    @property
+    def __name__(cls) -> str:  # type: ignore[override]
+        return LoudName("Blank")
+
+
+class NumberMeta(type):
+    @property
+    def __name__(cls) -> str:  # type: ignore[override]
+        return 42  # type: ignore[return-value]
+
+
+class LoudBlank(metaclass=LoudMeta):
+    def __str__(self) -> str:
+        return " "
+
+
+class NumberBlank(metaclass=NumberMeta):
+    def __str__(self) -> str:
+        return " "
+
+
+def test_the_type_name_of_a_blank_reason_is_read_as_plain_text() -> None:
+    assert str(BrokenLatchError(LoudBlank())) == "aborted: <Blank>"
+    assert str(BrokenLatchError(NumberBlank())) == "aborted: <unnamed type>"
