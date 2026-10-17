@@ -19,35 +19,45 @@ MODULES = ["latchkit"] + [
 ]
 
 
-def test_every_public_name_carries_doctests_that_pass() -> None:
-    # The public classes report ``latchkit`` as their module, so their examples are
-    # found (and run) through the package itself.
-    finder = doctest.DocTestFinder()
-    runner = doctest.DocTestRunner(optionflags=doctest.ELLIPSIS)
-    tested = [test for test in finder.find(latchkit) if test.examples]
-    for test in tested:
-        runner.run(test)
-    assert runner.summarize(verbose=False).failed == 0
-    owners = {test.name.split(".")[1] for test in tested if test.name.count(".") >= 1}
-    assert owners >= set(latchkit.__all__)
-    assert sum(len(test.examples) for test in tested) >= 50
+def public_docstrings() -> dict[str, str]:
+    """Every docstring a user can reach: each public class and each public member.
 
-
-def test_every_public_member_has_its_own_example() -> None:
-    missing = []
+    Members are read straight from the classes (and their package bases), so no
+    docstring is missed because the classes report ``latchkit`` as their module.
+    """
+    docs = {}
     for name in latchkit.__all__:
         cls = getattr(latchkit, name)
+        docs[name] = inspect.getdoc(cls) or ""
         for member in dir(cls):
             if member.startswith("_") or member in dir(OSError):
                 continue
-            doc = (
-                getattr(cls, member).__doc__
-                if not isinstance(inspect.getattr_static(cls, member), property)
-                else inspect.getattr_static(cls, member).__doc__
-            )
-            if ">>> " not in (doc or ""):
-                missing.append(f"{name}.{member}")
-    assert missing == []
+            static = inspect.getattr_static(cls, member)
+            target = static.fget if isinstance(static, property) else getattr(cls, member)
+            docs[f"{name}.{member}"] = inspect.getdoc(target) or ""
+    return docs
+
+
+def test_every_public_docstring_example_runs_and_passes() -> None:
+    parser = doctest.DocTestParser()
+    runner = doctest.DocTestRunner(optionflags=doctest.ELLIPSIS)
+    ran = 0
+    for name, doc in public_docstrings().items():
+        test = parser.get_doctest(doc, {}, name, None, 0)
+        result = runner.run(test, clear_globs=True)
+        assert result.failed == 0, name
+        ran += result.attempted
+    assert ran >= 150
+
+
+def test_every_public_member_shows_more_than_an_import() -> None:
+    parser = doctest.DocTestParser()
+    thin = []
+    for name, doc in public_docstrings().items():
+        examples = parser.get_examples(doc)
+        if not any(not e.source.startswith(("import ", "from ")) for e in examples):
+            thin.append(name)
+    assert thin == []
 
 
 @pytest.mark.parametrize("name", MODULES)

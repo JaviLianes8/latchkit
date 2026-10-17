@@ -31,7 +31,7 @@ twins `AsyncCountDownLatch`, `AsyncGate`, `AsyncOneShotEvent`, with `wait`,
   float now means "forever" (or zero when negative) instead of raising
   `OverflowError`.
 - `BrokenLatchError` messages show at most 200 characters of the reason, and
-  the type name in angle brackets when `str(reason)` is empty (a bare
+  the type name in angle brackets when `str(reason)` is blank (a bare
   `CancelledError` from a cancelled `opening()` block, say). Error messages
   about wrong arguments never echo the value.
 - The `LatchTimeoutError` message shows the effective timeout (negative values

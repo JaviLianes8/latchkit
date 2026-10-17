@@ -29,6 +29,8 @@ def test_hierarchy() -> None:
         (ValueError("bad value"), "aborted: bad value"),
         (42, "aborted: 42"),
         ("", "aborted: <str>"),
+        (" \n\t", "aborted: <str>"),
+        (" x ", "aborted:  x "),
         (asyncio.CancelledError(), "aborted: <CancelledError>"),
     ],
 )
