@@ -65,14 +65,16 @@ def _describe(reason: object) -> str:
     if reason is None:
         return "aborted"
     try:
-        text = str(reason)
+        # str.__str__ turns a str subclass into a plain str, so no user method
+        # (__format__, strip, __len__, slicing) runs on the text afterwards.
+        text = str.__str__(str(reason))
     except Exception:  # a broken __str__ must not hide the abort itself
         text = ""
     if not text.strip():  # a blank text (a bare CancelledError, say) shows the type
-        return f"aborted: <{type(reason).__name__:.40}>"
+        return f"aborted: <{str.__str__(type(reason).__name__)[:40]}>"
     if len(text) > REASON_PREVIEW:
         text = text[:REASON_PREVIEW] + "..."
-    return f"aborted: {text}"
+    return "aborted: " + text
 
 
 def outcome(state: int, reason: object) -> bool:

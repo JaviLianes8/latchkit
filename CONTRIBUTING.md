@@ -14,6 +14,8 @@ pip install -r requirements-dev.txt
 - Add a test for the behaviour you change. Tests use real threads, real event loops
   and a real wheel install; nothing is mocked. Concurrency tests assert ordering and
   outcomes, never elapsed time, and use timeouts only as deadlock guards.
+  Every test is limited to 300 seconds (pytest-timeout, in the dev extra), so a
+  deadlock fails the run instead of hanging it.
 - Source files stay at or under 200 lines.
 - Run `scripts/check.ps1` (format, lint, types, tests) and make sure it passes.
 - One logical change per commit, imperative subject line.

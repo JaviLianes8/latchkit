@@ -212,9 +212,10 @@ members as their threaded twins; only `wait` and `wait_or_raise` are coroutines.
   removed too; nothing leaks.
 - Arguments are checked when the coroutine first runs, before it looks for a
   running loop.
-- A waiter whose loop was closed is skipped silently when the primitive
-  settles. A waiter whose loop was stopped but not closed stays registered
-  until the primitive settles.
+- A waiter whose loop is stopped or closed while it waits stays registered
+  (with its task and loop) until the primitive settles; a closed loop is then
+  skipped silently and every other waiter is still woken. Settle or drop a
+  primitive whose waiters' loops are gone.
 - The context helpers work with both `with` and `async with`. They treat any
   exception as a failure, including `CancelledError`, `KeyboardInterrupt` and
   `SystemExit`: a cancelled initialiser inside `opening()` aborts the gate, so

@@ -160,3 +160,23 @@ def test_a_zero_timeout_on_a_pending_primitive_never_suspends() -> None:
                 assert prim._waiters == {}
 
     asyncio.run(main())
+
+
+@pytest.mark.filterwarnings("ignore::RuntimeWarning")
+@pytest.mark.filterwarnings("ignore::pytest.PytestUnraisableExceptionWarning")
+def test_a_closed_loop_waiter_does_not_stop_the_wakeup_of_later_waiters() -> None:
+    gate = AsyncGate()
+    dead = asyncio.new_event_loop()
+    abandoned = dead.create_task(gate.wait())
+    dead.run_until_complete(asyncio.sleep(0))
+    dead.close()
+    abandoned._log_destroy_pending = False  # type: ignore[attr-defined]
+
+    async def live() -> bool:
+        task = asyncio.create_task(gate.wait())
+        await asyncio.sleep(0)
+        assert len(gate._waiters) == 2  # the dead loop's waiter comes first
+        threading.Thread(target=gate.open, daemon=True).start()
+        return await asyncio.wait_for(task, GUARD)
+
+    assert asyncio.run(live()) is True

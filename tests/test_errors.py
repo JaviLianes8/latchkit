@@ -130,3 +130,33 @@ def test_public_classes_report_the_package_as_their_module() -> None:
 
     for name in latchkit.__all__:
         assert getattr(latchkit, name).__module__ == "latchkit", name
+
+
+class LoudText(str):
+    """A str subclass whose own methods would blow every bound if they were used."""
+
+    def __format__(self, spec: str) -> str:
+        return "S" * 1_000_000
+
+    def __len__(self) -> int:
+        return 0
+
+    def strip(self, chars: str | None = None) -> str:
+        raise RuntimeError("strip must not be called")
+
+    def __getitem__(self, key: object) -> str:
+        raise RuntimeError("slicing must not be called")
+
+
+class Speaks:
+    def __init__(self, text: str) -> None:
+        self.text = text
+
+    def __str__(self) -> str:
+        return self.text
+
+
+def test_a_str_subclass_from_str_is_read_as_plain_text() -> None:
+    assert str(BrokenLatchError(LoudText("short"))) == "aborted: short"
+    assert str(BrokenLatchError(Speaks(LoudText("x" * 300)))) == "aborted: " + "x" * 200 + "..."
+    assert str(BrokenLatchError(Speaks(LoudText("  ")))) == "aborted: <Speaks>"

@@ -34,7 +34,7 @@ classifiers = [
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["ruff", "mypy", "pytest", "build", "twine"]
+dev = ["ruff", "mypy", "pytest", "pytest-timeout", "build", "twine"]
 
 [project.urls]
 Homepage = "https://lianes8studio.com"
@@ -81,8 +81,11 @@ exclude = ["tests/sources/"]
 testpaths = ["tests"]
 pythonpath = ["src"]
 addopts = "-q"
-# A test slower than this dumps every thread's stack, so a hang is never silent.
+# A test slower than this dumps every thread's stack, so a hang is never silent,
+# and with pytest-timeout installed (the dev extra) it fails instead of hanging.
 faulthandler_timeout = 120
+timeout = 300
+timeout_method = "thread"
 filterwarnings = [
     "error::pytest.PytestUnhandledThreadExceptionWarning",
     "error::pytest.PytestUnraisableExceptionWarning",

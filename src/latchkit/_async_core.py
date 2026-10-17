@@ -100,8 +100,9 @@ class AsyncOneShot:
         leaves the primitive untouched; a cancel delivered after the primitive
         opened but before the task resumed still wins, as everywhere in
         asyncio. Timeouts follow the same rules as the threaded classes and
-        use the event loop's monotonic clock. A waiter whose loop stops
-        without closing stays registered until the primitive settles.
+        use the event loop's monotonic clock. A waiter whose loop is stopped
+        or closed while it waits stays registered until the primitive
+        settles; a closed loop is then skipped.
 
         >>> import asyncio
         >>> from latchkit import AsyncGate
