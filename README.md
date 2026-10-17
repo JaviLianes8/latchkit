@@ -1,5 +1,7 @@
 # latchkit
 
+[![Lianes8 Certified](https://lianes8studio.com/certified/lianes8-certified-badge.svg)](https://lianes8studio.com/certified)
+
 One-shot synchronization primitives for threads and asyncio: a count-down
 latch, a gate and a fire-once event, each with abort-with-reason, typed errors
 and timeouts that behave. Zero dependencies, fully typed, Python 3.10 and up.

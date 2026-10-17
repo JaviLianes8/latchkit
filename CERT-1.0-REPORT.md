@@ -11,9 +11,48 @@ Progress:
 - [x] Packaging, e2e and upgrade from PyPI 0.2.0 (items 8, 13, 14)
 - [x] Every interpreter on this PC (item 10)
 - [x] Five QA lenses report PASS (item 19)
-- [ ] Independent reviewer (item 16)
-- [ ] Gates (item 15)
+- [x] Independent reviewer (item 16)
+- [x] Gates (item 15)
 - [x] PR #3 open and trace guard CLEAN (item 17); merge and publish left to the maintainer
+
+## Scorecard
+
+Independent review round 2 at 773f5cf; the commits after it touch only this report and
+the README badge.
+
+| # | Item | Result |
+| --- | --- | --- |
+| 1 | Public API reviewed for stability | PASS: every 0.2.0 name, signature and default kept; signatures frozen by contract; changes in the CHANGELOG, checked against the real 0.2.0 by lenses a and d and the reviewer |
+| 2 | `__all__` exact, no private imports in docs | PASS: 10 names, nothing else public |
+| 3 | Docstrings with runnable examples, doctests | PASS: every public class, method and property, at least 150 examples run; every README and GUIDE block runs |
+| 4 | Typed end to end | PASS: `mypy --strict src tests` clean, `py.typed` shipped, strict external consumer of every name (lens d, reviewer) |
+| 5 | Typed, documented, bounded errors | PASS: `TypeError`/`ValueError` with fixed sentences, 40 characters of a type name, 200 of a reason, never the value |
+| 6 | Contract asserts the full promise | PASS: 878 tests (862 run by default, 16 opt-in or needing fetched copies) |
+| 7 | Real ground truth | PASS: Java 21 and .NET 9 run live (400 and 800 scenarios), stdlib barriers live, fetched sources for C++20 and Go; re-derived by lens b with its own programs |
+| 8 | Real e2e incl. PyPI upgrade | PASS: wheel in fresh venvs, external consumer, in-place upgrade from PyPI 0.2.0 (`LATCHKIT_E2E=1`), sdist install; no CLI by design |
+| 9 | Seeded fuzz, no crash, hang or blow-up | PASS: seeded model fuzz, hostile arguments and reasons, 10k to 200k waiters linear (lens c) |
+| 10 | Every interpreter on this PC | PASS: 3.10.19, 3.11.5, 3.12.12, 3.13.2, 3.14.2, 3.14.2t |
+| 11 | README | PASS: `twine check --strict`, absolute links, problem, verified why, install, quick start, guide and changelog links |
+| 12 | CHANGELOG dated 1.0.0 | PASS: `## [1.0.0] - 2026-10-17` |
+| 13 | pyproject | PASS: 1.0.0 from one source, Production/Stable, 3.10 to 3.14, MIT, Homepage/Source/Issues/Changelog, keywords, no dependencies |
+| 14 | sdist and wheel contents | PASS: wheel holds the package, `py.typed`, LICENSE; sdist without fetched copies or notes |
+| 15 | Gates exit 0 alone | PASS: fresh clone at 773f5cf: format, lint, `mypy --strict src`, `mypy --strict src tests`, `pytest` 862 passed and 16 skipped, build and `twine check --strict` |
+| 16 | Independent reviewer | PASS: round 1 FAIL at 4f96f18, round 2 PASS at 773f5cf |
+| 17 | PR, trace guard | PR #3 from `release/1.0.0`, trace guard CLEAN; merge and PyPI publish left to the maintainer |
+| 18 | Contracts bite (mutations) | PASS: author 38; lens a 24 + 15; lens b 40 + 5; lens c 40 + 21 + 10 + 2; blind lens e 134 + 8; reviewer 40 + 13; every survivor closed by a contract or argued equivalent |
+| 19 | Five QA lenses | PASS: a (round 3), b (round 2), c (round 4), d (round 2), e (round 2) |
+
+## Independent reviewer (item 16)
+
+Round 1 at 4f96f18 re-ran every item: gates on a fresh clone, live Java and .NET oracles,
+fetched sources, the opt-in e2e with the upgrade from 0.2.0, the suite on 3.10.19, 3.13.2,
+3.14.2 and 3.14.2t, archive contents, hygiene and the trace guard, plus 40 own mutants
+(39 killed). It failed items 5, 6 and 18: the promise that the scopes treat
+`CancelledError`, `KeyboardInterrupt` and `SystemExit` as failures was not pinned (R31
+survived), an argument whose metaclass gives `__name__` a non-string produced a
+`ValueError`, plus a narrow `timeout` annotation, a stale checklist and a typo. All fixed in
+818f5f5 and 773f5cf. Round 2 at 773f5cf: every finding confirmed, gates green on a fresh
+clone, 13 mutants on the changed code all killed, trace guard CLEAN, all 19 items PASS.
 
 ## Baseline on 0.2.0 (before any change)
 
