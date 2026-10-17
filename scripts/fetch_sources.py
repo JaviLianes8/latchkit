@@ -34,6 +34,10 @@ SOURCES = {
         "BSD-3-Clause",
     ),
     "cppreference-latch.html": ("https://en.cppreference.com/w/cpp/thread/latch.html", "CC-BY-SA"),
+    "cppreference-latch-constructor.html": (
+        "https://en.cppreference.com/w/cpp/thread/latch/latch.html",
+        "CC-BY-SA",
+    ),
     "cppreference-latch-count_down.html": (
         "https://en.cppreference.com/w/cpp/thread/latch/count_down.html",
         "CC-BY-SA",

@@ -83,7 +83,7 @@ try:
 except KeyError:
     pass
 try:
-    parts.wait()
+    parts.wait_or_raise(timeout=0)  # already settled: never blocks
 except BrokenLatchError as error:
     assert isinstance(error.__cause__, KeyError)
 ```
@@ -131,6 +131,11 @@ release of Java's `Phaser.forceTermination()`:
 - `BrokenLatchError` pickles with its reason (when the reason pickles).
 - After an abort, `open`, `set` and `count_down` are silent no-ops. Signallers
   never fail because a coordinator gave up.
+- An abort after the primitive opened changes nothing: it returns `False` and
+  every waiter, including one that has not resumed yet, still gets `True`.
+  This is stronger than the models: `threading.Barrier.abort()` right after the
+  barrier trips breaks parties that have not woken yet, and a Java `Phaser`
+  terminated after it advanced reports termination to later waits.
 
 Hierarchy:
 
@@ -267,7 +272,8 @@ too) on both latchkit latches (`tests/fixtures/oracle_runs.json`, captured by
 | Abort with a reason | `abort` | not available | not available | not available | not available |
 
 The Java and .NET columns are what the recorded programs did. The C++ and Go
-columns come from the cppreference page for `std::latch::count_down` and the
+columns come from the cppreference pages for the `std::latch` constructor and
+`std::latch::count_down` and the
 Go 1.23 `sync/waitgroup.go` source (see `tests/sources/MANIFEST.json`); they
 were not run. latchkit sides with Java on every shared behaviour: a latch is
 counted down by many signallers who should never fail because a count was

@@ -32,7 +32,7 @@ def _text(name: str) -> str:
 
 
 def test_the_manifest_records_every_copy() -> None:
-    assert len(MANIFEST) == 9
+    assert len(MANIFEST) == 10
     for entry in MANIFEST.values():
         assert entry["url"].startswith("https://")
         assert set(entry) == {"url", "fetched", "size", "sha256", "licence"}
@@ -52,6 +52,7 @@ def test_the_manifest_records_every_copy() -> None:
         # C++20: a step larger than the counter is undefined behaviour.
         ("cppreference-latch-count_down.html", "greater than the value of the internal counter"),
         ("cppreference-latch-count_down.html", "the behavior is undefined"),
+        ("cppreference-latch-constructor.html", "undefined if expected is negative"),
         # asyncio documents its primitives as not thread-safe.
         ("cpython3.13-asyncio-sync.rst", "asyncio primitives are not thread-safe"),
         # threading.Barrier.abort puts the barrier into the broken state.
