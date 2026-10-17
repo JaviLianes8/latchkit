@@ -16,6 +16,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import zipfile
 from pathlib import Path
 
 import pytest
@@ -64,12 +65,17 @@ def make_venv(where: Path) -> tuple[Path, list[str]]:
 
 @pytest.fixture(scope="module")
 def venv_python(tmp_path_factory: pytest.TempPathFactory) -> Path:
+    if not (_REPO_ROOT / "src" / "latchkit" / "__init__.py").is_file():
+        pytest.skip("no source tree to build the wheel from")
     work = tmp_path_factory.mktemp("latchkit_e2e")
     wheels = work / "wheels"
     python, pip = make_venv(work / "venv")
     run([*pip, "wheel", "--no-deps", "-w", str(wheels), str(_REPO_ROOT)], timeout=600)
     built = sorted(wheels.glob("latchkit-*.whl"))
     assert [w.name for w in built] == [f"latchkit-{latchkit.__version__}-py3-none-any.whl"]
+    with zipfile.ZipFile(built[0]) as archive:
+        names = set(archive.namelist())
+    assert {"latchkit/__init__.py", "latchkit/py.typed"} <= names, "the wheel lacks the package"
     run([*pip, "install", "--no-index", str(built[0])], timeout=300)
     return python
 
