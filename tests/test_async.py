@@ -108,7 +108,7 @@ def test_waiters_on_several_loops_are_all_released() -> None:
 
         results.append(asyncio.run(main()))
 
-    threads = [threading.Thread(target=run_loop) for _ in range(loops)]
+    threads = [threading.Thread(target=run_loop, daemon=True) for _ in range(loops)]
     for thread in threads:
         thread.start()
     parked.wait(GUARD)
@@ -129,8 +129,10 @@ def test_a_waiter_on_a_closed_loop_does_not_break_signalling() -> None:
     loop.run_until_complete(asyncio.sleep(0))
     loop.close()
     task._log_destroy_pending = False  # type: ignore[attr-defined]  # abandoned on purpose
+    assert len(gate._waiters) == 1
     assert gate.open() is True
     assert gate.is_open is True
+    assert gate._waiters == {}, "settling forgets waiters that can never resume"
 
 
 def test_settled_primitives_return_without_suspending() -> None:
@@ -145,3 +147,36 @@ def test_settled_primitives_return_without_suspending() -> None:
         assert gate._waiters == {} and broken._waiters == {}
 
     asyncio.run(main())
+
+
+def test_a_zero_timeout_on_a_pending_primitive_never_suspends() -> None:
+    async def main() -> None:
+        for prim in (AsyncGate(), AsyncCountDownLatch(1), AsyncOneShotEvent()):
+            for timeout in (0, -1, -0.0):
+                coroutine = prim.wait(timeout)
+                with pytest.raises(StopIteration) as done:
+                    coroutine.send(None)  # finished on the first step: no await happened
+                assert done.value.value is False
+                assert prim._waiters == {}
+
+    asyncio.run(main())
+
+
+@pytest.mark.filterwarnings("ignore::RuntimeWarning")
+@pytest.mark.filterwarnings("ignore::pytest.PytestUnraisableExceptionWarning")
+def test_a_closed_loop_waiter_does_not_stop_the_wakeup_of_later_waiters() -> None:
+    gate = AsyncGate()
+    dead = asyncio.new_event_loop()
+    abandoned = dead.create_task(gate.wait())
+    dead.run_until_complete(asyncio.sleep(0))
+    dead.close()
+    abandoned._log_destroy_pending = False  # type: ignore[attr-defined]
+
+    async def live() -> bool:
+        task = asyncio.create_task(gate.wait())
+        await asyncio.sleep(0)
+        assert len(gate._waiters) == 2  # the dead loop's waiter comes first
+        threading.Thread(target=gate.open, daemon=True).start()
+        return await asyncio.wait_for(task, GUARD)
+
+    assert asyncio.run(live()) is True

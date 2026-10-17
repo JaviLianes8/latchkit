@@ -1,0 +1,3623 @@
+{
+ "captured": "2026-10-16",
+ "java": "openjdk version \"21.0.8\" 2025-07-15 LTS",
+ "dotnet": "9.0.315",
+ "seeds": {
+  "shared": 20261016,
+  "dotnet": 20261017
+ },
+ "shared": [
+  {
+   "ops": "0 r r d3 d1 r n r r d1 r r r d4 r",
+   "java": "0 0 0 0 0 T 0 0 0 0 0 0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException E:InvalidOperationException 0 E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException 0 0 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "3 d1 d4 d2 r d2 r d2 r d2 r w r",
+   "java": "2 0 0 0 0 0 0 0 0 0 T 0",
+   "dotnet": "2 E:InvalidOperationException 0 0 E:InvalidOperationException 0 E:InvalidOperationException 0 E:InvalidOperationException 0 T 0"
+  },
+  {
+   "ops": "4 r d2 w d3 r r r r r w",
+   "java": "4 2 F 0 0 0 0 0 0 T",
+   "dotnet": "4 2 F E:InvalidOperationException 2 2 2 2 2 F"
+  },
+  {
+   "ops": "3 d1 d1 r d1",
+   "java": "2 1 1 0",
+   "dotnet": "2 1 1 0"
+  },
+  {
+   "ops": "0 r d4 d4 r d4 w w",
+   "java": "0 0 0 0 0 T T",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException T T"
+  },
+  {
+   "ops": "5 w d4 d3 r r d1 r n d3 w",
+   "java": "F 1 0 0 0 0 0 T 0 T",
+   "dotnet": "F 1 E:InvalidOperationException 1 1 0 0 E:ArgumentOutOfRangeException E:InvalidOperationException T"
+  },
+  {
+   "ops": "1 d3 n d1",
+   "java": "0 T 0",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "4 n d2 r",
+   "java": "F 2 2",
+   "dotnet": "E:ArgumentOutOfRangeException 2 2"
+  },
+  {
+   "ops": "1 d3 n d1 r w d3 r r r r w",
+   "java": "0 T 0 0 T 0 0 0 0 0 T",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException 0 0 T E:InvalidOperationException 0 0 0 0 T"
+  },
+  {
+   "ops": "0 d3 r w d1 n r r n r w w d1",
+   "java": "0 0 T 0 T 0 0 T 0 T T 0",
+   "dotnet": "E:InvalidOperationException 0 T E:InvalidOperationException E:ArgumentOutOfRangeException 0 0 E:ArgumentOutOfRangeException 0 T T E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r r d3 d3 r",
+   "java": "0 0 0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "2 r r d2 d2 r d3 w d1 d4 d3",
+   "java": "2 2 0 0 0 0 T 0 0 0",
+   "dotnet": "2 2 0 E:InvalidOperationException 0 E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d2 d1 r w",
+   "java": "3 2 2 F",
+   "dotnet": "3 2 2 F"
+  },
+  {
+   "ops": "-1 d2 r d4 d1",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 d3 r d1 d1 r r r",
+   "java": "1 1 0 0 0 0 0",
+   "dotnet": "1 1 0 E:InvalidOperationException 0 0 0"
+  },
+  {
+   "ops": "-1 d4 w d1 d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 r d4 n d2",
+   "java": "3 0 T 0",
+   "dotnet": "3 E:InvalidOperationException E:ArgumentOutOfRangeException 1"
+  },
+  {
+   "ops": "2 n d2 r d3 d2",
+   "java": "F 0 0 0 0",
+   "dotnet": "E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 r r r r r r d1 d2 r d4 d3",
+   "java": "1 1 1 1 1 1 0 0 0 0 0",
+   "dotnet": "1 1 1 1 1 1 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d4 d2 r d1 d3 d4 r d2 d1 d1",
+   "java": "3 1 1 0 0 0 0 0 0 0",
+   "dotnet": "3 1 1 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d3 n r r r d3 d3 d3 r d4",
+   "java": "1 F 1 1 1 0 0 0 0 0",
+   "dotnet": "1 E:ArgumentOutOfRangeException 1 1 1 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 d3 w r r r d1 d4 d2 d2",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 r r d4 d2 r r d2",
+   "java": "2 2 0 0 0 0 0",
+   "dotnet": "2 2 E:InvalidOperationException 0 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 r d2 d4 r r w d2 d4 d3 d2 r r d1",
+   "java": "2 0 0 0 0 T 0 0 0 0 0 0 0",
+   "dotnet": "2 0 E:InvalidOperationException 0 0 T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 r d4 d2 d1",
+   "java": "2 0 0 0",
+   "dotnet": "2 E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d4 r d3 w d2 d2 r w w r r",
+   "java": "0 0 0 T 0 0 0 T T 0 0",
+   "dotnet": "E:InvalidOperationException 0 E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException 0 T T 0 0"
+  },
+  {
+   "ops": "1 r w d3 d3 d3 d3",
+   "java": "1 F 0 0 0 0",
+   "dotnet": "1 F E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 w r r n d1 w d3 r",
+   "java": "T 0 0 T 0 T 0 0",
+   "dotnet": "T 0 0 E:ArgumentOutOfRangeException E:InvalidOperationException T E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 d1 d2 w d4 d2",
+   "java": "0 0 T 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r d2 r d1 w r w r n d1 w d1 d1",
+   "java": "0 0 0 0 T 0 T 0 T 0 T 0 0",
+   "dotnet": "0 E:InvalidOperationException 0 E:InvalidOperationException T 0 T 0 E:ArgumentOutOfRangeException E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 n d3 w w",
+   "java": "T 0 T T",
+   "dotnet": "E:ArgumentOutOfRangeException E:InvalidOperationException T T"
+  },
+  {
+   "ops": "3 d2 d4 r d2 d3 d4 w w r w r",
+   "java": "1 0 0 0 0 0 T T 0 T 0",
+   "dotnet": "1 E:InvalidOperationException 1 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F F 1 F 1"
+  },
+  {
+   "ops": "2 r r w r d1 d4 d4 r",
+   "java": "2 2 F 2 1 0 0 0",
+   "dotnet": "2 2 F 2 1 E:InvalidOperationException E:InvalidOperationException 1"
+  },
+  {
+   "ops": "3 w r r d3 r d3 d3 w d4 r d3 d2 d4 d3",
+   "java": "F 3 3 0 0 0 0 T 0 0 0 0 0 0",
+   "dotnet": "F 3 3 0 0 E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d3 r d2 w r d3 d2 d4 r d1",
+   "java": "2 2 0 T 0 0 0 0 0 0",
+   "dotnet": "2 2 0 T 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 r w d1 d4 d2 d1 r d1 d2 d1 d3 d2",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d3 d1 r d2 d1 r w d1 d1 r r",
+   "java": "4 3 3 1 0 0 T 0 0 0 0",
+   "dotnet": "4 3 3 1 0 0 T E:InvalidOperationException E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "1 d1 w d1 w d4 w d4 d3 d3",
+   "java": "0 T 0 T 0 T 0 0 0",
+   "dotnet": "0 T E:InvalidOperationException T E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 w d1 r d2",
+   "java": "F 1 1 0",
+   "dotnet": "F 1 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d2 r r r n r w r d1 d1 r r",
+   "java": "1 1 1 1 F 1 F 1 0 0 0 0",
+   "dotnet": "1 1 1 1 E:ArgumentOutOfRangeException 1 F 1 0 E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "3 r r r r d3 d2 r",
+   "java": "3 3 3 3 0 0 0",
+   "dotnet": "3 3 3 3 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 d4 w d4 r d3",
+   "java": "0 T 0 0 0",
+   "dotnet": "E:InvalidOperationException T E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 w n d4 w d4 r",
+   "java": "F F 3 F 0 0",
+   "dotnet": "F E:ArgumentOutOfRangeException 3 F E:InvalidOperationException 3"
+  },
+  {
+   "ops": "-1 d3 n r n w d1 n r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 r n d4 r d2 d4",
+   "java": "5 F 1 1 0 0",
+   "dotnet": "5 E:ArgumentOutOfRangeException 1 1 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 r w r r w d1 d3 d1 r d2 d2 w",
+   "java": "1 F 1 1 F 0 0 0 0 0 0 T",
+   "dotnet": "1 F 1 1 F 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException T"
+  },
+  {
+   "ops": "-1 d3 r r d1 w r d1 d2 d1 d2 d4 r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d4 n d2 d2 d1 d2 r w w d2 r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 d1 d3 d1",
+   "java": "1 0 0",
+   "dotnet": "1 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "5 d4 d4 r",
+   "java": "1 0 0",
+   "dotnet": "1 E:InvalidOperationException 1"
+  },
+  {
+   "ops": "0 r d2 r w d3 w r n d1 d2 r r",
+   "java": "0 0 0 T 0 T 0 T 0 0 0 0",
+   "dotnet": "0 E:InvalidOperationException 0 T E:InvalidOperationException T 0 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "0 r d3 r r r d2",
+   "java": "0 0 0 0 0 0",
+   "dotnet": "0 E:InvalidOperationException 0 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d4 w d4 r w w d3 n r r d1 r r",
+   "java": "3 F 0 0 T T 0 T 0 0 0 0 0",
+   "dotnet": "3 F E:InvalidOperationException 3 F F 0 E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "5 r d2 r d1 d2 w r r w d4",
+   "java": "5 3 3 2 0 T 0 0 T 0",
+   "dotnet": "5 3 3 2 0 T 0 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d2 r d1 w d3 w d3 d4 w r d3 n",
+   "java": "0 0 0 T 0 T 0 0 T 0 0 T",
+   "dotnet": "E:InvalidOperationException 0 E:InvalidOperationException T E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException T 0 E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 w r r",
+   "java": "F 2 2",
+   "dotnet": "F 2 2"
+  },
+  {
+   "ops": "3 r d3 d4 n r d3 d1 d3 r",
+   "java": "3 0 0 T 0 0 0 0 0",
+   "dotnet": "3 0 E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 r d3 w",
+   "java": "0 0 T",
+   "dotnet": "0 E:InvalidOperationException T"
+  },
+  {
+   "ops": "-1 r r r n r n d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 r d2 d2 r r d3 r d2 r",
+   "java": "0 0 0 0 0 0 0 0 0",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 r d1 d2 d4 r d3 n",
+   "java": "0 0 0 0 0 0 T",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 w r d4 d1 d1 d4 d1",
+   "java": "T 0 0 0 0 0 0",
+   "dotnet": "T 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d1 d3 d1 n w n w d1 d2 w d1",
+   "java": "4 1 0 T T T T 0 0 T 0",
+   "dotnet": "4 1 0 E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException T E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d3 r r d1 d2 r d2 w d1 d3 d3 w d3 d1",
+   "java": "1 1 1 0 0 0 0 T 0 0 0 T 0 0",
+   "dotnet": "1 1 1 0 E:InvalidOperationException 0 E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r d3 r d1 d4 d3 r r w",
+   "java": "4 1 1 0 0 0 0 0 T",
+   "dotnet": "4 1 1 0 E:InvalidOperationException E:InvalidOperationException 0 0 T"
+  },
+  {
+   "ops": "5 w r w r n r r d3 r r w",
+   "java": "F 5 F 5 F 5 5 2 2 2 F",
+   "dotnet": "F 5 F 5 E:ArgumentOutOfRangeException 5 5 2 2 2 F"
+  },
+  {
+   "ops": "5 d1 r r d3 d3 d3 r d3 r",
+   "java": "4 4 4 1 0 0 0 0 0",
+   "dotnet": "4 4 4 1 E:InvalidOperationException E:InvalidOperationException 1 E:InvalidOperationException 1"
+  },
+  {
+   "ops": "2 d1 d3 d1 d4 r d3 r n r d2 r r w w",
+   "java": "1 0 0 0 0 0 0 T 0 0 0 0 T T",
+   "dotnet": "1 E:InvalidOperationException 0 E:InvalidOperationException 0 E:InvalidOperationException 0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 0 T T"
+  },
+  {
+   "ops": "4 w d1 r d1 d4 n w",
+   "java": "F 3 3 2 0 T T",
+   "dotnet": "F 3 3 2 E:InvalidOperationException E:ArgumentOutOfRangeException F"
+  },
+  {
+   "ops": "3 r d4 r r",
+   "java": "3 0 0 0",
+   "dotnet": "3 E:InvalidOperationException 3 3"
+  },
+  {
+   "ops": "0 d4 r r w r d2 w r w",
+   "java": "0 0 0 T 0 0 T 0 T",
+   "dotnet": "E:InvalidOperationException 0 0 T 0 E:InvalidOperationException T 0 T"
+  },
+  {
+   "ops": "5 r d3 d4 w",
+   "java": "5 2 0 T",
+   "dotnet": "5 2 E:InvalidOperationException F"
+  },
+  {
+   "ops": "1 r r w r d4 d1 d2 r r w r r r",
+   "java": "1 1 F 1 0 0 0 0 0 T 0 0 0",
+   "dotnet": "1 1 F 1 E:InvalidOperationException 0 E:InvalidOperationException 0 0 T 0 0 0"
+  },
+  {
+   "ops": "3 r r r d1 d2 d2 r d2",
+   "java": "3 3 3 2 0 0 0 0",
+   "dotnet": "3 3 3 2 0 E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r d3 d3",
+   "java": "0 0 0",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d1 r d2 r r d3",
+   "java": "6 6 4 4 4 1",
+   "dotnet": "6 6 4 4 4 1"
+  },
+  {
+   "ops": "-1 d1 d2 d3",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 w d1 w d4 d3 r",
+   "java": "T 0 T 0 0 0",
+   "dotnet": "T E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "2 r d4 d1 d3 r r r",
+   "java": "2 0 0 0 0 0 0",
+   "dotnet": "2 E:InvalidOperationException 1 E:InvalidOperationException 1 1 1"
+  },
+  {
+   "ops": "0 r n w d1 w d1 w n r d4",
+   "java": "0 T T 0 T 0 T T 0 0",
+   "dotnet": "0 E:ArgumentOutOfRangeException T E:InvalidOperationException T E:InvalidOperationException T E:ArgumentOutOfRangeException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 w r d1 w r d1 w d1 r r r d4",
+   "java": "F 1 0 T 0 0 T 0 0 0 0 0",
+   "dotnet": "F 1 0 T 0 E:InvalidOperationException T E:InvalidOperationException 0 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d4 d1 d3 d1 d2",
+   "java": "0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d2 d3 r r r d4 w w",
+   "java": "3 0 0 0 0 0 T T",
+   "dotnet": "3 0 0 0 0 E:InvalidOperationException T T"
+  },
+  {
+   "ops": "0 d1 r r",
+   "java": "0 0 0",
+   "dotnet": "E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "3 d4 r w r d4 d2 d2 w",
+   "java": "0 0 T 0 0 0 0 T",
+   "dotnet": "E:InvalidOperationException 3 F 3 E:InvalidOperationException 1 E:InvalidOperationException F"
+  },
+  {
+   "ops": "7 r d1 d2 w r",
+   "java": "7 6 4 F 4",
+   "dotnet": "7 6 4 F 4"
+  },
+  {
+   "ops": "0 d2 r d2 w w d1",
+   "java": "0 0 0 T T 0",
+   "dotnet": "E:InvalidOperationException 0 E:InvalidOperationException T T E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r d3 n d4 n r",
+   "java": "4 1 F 0 T 0",
+   "dotnet": "4 1 E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException 1"
+  },
+  {
+   "ops": "1 w w d3",
+   "java": "F F 0",
+   "dotnet": "F F E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d1 r n w w r d3 d2 d3 d2 r r d1",
+   "java": "0 0 T T T 0 0 0 0 0 0 0 0",
+   "dotnet": "0 0 E:ArgumentOutOfRangeException T T 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 r w d1 d3 d1 n d3",
+   "java": "7 F 6 3 2 F 0",
+   "dotnet": "7 F 6 3 2 E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d4 w d2 d4 d4 d3",
+   "java": "1 F 0 0 0 0",
+   "dotnet": "1 F E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 d4 w r n r d3 w",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 r r r d2 r w d3 d1",
+   "java": "5 5 5 3 3 F 0 0",
+   "dotnet": "5 5 5 3 3 F 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "3 r d1 n w d3",
+   "java": "3 2 F F 0",
+   "dotnet": "3 2 E:ArgumentOutOfRangeException F E:InvalidOperationException"
+  },
+  {
+   "ops": "0 w r d2 d4 d2 r n",
+   "java": "T 0 0 0 0 0 T",
+   "dotnet": "T 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d4 w r w r r w",
+   "java": "0 T 0 T 0 0 T",
+   "dotnet": "E:InvalidOperationException F 1 F 1 1 F"
+  },
+  {
+   "ops": "2 d4 d3 d1 r r",
+   "java": "0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 1 1 1"
+  },
+  {
+   "ops": "1 w d4 r d2 d1 d1 d3 n d1 d4",
+   "java": "F 0 0 0 0 0 0 T 0 0",
+   "dotnet": "F E:InvalidOperationException 1 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r r d3",
+   "java": "0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 r r d1",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d3 d3 d2 d4 r r",
+   "java": "0 0 0 0 0 0",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "0 d3 w d2 d1 d3 w",
+   "java": "0 T 0 0 0 T",
+   "dotnet": "E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T"
+  },
+  {
+   "ops": "5 d1 d2 r d4 r d1 r d1 w r r",
+   "java": "4 2 2 0 0 0 0 0 T 0 0",
+   "dotnet": "4 2 2 E:InvalidOperationException 2 1 1 0 T 0 0"
+  },
+  {
+   "ops": "3 d2 d2 d3 r n d1",
+   "java": "1 0 0 0 T 0",
+   "dotnet": "1 E:InvalidOperationException E:InvalidOperationException 1 E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "7 d3 n d4 r r w d3 r r",
+   "java": "4 F 0 0 0 T 0 0 0",
+   "dotnet": "4 E:ArgumentOutOfRangeException 0 0 0 T E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "1 d2 d3 r d2 r r d4 d3 d4 d1 d3 d3 r r",
+   "java": "0 0 0 0 0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 1 E:InvalidOperationException 1 1 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "7 w d1 d3",
+   "java": "F 6 3",
+   "dotnet": "F 6 3"
+  },
+  {
+   "ops": "0 d3 r n d3 r d4",
+   "java": "0 0 T 0 0 0",
+   "dotnet": "E:InvalidOperationException 0 E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 w n d1 d4 n r r d4 r n r",
+   "java": "T T 0 0 T 0 0 0 0 T 0",
+   "dotnet": "T E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException 0 E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "0 w d1 r r r d4 r d4 d4 r w d4",
+   "java": "T 0 0 0 0 0 0 0 0 0 T 0",
+   "dotnet": "T E:InvalidOperationException 0 0 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d4 r r r r",
+   "java": "0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 3 3 3 3"
+  },
+  {
+   "ops": "3 r n w r d1 d3 d1 r d2 d4 r d2 d1",
+   "java": "3 F F 3 2 0 0 0 0 0 0 0 0",
+   "dotnet": "3 E:ArgumentOutOfRangeException F 3 2 E:InvalidOperationException 1 1 E:InvalidOperationException E:InvalidOperationException 1 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "1 d4 d3 d2 r w r r r r d1 r d3 d2 n",
+   "java": "0 0 0 0 T 0 0 0 0 0 0 0 0 T",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 F 1 1 1 1 0 0 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 d4 n r r",
+   "java": "1 F 1 1",
+   "dotnet": "1 E:ArgumentOutOfRangeException 1 1"
+  },
+  {
+   "ops": "7 d3 r r r d1 n r d4 r d2 r r d4",
+   "java": "4 4 4 4 3 F 3 0 0 0 0 0 0",
+   "dotnet": "4 4 4 4 3 E:ArgumentOutOfRangeException 3 E:InvalidOperationException 3 1 1 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d2 r r",
+   "java": "0 0 0",
+   "dotnet": "E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "4 n w w n n",
+   "java": "F F F F F",
+   "dotnet": "E:ArgumentOutOfRangeException F F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 d1 d1 n n w w d1 d1 d4 w",
+   "java": "3 2 F F F F 1 0 0 T",
+   "dotnet": "3 2 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F F 1 0 E:InvalidOperationException T"
+  },
+  {
+   "ops": "4 d2 r r r r r",
+   "java": "2 2 2 2 2 2",
+   "dotnet": "2 2 2 2 2 2"
+  },
+  {
+   "ops": "2 d1 d4 r",
+   "java": "1 0 0",
+   "dotnet": "1 E:InvalidOperationException 1"
+  },
+  {
+   "ops": "2 w d3 r d1 n d3 d2 d4 r r d3",
+   "java": "F 0 0 0 T 0 0 0 0 0 0",
+   "dotnet": "F E:InvalidOperationException 2 1 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d2 d1 r r w r d2 d3 r d1 d3",
+   "java": "0 0 0 0 T 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 0 0 0 T 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 n d4 r d3 d4 d2 d4 r r d3 r d2 d1",
+   "java": "T 0 0 0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 w d3 r d4 n r r d1 r n w w r d3",
+   "java": "F 0 0 0 T 0 0 0 0 T T T 0 0",
+   "dotnet": "F E:InvalidOperationException 1 E:InvalidOperationException E:ArgumentOutOfRangeException 1 1 0 0 E:ArgumentOutOfRangeException T T 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 r d1 r r w r d1 w d2 r d3",
+   "java": "1 0 0 0 T 0 0 T 0 0 0",
+   "dotnet": "1 0 0 0 T 0 E:InvalidOperationException T E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r d1 r n r r d3 r d3 d3 r r r",
+   "java": "4 3 3 F 3 3 0 0 0 0 0 0 0",
+   "dotnet": "4 3 3 E:ArgumentOutOfRangeException 3 3 0 0 E:InvalidOperationException E:InvalidOperationException 0 0 0"
+  },
+  {
+   "ops": "0 d4 r d1 r r",
+   "java": "0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 0 E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "5 d1 d3 r r r d3 d1 d3 w d3 d1 w r r",
+   "java": "4 1 1 1 1 0 0 0 T 0 0 T 0 0",
+   "dotnet": "4 1 1 1 1 E:InvalidOperationException 0 E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException T 0 0"
+  },
+  {
+   "ops": "1 r r r n r d2 w d1 d2 r d2 d4",
+   "java": "1 1 1 F 1 0 T 0 0 0 0 0",
+   "dotnet": "1 1 1 E:ArgumentOutOfRangeException 1 E:InvalidOperationException F 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d4 w d2 d4 d4 w w",
+   "java": "0 T 0 0 0 T T",
+   "dotnet": "E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T T"
+  },
+  {
+   "ops": "0 d4 r r w w r d3 d3 w d1 d4",
+   "java": "0 0 0 T T 0 0 0 T 0 0",
+   "dotnet": "E:InvalidOperationException 0 0 T T 0 E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 r r r d2 r d4 d3 d1",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 r r d1 d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d4 d1 r d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 r w d1 r n",
+   "java": "5 F 4 4 F",
+   "dotnet": "5 F 4 4 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d3 r d3 d1 d3 d1 d3 r",
+   "java": "0 0 0 0 0 0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "4 r r d1 r r r r d4",
+   "java": "4 4 3 3 3 3 3 0",
+   "dotnet": "4 4 3 3 3 3 3 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d1 r d3 d4 r r d3 w r r d4 r d1",
+   "java": "0 0 0 0 0 0 0 T 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException T 0 0 E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d1 r r r",
+   "java": "2 2 2 2",
+   "dotnet": "2 2 2 2"
+  },
+  {
+   "ops": "5 r r r r r r",
+   "java": "5 5 5 5 5 5",
+   "dotnet": "5 5 5 5 5 5"
+  },
+  {
+   "ops": "5 d3 r w n r w d1 d1 r r d2 r r",
+   "java": "2 2 F F 2 F 1 0 0 0 0 0 0",
+   "dotnet": "2 2 F E:ArgumentOutOfRangeException 2 F 1 0 0 0 E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "1 d1 r r",
+   "java": "0 0 0",
+   "dotnet": "0 0 0"
+  },
+  {
+   "ops": "3 d3 r d1",
+   "java": "0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d1 w w d3 w n d1 d2",
+   "java": "0 T T 0 T T 0 0",
+   "dotnet": "E:InvalidOperationException T T E:InvalidOperationException T E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 r d4 d4 d1 d2 r w r n",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 r d1 r r d3 d3 r d4 d4",
+   "java": "4 3 3 3 0 0 0 0 0",
+   "dotnet": "4 3 3 3 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 w d3 d3 d3 r n n d2 d1 w r d1 d1",
+   "java": "T 0 0 0 0 T T 0 0 T 0 0 0",
+   "dotnet": "T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException T 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d3 r d2 d2 r d3 r r r d3 d2 d3",
+   "java": "0 0 0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 2 0 E:InvalidOperationException 0 E:InvalidOperationException 0 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r r d3 w r d3 d2 d2 r d2 r d1 d1",
+   "java": "5 5 2 F 2 0 0 0 0 0 0 0 0",
+   "dotnet": "5 5 2 F 2 E:InvalidOperationException 0 E:InvalidOperationException 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r r d4 d3 r r d4",
+   "java": "5 5 1 0 0 0 0",
+   "dotnet": "5 5 1 E:InvalidOperationException 1 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 r d1 r r n d4",
+   "java": "1 0 0 0 T 0",
+   "dotnet": "1 0 0 0 E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r r r d2 r d4 d1 n r d1 w",
+   "java": "4 4 4 2 2 0 0 T 0 0 T",
+   "dotnet": "4 4 4 2 2 E:InvalidOperationException 1 E:ArgumentOutOfRangeException 1 0 T"
+  },
+  {
+   "ops": "5 d3 d2 r d4 d1 r r d2 d3 n d3 r",
+   "java": "2 0 0 0 0 0 0 0 0 T 0 0",
+   "dotnet": "2 0 0 E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "5 d2 d4 r d1 r w d4 r w d1",
+   "java": "3 0 0 0 0 T 0 0 T 0",
+   "dotnet": "3 E:InvalidOperationException 3 2 2 F E:InvalidOperationException 2 F 1"
+  },
+  {
+   "ops": "0 d2 d3 w w",
+   "java": "0 0 T T",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException T T"
+  },
+  {
+   "ops": "3 d4 w r d2 r d4 d3 r d2",
+   "java": "0 T 0 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException F 3 1 1 E:InvalidOperationException E:InvalidOperationException 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d2 d1 r r d2 d1 w r d4 r d3 d3 r",
+   "java": "5 4 4 4 2 1 F 1 0 0 0 0 0",
+   "dotnet": "5 4 4 4 2 1 F 1 E:InvalidOperationException 1 E:InvalidOperationException E:InvalidOperationException 1"
+  },
+  {
+   "ops": "3 w w r d2 w r r d3",
+   "java": "F F 3 1 F 1 1 0",
+   "dotnet": "F F 3 1 F 1 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 r d1 r",
+   "java": "1 0 0",
+   "dotnet": "1 0 0"
+  },
+  {
+   "ops": "2 w d1 d1 r d3 r n d1 w r r r",
+   "java": "F 1 0 0 0 0 T 0 T 0 0 0",
+   "dotnet": "F 1 0 0 E:InvalidOperationException 0 E:ArgumentOutOfRangeException E:InvalidOperationException T 0 0 0"
+  },
+  {
+   "ops": "5 d4 d3 r w d4 d3 d3 w d3 r",
+   "java": "1 0 0 T 0 0 0 T 0 0",
+   "dotnet": "1 E:InvalidOperationException 1 F E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F E:InvalidOperationException 1"
+  },
+  {
+   "ops": "0 r n d4 d4 d1 w r",
+   "java": "0 T 0 0 0 T 0",
+   "dotnet": "0 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T 0"
+  },
+  {
+   "ops": "3 d3 d3 r w d1 r d2",
+   "java": "0 0 0 T 0 0 0",
+   "dotnet": "0 E:InvalidOperationException 0 T E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d4 n r d3 d3 d4 r r r r n r",
+   "java": "0 T 0 0 0 0 0 0 0 0 T 0",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException 1 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 1 1 1 E:ArgumentOutOfRangeException 1"
+  },
+  {
+   "ops": "3 r r d2 d3 d2 d1 d4",
+   "java": "3 3 1 0 0 0 0",
+   "dotnet": "3 3 1 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d1 r w d4 w r r d4",
+   "java": "4 4 F 0 T 0 0 0",
+   "dotnet": "4 4 F 0 T 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 r r d4 w r d3 d3 w n d1 r r",
+   "java": "2 2 0 T 0 0 0 T T 0 0 0",
+   "dotnet": "2 2 E:InvalidOperationException F 2 E:InvalidOperationException E:InvalidOperationException F E:ArgumentOutOfRangeException 1 1 1"
+  },
+  {
+   "ops": "1 d1 d2 n w w",
+   "java": "0 0 T T T",
+   "dotnet": "0 E:InvalidOperationException E:ArgumentOutOfRangeException T T"
+  },
+  {
+   "ops": "3 w r w w d1 d2 d2",
+   "java": "F 3 F F 2 0 0",
+   "dotnet": "F 3 F F 2 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "3 r r r d2 w d3",
+   "java": "3 3 3 1 F 0",
+   "dotnet": "3 3 3 1 F E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d2 d2 d2 d3",
+   "java": "0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 w r d3 d3 d3 r r d3",
+   "java": "F 5 2 0 0 0 0 0",
+   "dotnet": "F 5 2 E:InvalidOperationException E:InvalidOperationException 2 2 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 n n w d4 d2 r r w r d2",
+   "java": "F F F 3 1 1 1 F 1 0",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F 3 1 1 1 F 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d3 d3 r d4 d1 d1 d4 d2 r d3",
+   "java": "2 0 0 0 0 0 0 0 0 0",
+   "dotnet": "2 E:InvalidOperationException 2 E:InvalidOperationException 1 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r d2 r d1 r r",
+   "java": "4 2 2 1 1 1",
+   "dotnet": "4 2 2 1 1 1"
+  },
+  {
+   "ops": "2 d1 r d4 r r d2 d2 d1 r",
+   "java": "1 1 0 0 0 0 0 0 0",
+   "dotnet": "1 1 E:InvalidOperationException 1 1 E:InvalidOperationException E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "1 r d4 w d2 r r w",
+   "java": "1 0 T 0 0 0 T",
+   "dotnet": "1 E:InvalidOperationException F E:InvalidOperationException 1 1 F"
+  },
+  {
+   "ops": "4 d1 w w",
+   "java": "3 F F",
+   "dotnet": "3 F F"
+  },
+  {
+   "ops": "-1 d2 d1 d2 w d3 d2 r d1 r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d2 d1 d2 r n n d3 d2 d3 r r r d4",
+   "java": "5 4 2 2 F F 0 0 0 0 0 0 0",
+   "dotnet": "5 4 2 2 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:InvalidOperationException 0 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 w d2 d3 r r w d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 r d1 n r d1 r r r r d1 r",
+   "java": "0 0 T 0 0 0 0 0 0 0 0",
+   "dotnet": "0 E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 0 0 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 w d2 r r w r r d4 r w d3",
+   "java": "T 0 0 0 T 0 0 0 0 T 0",
+   "dotnet": "T E:InvalidOperationException 0 0 T 0 0 E:InvalidOperationException 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d1 w d2 r d4 r r n d3 r d2 r n d3",
+   "java": "1 F 0 0 0 0 0 T 0 0 0 0 T 0",
+   "dotnet": "1 F E:InvalidOperationException 1 E:InvalidOperationException 1 1 E:ArgumentOutOfRangeException E:InvalidOperationException 1 E:InvalidOperationException 1 E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d1 r d2 d2",
+   "java": "4 4 2 0",
+   "dotnet": "4 4 2 0"
+  },
+  {
+   "ops": "0 n r n n r d3 r n",
+   "java": "T 0 T T 0 0 0 T",
+   "dotnet": "E:ArgumentOutOfRangeException 0 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d4 d1 r r r d3 d4 r r d3",
+   "java": "3 2 2 2 2 0 0 0 0 0",
+   "dotnet": "3 2 2 2 2 E:InvalidOperationException E:InvalidOperationException 2 2 E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r w d1",
+   "java": "5 F 4",
+   "dotnet": "5 F 4"
+  },
+  {
+   "ops": "5 d2 d3 w r r d2 d3 r d1",
+   "java": "3 0 T 0 0 0 0 0 0",
+   "dotnet": "3 0 T 0 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d4 r r d1 r d1 w r r",
+   "java": "0 0 0 0 0 0 T 0 0",
+   "dotnet": "E:InvalidOperationException 2 2 1 1 0 T 0 0"
+  },
+  {
+   "ops": "5 d2 w d1 r d1 r d4 d4 n d4",
+   "java": "3 F 2 2 1 1 0 0 T 0",
+   "dotnet": "3 F 2 2 1 1 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 w w d3 r r d4 r r r r d3 r d4",
+   "java": "F F 1 1 1 0 0 0 0 0 0 0 0",
+   "dotnet": "F F 1 1 1 E:InvalidOperationException 1 1 1 1 E:InvalidOperationException 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 r d3 w d2 r d3 r r w d2 d1 d3",
+   "java": "7 4 F 2 2 0 0 0 T 0 0 0",
+   "dotnet": "7 4 F 2 2 E:InvalidOperationException 2 2 F 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r r n d3",
+   "java": "5 5 F 2",
+   "dotnet": "5 5 E:ArgumentOutOfRangeException 2"
+  },
+  {
+   "ops": "5 d1 r d1 d4 r w d4 r r d4 w r d3 r",
+   "java": "4 4 3 0 0 T 0 0 0 0 T 0 0 0",
+   "dotnet": "4 4 3 E:InvalidOperationException 3 F E:InvalidOperationException 3 3 E:InvalidOperationException F 3 0 0"
+  },
+  {
+   "ops": "7 r r d2 d4 d2 d4 d1 d3 w",
+   "java": "7 7 5 1 0 0 0 0 T",
+   "dotnet": "7 7 5 1 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException T"
+  },
+  {
+   "ops": "0 d3 r r d2 d3 w r n d1 d4",
+   "java": "0 0 0 0 0 T 0 T 0 0",
+   "dotnet": "E:InvalidOperationException 0 0 E:InvalidOperationException E:InvalidOperationException T 0 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 r r d2 w r w d2 d1 r r d4 d3 d2",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d3 n d1 d3 d4 d3 r r",
+   "java": "0 T 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "5 d2 n w n d3 r",
+   "java": "3 F F F 0 0",
+   "dotnet": "3 E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException 0 0"
+  },
+  {
+   "ops": "-1 d4 d2 d3 r r r w d4 w d4 r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 n d4 r w r w d3 d4 r d3 w",
+   "java": "T 0 0 T 0 T 0 0 0 0 T",
+   "dotnet": "E:ArgumentOutOfRangeException E:InvalidOperationException 0 T 0 T E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException T"
+  },
+  {
+   "ops": "4 d4 d1 r r r d1 d3 w r d3",
+   "java": "0 0 0 0 0 0 0 T 0 0",
+   "dotnet": "0 E:InvalidOperationException 0 0 0 E:InvalidOperationException E:InvalidOperationException T 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 w n d2 r r w d1 d1 d1 d4 r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 r w w r r d3 n r d1 r",
+   "java": "5 F F 5 5 2 F 2 1 1",
+   "dotnet": "5 F F 5 5 2 E:ArgumentOutOfRangeException 2 1 1"
+  },
+  {
+   "ops": "1 w r r d3 d4 d2 r r r r d4",
+   "java": "F 1 1 0 0 0 0 0 0 0 0",
+   "dotnet": "F 1 1 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 1 1 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "5 w d3 d1 d3 d2 d4 d2 r r d4 d3 r d2",
+   "java": "F 2 1 0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "F 2 1 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 1 E:InvalidOperationException E:InvalidOperationException 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d4 r d4 w r r d3 r r",
+   "java": "3 3 0 T 0 0 0 0 0",
+   "dotnet": "3 3 E:InvalidOperationException F 3 3 0 0 0"
+  },
+  {
+   "ops": "0 d4 d3 r d4 d2 n d4 d2 d2 d3 d2 r",
+   "java": "0 0 0 0 0 T 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 d4 r r d2 d4 d2 n d2 d3 n d4",
+   "java": "0 0 0 0 0 0 T 0 0 T 0",
+   "dotnet": "E:InvalidOperationException 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "3 r w w w r r r d3 d4 r r d3",
+   "java": "3 F F F 3 3 3 0 0 0 0 0",
+   "dotnet": "3 F F F 3 3 3 0 E:InvalidOperationException 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 r r n w d3 w",
+   "java": "2 2 F F 0 T",
+   "dotnet": "2 2 E:ArgumentOutOfRangeException F E:InvalidOperationException F"
+  },
+  {
+   "ops": "7 w r d3 r",
+   "java": "F 7 4 4",
+   "dotnet": "F 7 4 4"
+  },
+  {
+   "ops": "3 d1 w w d3",
+   "java": "2 F F 0",
+   "dotnet": "2 F F E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d4 r r r r w r r r",
+   "java": "0 0 0 0 0 T 0 0 0",
+   "dotnet": "E:InvalidOperationException 3 3 3 3 F 3 3 3"
+  },
+  {
+   "ops": "2 r w r d1 d1 r d1 d3 d3 d1 d1 r",
+   "java": "2 F 2 1 0 0 0 0 0 0 0 0",
+   "dotnet": "2 F 2 1 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "2 d2 d3 d3 d3 d3 d4 d2 d1 r",
+   "java": "0 0 0 0 0 0 0 0 0",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 r d4 r d1 d3 w r d4 d3",
+   "java": "0 0 0 0 0 T 0 0 0",
+   "dotnet": "0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException T 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d1 r d2 d1 r d2 n n r r d3",
+   "java": "0 0 0 0 0 0 T T 0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "4 w d4 d2 d1 w r d2 d1 r",
+   "java": "F 0 0 0 T 0 0 0 0",
+   "dotnet": "F 0 E:InvalidOperationException E:InvalidOperationException T 0 E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "3 d2 d1 d2 w d4 w d1 d1 r r d3 r r",
+   "java": "1 0 0 T 0 T 0 0 0 0 0 0 0",
+   "dotnet": "1 0 E:InvalidOperationException T E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "1 r d1 r d4 r w d4 d4 d2 d3 w r r",
+   "java": "1 0 0 0 0 T 0 0 0 0 T 0 0",
+   "dotnet": "1 0 0 E:InvalidOperationException 0 T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T 0 0"
+  },
+  {
+   "ops": "0 r d3 r d2 d3 n r d3 w r w r w",
+   "java": "0 0 0 0 0 T 0 0 T 0 T 0 T",
+   "dotnet": "0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException T 0 T 0 T"
+  },
+  {
+   "ops": "0 n d4 r r d3 w w d3 d1",
+   "java": "T 0 0 0 0 T T 0 0",
+   "dotnet": "E:ArgumentOutOfRangeException E:InvalidOperationException 0 0 E:InvalidOperationException T T E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d3 r r d1 r d2 d4 d2 r d4 r",
+   "java": "4 4 4 3 3 1 0 0 0 0 0",
+   "dotnet": "4 4 4 3 3 1 E:InvalidOperationException E:InvalidOperationException 1 E:InvalidOperationException 1"
+  },
+  {
+   "ops": "2 r d3 r w d4 r n d3",
+   "java": "2 0 0 T 0 0 T 0",
+   "dotnet": "2 E:InvalidOperationException 2 F E:InvalidOperationException 2 E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 r r r w n w w d1 n r w",
+   "java": "2 2 2 F F F F 1 F 1 F",
+   "dotnet": "2 2 2 F E:ArgumentOutOfRangeException F F 1 E:ArgumentOutOfRangeException 1 F"
+  },
+  {
+   "ops": "0 r d1 w w r d4 w r d2 d1",
+   "java": "0 0 T T 0 0 T 0 0 0",
+   "dotnet": "0 E:InvalidOperationException T T 0 E:InvalidOperationException T 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d4 w r d3 r d4 d3 n",
+   "java": "0 T 0 0 0 0 0 T",
+   "dotnet": "E:InvalidOperationException F 1 E:InvalidOperationException 1 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d4 r r w r r w r d3 r d4 d3",
+   "java": "0 0 0 T 0 0 T 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 1 1 F 1 1 F 1 E:InvalidOperationException 1 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d2 d2 n w r r d1 d4 w r d1",
+   "java": "0 0 T T 0 0 0 0 T 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException T 0 0 E:InvalidOperationException E:InvalidOperationException T 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 r r d1 r d3 d1 d1 r w n n d1 r",
+   "java": "1 1 0 0 0 0 0 0 T T T 0 0",
+   "dotnet": "1 1 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 T E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 r r n r r d1",
+   "java": "0 0 T 0 0 0",
+   "dotnet": "0 0 E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d4 w d1 r d1 w r r d4",
+   "java": "0 T 0 0 0 T 0 0 0",
+   "dotnet": "0 T E:InvalidOperationException 0 E:InvalidOperationException T 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d1 d2 n r r d2 w n d3 d1 r d1 n",
+   "java": "1 0 T 0 0 0 T T 0 0 0 0 T",
+   "dotnet": "1 E:InvalidOperationException E:ArgumentOutOfRangeException 1 1 E:InvalidOperationException F E:ArgumentOutOfRangeException E:InvalidOperationException 0 0 E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d1 d1 r r d2 d3 d2 d3 r d3 r d1 r d2",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 r r d1 d2 n r d3 d4 d1 d4 r",
+   "java": "2 2 1 0 T 0 0 0 0 0 0",
+   "dotnet": "2 2 1 E:InvalidOperationException E:ArgumentOutOfRangeException 1 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "1 w r d1 n r r",
+   "java": "F 1 0 T 0 0",
+   "dotnet": "F 1 0 E:ArgumentOutOfRangeException 0 0"
+  },
+  {
+   "ops": "2 d1 r r",
+   "java": "1 1 1",
+   "dotnet": "1 1 1"
+  },
+  {
+   "ops": "4 w r r d1 r r d1 w r d2",
+   "java": "F 4 4 3 3 3 2 F 2 0",
+   "dotnet": "F 4 4 3 3 3 2 F 2 0"
+  },
+  {
+   "ops": "7 r d2 d1 d3 r d4 d2 d1 w r r",
+   "java": "7 5 4 1 1 0 0 0 T 0 0",
+   "dotnet": "7 5 4 1 1 E:InvalidOperationException E:InvalidOperationException 0 T 0 0"
+  },
+  {
+   "ops": "7 r d1 d4 d3 n d4 r w d3 r",
+   "java": "7 6 2 0 T 0 0 T 0 0",
+   "dotnet": "7 6 2 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException 2 F E:InvalidOperationException 2"
+  },
+  {
+   "ops": "4 r n w r d4 r r d1 d4",
+   "java": "4 F F 4 0 0 0 0 0",
+   "dotnet": "4 E:ArgumentOutOfRangeException F 4 0 0 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 r d2 d3 r d4 d1 w r n",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d3 d4 w d2 d1 r r w d3",
+   "java": "0 0 T 0 0 0 0 T 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException F E:InvalidOperationException 0 0 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d2 d4 d1 r d3 w d2 r d3 r d4 r w r",
+   "java": "1 0 0 0 0 T 0 0 0 0 0 0 T 0",
+   "dotnet": "1 E:InvalidOperationException 0 0 E:InvalidOperationException T E:InvalidOperationException 0 E:InvalidOperationException 0 E:InvalidOperationException 0 T 0"
+  },
+  {
+   "ops": "4 w n r r r n",
+   "java": "F F 4 4 4 F",
+   "dotnet": "F E:ArgumentOutOfRangeException 4 4 4 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 w w r d1 d3 r d3 r d3 r d2 d2 d1",
+   "java": "T T 0 0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "T T 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d1 r r n",
+   "java": "1 1 1 F",
+   "dotnet": "1 1 1 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d2 w d3 r r d4 d4 w",
+   "java": "1 F 0 0 0 0 0 T",
+   "dotnet": "1 F E:InvalidOperationException 1 1 E:InvalidOperationException E:InvalidOperationException F"
+  },
+  {
+   "ops": "1 r r d3 r r r w",
+   "java": "1 1 0 0 0 0 T",
+   "dotnet": "1 1 E:InvalidOperationException 1 1 1 F"
+  },
+  {
+   "ops": "4 r n d4 d1 r d3 r r d4",
+   "java": "4 F 0 0 0 0 0 0 0",
+   "dotnet": "4 E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 E:InvalidOperationException 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r d4 r n r d3 r",
+   "java": "0 0 0 T 0 0 0",
+   "dotnet": "0 E:InvalidOperationException 0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 r n d4 d4",
+   "java": "0 T 0 0",
+   "dotnet": "0 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d4 n d2 n r r r w d2 w d3 d3 d2",
+   "java": "0 T 0 T 0 0 0 T 0 T 0 0 0",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException 1 1 1 F E:InvalidOperationException F E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 d3 r d4 d4 d3 r r r r d1 d2 n n",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d3 d2 r r w d2 d3 r r d1 d2",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d2 d2 n n n r r r d1 n n w d2",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d4 w d2",
+   "java": "3 F 1",
+   "dotnet": "3 F 1"
+  },
+  {
+   "ops": "0 r w w",
+   "java": "0 T T",
+   "dotnet": "0 T T"
+  },
+  {
+   "ops": "5 r d4 d1 w d2 r d3 r w d4 n r d2 d3",
+   "java": "5 1 0 T 0 0 0 0 T 0 T 0 0 0",
+   "dotnet": "5 1 0 T E:InvalidOperationException 0 E:InvalidOperationException 0 T E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r r r d3 w n d3 r r w",
+   "java": "0 0 0 0 T T 0 0 0 T",
+   "dotnet": "0 0 0 E:InvalidOperationException T E:ArgumentOutOfRangeException E:InvalidOperationException 0 0 T"
+  },
+  {
+   "ops": "5 r d2 w r d2 r r d4 d1 d3 d2 r d4",
+   "java": "5 3 F 3 1 1 1 0 0 0 0 0 0",
+   "dotnet": "5 3 F 3 1 1 1 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r d1 r r r",
+   "java": "0 0 0 0 0",
+   "dotnet": "0 E:InvalidOperationException 0 0 0"
+  },
+  {
+   "ops": "0 r r w d3 r r",
+   "java": "0 0 T 0 0 0",
+   "dotnet": "0 0 T E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "5 d1 d4 w n",
+   "java": "4 0 T T",
+   "dotnet": "4 0 T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 w w d4 d3 w r r d4 r d4 r",
+   "java": "F F 0 0 T 0 0 0 0 0 0",
+   "dotnet": "F F E:InvalidOperationException E:InvalidOperationException F 1 1 E:InvalidOperationException 1 E:InvalidOperationException 1"
+  },
+  {
+   "ops": "1 d2 w d1 d3 d2 r w r d1 w r d1 d3 r",
+   "java": "0 T 0 0 0 0 T 0 0 T 0 0 0 0",
+   "dotnet": "E:InvalidOperationException F 0 E:InvalidOperationException E:InvalidOperationException 0 T 0 E:InvalidOperationException T 0 E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "7 w w n r w",
+   "java": "F F F 7 F",
+   "dotnet": "F F E:ArgumentOutOfRangeException 7 F"
+  },
+  {
+   "ops": "5 r d1 d4 r r d4 w",
+   "java": "5 4 0 0 0 0 T",
+   "dotnet": "5 4 0 0 0 E:InvalidOperationException T"
+  },
+  {
+   "ops": "0 r r d2 n d2 r r w r r",
+   "java": "0 0 0 T 0 0 0 T 0 0",
+   "dotnet": "0 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException 0 0 T 0 0"
+  },
+  {
+   "ops": "0 d2 d1 r n",
+   "java": "0 0 0 T",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 w d4 d1 r r d2 r w r d3 r d1 d2",
+   "java": "F 0 0 0 0 0 0 T 0 0 0 0 0",
+   "dotnet": "F E:InvalidOperationException 0 0 0 E:InvalidOperationException 0 T 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d1 n r r r r r d2",
+   "java": "4 F 4 4 4 4 4 2",
+   "dotnet": "4 E:ArgumentOutOfRangeException 4 4 4 4 4 2"
+  },
+  {
+   "ops": "0 r w d1",
+   "java": "0 T 0",
+   "dotnet": "0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d1 r w r d3 d1 d1 r d1 d4 n d1 d1",
+   "java": "3 3 F 3 0 0 0 0 0 0 T 0 0",
+   "dotnet": "3 3 F 3 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d1 r w w d4 d1 r d3",
+   "java": "0 0 T T 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 0 T T E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 r d1 d4 d2 r w d4",
+   "java": "1 0 0 0 0 T 0",
+   "dotnet": "1 0 E:InvalidOperationException E:InvalidOperationException 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d4 d1 r d4 r d4 r",
+   "java": "0 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "3 r r d1 r d1 r w r d4 w",
+   "java": "3 3 2 2 1 1 F 1 0 T",
+   "dotnet": "3 3 2 2 1 1 F 1 E:InvalidOperationException F"
+  },
+  {
+   "ops": "0 d4 w r d3",
+   "java": "0 T 0 0",
+   "dotnet": "E:InvalidOperationException T 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d3 d3 d2 n r d2 n r d4 r r d4 w d2",
+   "java": "0 0 0 T 0 0 T 0 0 0 0 0 T 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 0 E:InvalidOperationException T E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d2 d2 r r r d4 d4 r r r",
+   "java": "0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 0 0 E:InvalidOperationException E:InvalidOperationException 0 0 0"
+  },
+  {
+   "ops": "4 d4 r d1",
+   "java": "0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d2 d2 d1 d1",
+   "java": "0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 r r r r",
+   "java": "7 7 7 7",
+   "dotnet": "7 7 7 7"
+  },
+  {
+   "ops": "4 r d2 d2 d4 r d3 d4 r r r",
+   "java": "4 2 0 0 0 0 0 0 0 0",
+   "dotnet": "4 2 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException 0 0 0"
+  },
+  {
+   "ops": "7 d3 r w d1 r d1 r w r r d3 r r n",
+   "java": "4 4 F 3 3 2 2 F 2 2 0 0 0 T",
+   "dotnet": "4 4 F 3 3 2 2 F 2 2 E:InvalidOperationException 2 2 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 r r w r w d2 r d3 d3 n r d1 r d2",
+   "java": "3 3 F 3 F 1 1 0 0 T 0 0 0 0",
+   "dotnet": "3 3 F 3 F 1 1 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 1 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d1 d3 d4 r",
+   "java": "1 0 0 0",
+   "dotnet": "1 E:InvalidOperationException E:InvalidOperationException 1"
+  },
+  {
+   "ops": "-1 d2 d2 r n r d4 r d1 r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d2 n d2",
+   "java": "0 T 0",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r d4 d1 d2 d4 d4 w d1",
+   "java": "5 1 0 0 0 0 T 0",
+   "dotnet": "5 1 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d2 d1 w d2 r w r w d3",
+   "java": "0 0 T 0 0 T 0 T 0",
+   "dotnet": "0 E:InvalidOperationException T E:InvalidOperationException 0 T 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d3 d2 r r w d1 d4 d3 d3 r d2",
+   "java": "4 2 2 2 F 1 0 0 0 0 0",
+   "dotnet": "4 2 2 2 F 1 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d4 r d1 d2",
+   "java": "0 0 0 0",
+   "dotnet": "E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 r r d1 r d2 w r",
+   "java": "7 7 6 6 4 F 4",
+   "dotnet": "7 7 6 6 4 F 4"
+  },
+  {
+   "ops": "4 d3 d4 n w w w r r w d2",
+   "java": "1 0 T T T T 0 0 T 0",
+   "dotnet": "1 E:InvalidOperationException E:ArgumentOutOfRangeException F F F 1 1 F E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 n r d2 d4 d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 d4 d3 d2 d4 d1 w r d4 w d4 d3 r r",
+   "java": "0 0 0 0 0 T 0 0 T 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException T 0 E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "0 r r d3 n d3 r r d1 r d3 d4",
+   "java": "0 0 0 T 0 0 0 0 0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException 0 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r r d1 n n d2 r r d2 d2 r d4",
+   "java": "0 0 0 T T 0 0 0 0 0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException 0 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d4 d2 d2 d1 r r n r n r d2 r r w",
+   "java": "0 0 0 0 0 0 T 0 T 0 0 0 0 T",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0 0 E:ArgumentOutOfRangeException 0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 0 T"
+  },
+  {
+   "ops": "-1 r r d2 r n r w d4 r w w w d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 w r d1 n w d4 d3 r r d2 d4",
+   "java": "F 2 1 F F 0 0 0 0 0 0",
+   "dotnet": "F 2 1 E:ArgumentOutOfRangeException F E:InvalidOperationException E:InvalidOperationException 1 1 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d1 d2 d2 w d1 d4 d1 r r r d3 r d1 d3",
+   "java": "0 0 0 T 0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 n r r d1 r",
+   "java": "F 2 2 1 1",
+   "dotnet": "E:ArgumentOutOfRangeException 2 2 1 1"
+  },
+  {
+   "ops": "5 d3 r d3 r r r n d2 d1 r r w w d3",
+   "java": "2 2 0 0 0 0 T 0 0 0 0 T T 0",
+   "dotnet": "2 2 E:InvalidOperationException 2 2 2 E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 0 T T E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d2 n n r n d2 r",
+   "java": "2 F F 2 F 0 0",
+   "dotnet": "2 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 2 E:ArgumentOutOfRangeException 0 0"
+  },
+  {
+   "ops": "0 n r r r d2 d4 d1 r r d4 w d2 r",
+   "java": "T 0 0 0 0 0 0 0 0 0 T 0 0",
+   "dotnet": "E:ArgumentOutOfRangeException 0 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException T E:InvalidOperationException 0"
+  },
+  {
+   "ops": "5 w w r w d3 d1 d3 r d1 r d3",
+   "java": "F F 5 F 2 1 0 0 0 0 0",
+   "dotnet": "F F 5 F 2 1 E:InvalidOperationException 1 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 r r w d2 d4 r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 r d3 r w w d2",
+   "java": "2 0 0 T T 0",
+   "dotnet": "2 E:InvalidOperationException 2 F F 0"
+  },
+  {
+   "ops": "2 r w r n r d1 r",
+   "java": "2 F 2 F 2 1 1",
+   "dotnet": "2 F 2 E:ArgumentOutOfRangeException 2 1 1"
+  },
+  {
+   "ops": "3 d1 d1 w w w",
+   "java": "2 1 F F F",
+   "dotnet": "2 1 F F F"
+  },
+  {
+   "ops": "2 r w d3",
+   "java": "2 F 0",
+   "dotnet": "2 F E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d2 d4 d1 d4 d1 r r d3",
+   "java": "0 0 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d3 r w d4 d2 r d1 r d3 r",
+   "java": "0 0 T 0 0 0 0 0 0 0",
+   "dotnet": "0 0 T E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "4 r r r r r",
+   "java": "4 4 4 4 4",
+   "dotnet": "4 4 4 4 4"
+  },
+  {
+   "ops": "-1 r w d2 d4 r d2 d3 d2",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 r d4 r d4 d1 d3 r",
+   "java": "7 3 3 0 0 0 0",
+   "dotnet": "7 3 3 E:InvalidOperationException 2 E:InvalidOperationException 2"
+  },
+  {
+   "ops": "5 w n r r d3 r",
+   "java": "F F 5 5 2 2",
+   "dotnet": "F E:ArgumentOutOfRangeException 5 5 2 2"
+  },
+  {
+   "ops": "-1 w d3 w w d2 w",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 d2 r r r d1 r d2 r r r d4 r r",
+   "java": "0 0 0 0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "0 0 0 0 E:InvalidOperationException 0 E:InvalidOperationException 0 0 0 E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "0 d1 d3 r n d3 d4 d2 d2 r d2",
+   "java": "0 0 0 T 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "3 r d1 d2 w r d4 w d3 r r r",
+   "java": "3 2 0 T 0 0 T 0 0 0 0",
+   "dotnet": "3 2 0 T 0 E:InvalidOperationException T E:InvalidOperationException 0 0 0"
+  },
+  {
+   "ops": "2 r d2 d1 d1 r r d1 r d4 d2 d1 d1 d2",
+   "java": "2 0 0 0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "2 0 E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d3 r d4 d3 r d1 d4 d2 r",
+   "java": "0 0 0 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "-1 w r d4 d3 d1 d1 r n d2 r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d4 r d4 r d2 d1 r d4 d1 w w r d2 w",
+   "java": "0 0 0 0 0 0 0 0 0 T T 0 0 T",
+   "dotnet": "E:InvalidOperationException 3 E:InvalidOperationException 3 1 0 0 E:InvalidOperationException E:InvalidOperationException T T 0 E:InvalidOperationException T"
+  },
+  {
+   "ops": "0 n r r r d1 r r",
+   "java": "T 0 0 0 0 0 0",
+   "dotnet": "E:ArgumentOutOfRangeException 0 0 0 E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "0 r d1 r d4 w r d1 d2 r d3 d2",
+   "java": "0 0 0 0 T 0 0 0 0 0 0",
+   "dotnet": "0 E:InvalidOperationException 0 E:InvalidOperationException T 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r d4 r w w w d1 d2 r",
+   "java": "5 1 1 F F F 0 0 0",
+   "dotnet": "5 1 1 F F F 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 r d4 d4 d3 d4 d4 d3",
+   "java": "0 0 0 0 0 0 0",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r d4 r r d2 d1",
+   "java": "4 0 0 0 0 0",
+   "dotnet": "4 0 0 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 r d3 r d4 d3 w r n r r r r",
+   "java": "2 0 0 0 0 T 0 T 0 0 0 0",
+   "dotnet": "2 E:InvalidOperationException 2 E:InvalidOperationException E:InvalidOperationException F 2 E:ArgumentOutOfRangeException 2 2 2 2"
+  },
+  {
+   "ops": "0 d4 n n n d2 r d4",
+   "java": "0 T T T 0 0 0",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d2 d1 d4 n d1 r d3 d2 d2 d1 r",
+   "java": "5 4 0 T 0 0 0 0 0 0 0",
+   "dotnet": "5 4 0 E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "-1 r d2 r d3 w r r r r r d3",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 r r r n d1 d3 d2",
+   "java": "1 1 1 F 0 0 0",
+   "dotnet": "1 1 1 E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d4 r n r d1 d4 r",
+   "java": "0 0 T 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 1 E:ArgumentOutOfRangeException 1 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "4 r r w n r r d2 n d2 r",
+   "java": "4 4 F F 4 4 2 F 0 0",
+   "dotnet": "4 4 F E:ArgumentOutOfRangeException 4 4 2 E:ArgumentOutOfRangeException 0 0"
+  },
+  {
+   "ops": "0 d1 r d3 w",
+   "java": "0 0 0 T",
+   "dotnet": "E:InvalidOperationException 0 E:InvalidOperationException T"
+  },
+  {
+   "ops": "3 d3 r d4 r w d2 r n d2 d2 d2 w r",
+   "java": "0 0 0 0 T 0 0 T 0 0 0 T 0",
+   "dotnet": "0 0 E:InvalidOperationException 0 T E:InvalidOperationException 0 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T 0"
+  },
+  {
+   "ops": "0 d4 r r r r n d3 d3 w d4 r n r",
+   "java": "0 0 0 0 0 T 0 0 T 0 0 T 0",
+   "dotnet": "E:InvalidOperationException 0 0 0 0 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException 0 E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "1 d2 d2 d2 d2 r r",
+   "java": "0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 1"
+  },
+  {
+   "ops": "-1 d1 n w w d4 d1 r",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 r n r r d3 n d4 r r d4",
+   "java": "0 T 0 0 0 T 0 0 0 0",
+   "dotnet": "0 E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d2 d1 r w d2 w d1 n w r r r n r",
+   "java": "5 4 4 F 2 F 1 F F 1 1 1 F 1",
+   "dotnet": "5 4 4 F 2 F 1 E:ArgumentOutOfRangeException F 1 1 1 E:ArgumentOutOfRangeException 1"
+  },
+  {
+   "ops": "3 d2 w d2 d4 r",
+   "java": "1 F 0 0 0",
+   "dotnet": "1 F E:InvalidOperationException E:InvalidOperationException 1"
+  },
+  {
+   "ops": "3 d2 r d4 r r",
+   "java": "1 1 0 0 0",
+   "dotnet": "1 1 E:InvalidOperationException 1 1"
+  },
+  {
+   "ops": "0 d2 d4 r d2 w d1 d1 r r d2 w w r d1",
+   "java": "0 0 0 0 T 0 0 0 0 0 T T 0 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException T T 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d3 r r r",
+   "java": "0 0 0 0",
+   "dotnet": "E:InvalidOperationException 0 0 0"
+  },
+  {
+   "ops": "-1 w r r d3 w r r r n d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d3 r d3",
+   "java": "4 4 1",
+   "dotnet": "4 4 1"
+  },
+  {
+   "ops": "7 r d1 r r",
+   "java": "7 6 6 6",
+   "dotnet": "7 6 6 6"
+  },
+  {
+   "ops": "5 r r d1 d4 r d1 d4 r w d3 r w r r",
+   "java": "5 5 4 0 0 0 0 0 T 0 0 T 0 0",
+   "dotnet": "5 5 4 0 0 E:InvalidOperationException E:InvalidOperationException 0 T E:InvalidOperationException 0 T 0 0"
+  },
+  {
+   "ops": "4 d4 r d3 r r w w d4 r n r r r",
+   "java": "0 0 0 0 0 T T 0 0 T 0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException 0 0 T T E:InvalidOperationException 0 E:ArgumentOutOfRangeException 0 0 0"
+  },
+  {
+   "ops": "5 d1 d1 n w r d1 r d1 w r r d3",
+   "java": "4 3 F F 3 2 2 1 F 1 1 0",
+   "dotnet": "4 3 E:ArgumentOutOfRangeException F 3 2 2 1 F 1 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 r d1 d3 w n d3 r d2 d2 d1 d2",
+   "java": "7 6 3 F F 0 0 0 0 0 0",
+   "dotnet": "7 6 3 F E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r d1 d1 n d1 r n",
+   "java": "4 3 2 F 1 1 F",
+   "dotnet": "4 3 2 E:ArgumentOutOfRangeException 1 1 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d1 d3 d4 w w d3 d2 d2 w d2",
+   "java": "0 0 0 T T 0 0 0 T 0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d2 r r r n r d2 r w d4 r",
+   "java": "0 0 0 0 T 0 0 0 T 0 0",
+   "dotnet": "E:InvalidOperationException 0 0 0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 T E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 w r r d2 n d1 r d1 d4 d1 r r d1 d3",
+   "java": "T 0 0 0 T 0 0 0 0 0 0 0 0 0",
+   "dotnet": "T 0 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d1 n r d3 w r d2 w r d1 d3",
+   "java": "0 T 0 0 T 0 0 T 0 0 0",
+   "dotnet": "0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException T 0 E:InvalidOperationException T 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d3 d3 r r d2 n r n",
+   "java": "0 0 0 0 0 T 0 T",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 0 0 E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 r w n d4 d2 r r d1",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 d4 r d2 r n r d2 d3 n r",
+   "java": "0 0 0 0 T 0 0 0 T 0",
+   "dotnet": "0 0 E:InvalidOperationException 0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "3 d1 w d3 d2 d3 d3 r r",
+   "java": "2 F 0 0 0 0 0 0",
+   "dotnet": "2 F E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException 0 0"
+  },
+  {
+   "ops": "5 d2 w r",
+   "java": "3 F 3",
+   "dotnet": "3 F 3"
+  },
+  {
+   "ops": "7 d4 d3 w r r w d4",
+   "java": "3 0 T 0 0 T 0",
+   "dotnet": "3 0 T 0 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "2 n d2 w",
+   "java": "F 0 T",
+   "dotnet": "E:ArgumentOutOfRangeException 0 T"
+  },
+  {
+   "ops": "0 r r r",
+   "java": "0 0 0",
+   "dotnet": "0 0 0"
+  },
+  {
+   "ops": "0 r d1 d1 r n d4 r",
+   "java": "0 0 0 0 T 0 0",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException 0 E:ArgumentOutOfRangeException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "3 w r w d1",
+   "java": "F 3 F 2",
+   "dotnet": "F 3 F 2"
+  },
+  {
+   "ops": "0 d3 r d1 d2 d4 w r d4 r r w",
+   "java": "0 0 0 0 0 T 0 0 0 0 T",
+   "dotnet": "E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T 0 E:InvalidOperationException 0 0 T"
+  },
+  {
+   "ops": "0 r w n r n r d4 d2 d2 d2 d3 d3 d4",
+   "java": "0 T T 0 T 0 0 0 0 0 0 0 0",
+   "dotnet": "0 T E:ArgumentOutOfRangeException 0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r d2 d1 d2 w d3 r d1 d4 w",
+   "java": "0 0 0 0 T 0 0 0 0 T",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException T"
+  },
+  {
+   "ops": "0 d4 r r d1 w d3 d2 n r r n d4",
+   "java": "0 0 0 0 T 0 0 T 0 0 T 0",
+   "dotnet": "E:InvalidOperationException 0 0 E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 0 0 E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r d1 w d2 d3 d1 r d1 r",
+   "java": "5 4 F 2 0 0 0 0 0",
+   "dotnet": "5 4 F 2 E:InvalidOperationException 1 1 0 0"
+  },
+  {
+   "ops": "0 r r d3 d3 d3 r r r r d3 d3 d3 d3",
+   "java": "0 0 0 0 0 0 0 0 0 0 0 0 0",
+   "dotnet": "0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 0 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d2 d3 d3 d4 r w r d3 r",
+   "java": "1 0 0 0 0 T 0 0 0",
+   "dotnet": "1 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 F 1 E:InvalidOperationException 1"
+  },
+  {
+   "ops": "1 d4 d1 r d2 r r d4",
+   "java": "0 0 0 0 0 0 0",
+   "dotnet": "E:InvalidOperationException 0 0 E:InvalidOperationException 0 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d4 d1 d3 r d2 d3 r r w",
+   "java": "0 0 0 0 0 0 0 0 T",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException 0 0 T"
+  },
+  {
+   "ops": "3 d2 d1 d1 n d4",
+   "java": "1 0 0 T 0",
+   "dotnet": "1 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d1 w d4 w d4 d1 d4 d1",
+   "java": "1 F 0 T 0 0 0 0",
+   "dotnet": "1 F E:InvalidOperationException F E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r r d4 d2 w n r d2 d4 d1",
+   "java": "5 5 1 0 T T 0 0 0 0",
+   "dotnet": "5 5 1 E:InvalidOperationException F E:ArgumentOutOfRangeException 1 E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 d4 d2 d3 d3 d4 r d2 w",
+   "java": "0 0 0 0 0 0 0 T",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException T"
+  },
+  {
+   "ops": "0 r d3 d1 r n w d4 d4 n d3 w r r",
+   "java": "0 0 0 0 T T 0 0 T 0 T 0 0",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException 0 E:ArgumentOutOfRangeException T E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException T 0 0"
+  },
+  {
+   "ops": "5 d1 d1 d2 r d4 d2 r r d1 d4 r r r",
+   "java": "4 3 1 1 0 0 0 0 0 0 0 0 0",
+   "dotnet": "4 3 1 1 E:InvalidOperationException E:InvalidOperationException 1 1 0 E:InvalidOperationException 0 0 0"
+  },
+  {
+   "ops": "-1 d4 d3 r w r r w r r r w d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 r r d3 d1 n d2 d3 d2 r r n r",
+   "java": "5 5 2 1 F 0 0 0 0 0 T 0",
+   "dotnet": "5 5 2 1 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 1 E:ArgumentOutOfRangeException 1"
+  },
+  {
+   "ops": "2 r d4 w d1 r d2 n r d1 w d2 r",
+   "java": "2 0 T 0 0 0 T 0 0 T 0 0",
+   "dotnet": "2 E:InvalidOperationException F 1 1 E:InvalidOperationException E:ArgumentOutOfRangeException 1 0 T E:InvalidOperationException 0"
+  },
+  {
+   "ops": "7 r d2 n r",
+   "java": "7 5 F 5",
+   "dotnet": "7 5 E:ArgumentOutOfRangeException 5"
+  },
+  {
+   "ops": "-1 d3 w r r w d3",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d3 n d3 r d4 r",
+   "java": "0 T 0 0 0 0",
+   "dotnet": "0 E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 w r d4 d1 r d3 r",
+   "java": "T 0 0 0 0 0 0",
+   "dotnet": "T 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "7 r r d3",
+   "java": "7 7 4",
+   "dotnet": "7 7 4"
+  },
+  {
+   "ops": "-1 d1 d4 r r r w d4",
+   "java": "E:IllegalArgumentException",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  }
+ ],
+ "dotnet_only": [
+  {
+   "ops": "2 d3 d6 u3",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException T"
+  },
+  {
+   "ops": "7 n w u2 w u3 u1 r d1 w r d6",
+   "dotnet": "E:ArgumentOutOfRangeException F T F T T 13 12 F 12 6"
+  },
+  {
+   "ops": "-1 n r u1 d2 d1 r d1 d6",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d0 d6 u3 r n d1 d3 d1 d1",
+   "dotnet": "E:ArgumentOutOfRangeException E:InvalidOperationException T 6 E:ArgumentOutOfRangeException 5 2 1 0"
+  },
+  {
+   "ops": "5 d1 d1 r w",
+   "dotnet": "4 3 3 F"
+  },
+  {
+   "ops": "3 d0 d1 d1 w d2",
+   "dotnet": "E:ArgumentOutOfRangeException 2 1 F E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d0 w n w u2",
+   "dotnet": "E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException F T"
+  },
+  {
+   "ops": "7 d6 w u3 u0",
+   "dotnet": "1 F T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d0 d0 u2 u1 u2 d1 d3 u2 n d0 d1 r d2",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 u1 d2 d6 r u2 d3",
+   "dotnet": "T 6 0 0 F E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r r d3 u2 w u2 u1 w d1",
+   "dotnet": "5 5 2 T F T T F 6"
+  },
+  {
+   "ops": "4 u3 w n u3 d2 u0 d1 u0",
+   "dotnet": "T F E:ArgumentOutOfRangeException T 8 E:ArgumentOutOfRangeException 7 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d1 r r u3 d1 d0 w w d2 d2",
+   "dotnet": "6 6 6 T 8 E:ArgumentOutOfRangeException F F 6 4"
+  },
+  {
+   "ops": "4 d1 d1 n u3 u2 n d1 u1 w",
+   "dotnet": "3 2 E:ArgumentOutOfRangeException T T E:ArgumentOutOfRangeException 6 T F"
+  },
+  {
+   "ops": "4 d0 w d6 u2 u3",
+   "dotnet": "E:ArgumentOutOfRangeException F E:InvalidOperationException T T"
+  },
+  {
+   "ops": "1 w d3 r r w d1",
+   "dotnet": "F E:InvalidOperationException 1 1 F 0"
+  },
+  {
+   "ops": "4 r d2 d1 w w u3 d1 d1 u3 d0 w d1 r u0",
+   "dotnet": "4 2 1 F F T 3 2 T E:ArgumentOutOfRangeException F 4 4 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d3 w d2 d1 w w r u0 u3 d1 d1",
+   "dotnet": "E:InvalidOperationException F E:InvalidOperationException 0 T T 0 E:ArgumentOutOfRangeException F E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 u1 w u0 w d6 w",
+   "dotnet": "T F E:ArgumentOutOfRangeException F 0 T"
+  },
+  {
+   "ops": "3 d2 r u0 r d0 r d6 n d6",
+   "dotnet": "1 1 E:ArgumentOutOfRangeException 1 E:ArgumentOutOfRangeException 1 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d3 u1 d1 r u0 u0 d0 d1",
+   "dotnet": "1 T 1 1 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "4 d1 u2 r d0 w d0 w u2 d1",
+   "dotnet": "3 T 5 E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException F T 6"
+  },
+  {
+   "ops": "0 r d1 d6 d1 d1 d1 d3 d2 d0 w d1 r",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException T E:InvalidOperationException 0"
+  },
+  {
+   "ops": "5 r d1 r",
+   "dotnet": "5 4 4"
+  },
+  {
+   "ops": "7 r d3 d0 r w",
+   "dotnet": "7 4 E:ArgumentOutOfRangeException 4 F"
+  },
+  {
+   "ops": "-1 u3 d2 d1 d1 w d3 u2 u2 d2 d3",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d2 d6 u3",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 w d3 d1 d2 d0 w r w r d1 u1",
+   "dotnet": "T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException T 0 T 0 E:InvalidOperationException F"
+  },
+  {
+   "ops": "5 d1 u1 w n w r u2",
+   "dotnet": "4 T F E:ArgumentOutOfRangeException F 5 T"
+  },
+  {
+   "ops": "5 d6 d1 d1 n w d0 d2 w d2 d1 u0 d1 r",
+   "dotnet": "E:InvalidOperationException 4 3 E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException 1 F E:InvalidOperationException 0 E:ArgumentOutOfRangeException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "1 r u2 w d1 r u1 u0",
+   "dotnet": "1 T F 2 2 T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d6 d2 d1 w r u1 d1 d1 d1",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 u2 d6 d1 w d6 u3 u0 d1 u1 u2 r u2",
+   "dotnet": "F E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException F E:ArgumentOutOfRangeException E:InvalidOperationException F F 0 F"
+  },
+  {
+   "ops": "1 u1 u1 w d0 w r u1 n d3 d2 d3 n r r",
+   "dotnet": "T T F E:ArgumentOutOfRangeException F 3 T E:ArgumentOutOfRangeException 1 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 1 1"
+  },
+  {
+   "ops": "5 r d0 d1",
+   "dotnet": "5 E:ArgumentOutOfRangeException 4"
+  },
+  {
+   "ops": "3 d1 n r u3 d2 w u1 u1 u0 u3",
+   "dotnet": "2 E:ArgumentOutOfRangeException 2 T 3 F T T E:ArgumentOutOfRangeException T"
+  },
+  {
+   "ops": "-1 d1 w w n u3 u2 n d1 d6 d0 r r w d2",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 u0 d0 d3 n d2 d1 u1 d0 d1 d3 u1",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException F E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException F"
+  },
+  {
+   "ops": "7 r d1 r w d1 d0 n d1 d3 w d2 d0 w d0",
+   "dotnet": "7 6 6 F 5 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 4 1 F E:InvalidOperationException E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 u2 d1 d3 u2 d6 d6 d0 d1 r u2 u1",
+   "dotnet": "T 4 1 T E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 2 2 T T"
+  },
+  {
+   "ops": "3 w u1 d1 u0",
+   "dotnet": "F T 3 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d0 u2 r d1 d1 d2 u0 w w n r d2",
+   "dotnet": "E:ArgumentOutOfRangeException T 5 4 3 1 E:ArgumentOutOfRangeException F F E:ArgumentOutOfRangeException 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d2 u3 w u2 u0 w d1 d0 u1 d1 n d0 d3",
+   "dotnet": "0 F T F E:ArgumentOutOfRangeException T E:InvalidOperationException E:ArgumentOutOfRangeException F E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r d1 u0 u3 n d1 d1 w",
+   "dotnet": "4 3 E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException 5 4 F"
+  },
+  {
+   "ops": "4 d6 u3 w r r w d1 w r",
+   "dotnet": "E:InvalidOperationException T F 7 7 F 6 F 6"
+  },
+  {
+   "ops": "-1 w u0 u0 w u0 u1 d0 w w u1 n r",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d6 w w w u0 d1 w d1 u3 d2 u0 w r",
+   "dotnet": "1 F F F E:ArgumentOutOfRangeException 0 T E:InvalidOperationException F E:InvalidOperationException E:ArgumentOutOfRangeException T 0"
+  },
+  {
+   "ops": "4 r u3 u3 u2 d2 d1 n u1 r",
+   "dotnet": "4 T T T 10 9 E:ArgumentOutOfRangeException T 10"
+  },
+  {
+   "ops": "3 u1 n d2 d0",
+   "dotnet": "T E:ArgumentOutOfRangeException 2 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 d3 d6 d2 d0 r d6 d1 u3 u1",
+   "dotnet": "1 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 1 E:InvalidOperationException 0 F F"
+  },
+  {
+   "ops": "0 d2 d6 d1 d2 r d2 u3",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException F"
+  },
+  {
+   "ops": "2 u1 u1 n d3 d0 w d3 w",
+   "dotnet": "T T E:ArgumentOutOfRangeException 1 E:ArgumentOutOfRangeException F E:InvalidOperationException F"
+  },
+  {
+   "ops": "3 r d3 r r d3 d1 d1 r",
+   "dotnet": "3 0 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 u3 w u3 d1 u0 u0 w",
+   "dotnet": "F T F E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException T"
+  },
+  {
+   "ops": "5 d1 d1 d1 d1 w u3 r d0 w",
+   "dotnet": "4 3 2 1 F T 4 E:ArgumentOutOfRangeException F"
+  },
+  {
+   "ops": "0 u2 u2 d1 n u3 n u2 d1 d0",
+   "dotnet": "F F E:InvalidOperationException E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException F E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 r w d1 n d1 d3 w d6 w w",
+   "dotnet": "3 F 2 E:ArgumentOutOfRangeException 1 E:InvalidOperationException F E:InvalidOperationException F F"
+  },
+  {
+   "ops": "-1 n n r u1",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 d2 n d1 n r d2 u3 u1 d1 u1 w d1 d6",
+   "dotnet": "0 E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException F F E:InvalidOperationException F T E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d0 d6 r r n d3 w",
+   "dotnet": "E:ArgumentOutOfRangeException E:InvalidOperationException 1 1 E:ArgumentOutOfRangeException E:InvalidOperationException F"
+  },
+  {
+   "ops": "4 w d3 u1 u1 w d1 u2 d1 u3 r w d1",
+   "dotnet": "F 1 T T F 2 T 3 T 6 F 5"
+  },
+  {
+   "ops": "4 u3 w u1 d2 d6",
+   "dotnet": "T F T 6 0"
+  },
+  {
+   "ops": "2 u1 w d1 d2 n w",
+   "dotnet": "T F 2 0 E:ArgumentOutOfRangeException T"
+  },
+  {
+   "ops": "0 u1 d0 u3 d1 d1",
+   "dotnet": "F E:ArgumentOutOfRangeException F E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 u1 w u1 u3 d6",
+   "dotnet": "F T F F E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 r n w w r d6 d1 u1 n d3 d0 r d0 u0",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 u2 n w u1 u1 u1 u1 u1 d1 w",
+   "dotnet": "T E:ArgumentOutOfRangeException F T T T T T 13 F"
+  },
+  {
+   "ops": "3 u2 r u3 d1 u1 u1 d0",
+   "dotnet": "T 5 T 7 T T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 u3 u1 d0 d3 d6 u1 d1 r r u0",
+   "dotnet": "T T E:ArgumentOutOfRangeException 8 2 T 2 2 2 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 w d1 r r u0 d1 n u2 d1 w u1 d0 w n",
+   "dotnet": "F 2 2 2 E:ArgumentOutOfRangeException 1 E:ArgumentOutOfRangeException T 2 F T E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 d1 u1 d1 d6",
+   "dotnet": "3 T 3 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 n u1 w d1 w d1 w w n",
+   "dotnet": "E:ArgumentOutOfRangeException F T E:InvalidOperationException T E:InvalidOperationException T T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 u3 d1 d6 d6 w",
+   "dotnet": "T 3 E:InvalidOperationException E:InvalidOperationException F"
+  },
+  {
+   "ops": "3 d1 r w u2 u2 d6 u2 d6 d0 d2 w w u0",
+   "dotnet": "2 2 F T T 0 F E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException T T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d6 d6 d6 u1 d1 n u2 d1 d1 d1 u3",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F E:InvalidOperationException E:ArgumentOutOfRangeException F E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F"
+  },
+  {
+   "ops": "5 u1 d2 d6 r u1 d1",
+   "dotnet": "T 4 E:InvalidOperationException 4 T 4"
+  },
+  {
+   "ops": "0 d0 d0 u1 d1 d6 u0 r",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "1 d0 n u1 d0 d3",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 u1 d6 d3 d1",
+   "dotnet": "T 2 E:InvalidOperationException 1"
+  },
+  {
+   "ops": "0 w d6 u3 w n r r d3 d1 d2 r u1 u2 d1",
+   "dotnet": "T E:InvalidOperationException F T E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 F F E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d2 u1 d1 r n d1 d0",
+   "dotnet": "3 T 3 3 E:ArgumentOutOfRangeException 2 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d0 d1 u1 n d6 u2 u2 r u3 u1 d2",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 u3 w w u1 d6 d1 w r d1",
+   "dotnet": "T F F T 5 4 F 4 3"
+  },
+  {
+   "ops": "-1 u3 u0 w d6",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 w d0 u1 n d1 d1 n",
+   "dotnet": "F E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException 2 1 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 n u3 d1 d0 d1 d6 r u3 d0 r d6 d0 w",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 d3 r d1 u3 w d1",
+   "dotnet": "2 2 1 T F 3"
+  },
+  {
+   "ops": "7 r w r d3",
+   "dotnet": "7 F 7 4"
+  },
+  {
+   "ops": "4 n d0 r u0 d6",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 4 E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d0 d0 u1 n d0 n w d1 d0",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F 7 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 n r d2 d1 d6 d3 d1 u0",
+   "dotnet": "E:ArgumentOutOfRangeException 3 1 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d2 d3 d2 u2 u1",
+   "dotnet": "1 E:InvalidOperationException E:InvalidOperationException T T"
+  },
+  {
+   "ops": "1 d1 u3 u0 d1",
+   "dotnet": "0 F E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d1 u2 d3 r d2 d1",
+   "dotnet": "4 T 3 3 1 0"
+  },
+  {
+   "ops": "2 w r n",
+   "dotnet": "F 2 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 u3 d1 u1 d1 d3 d3 u1 d1 r d1 u1 u1 d1",
+   "dotnet": "T 9 T 9 6 3 T 3 3 2 T T 3"
+  },
+  {
+   "ops": "2 r d0 d1 d1 d1 d0 d1 d2 w u1 d1 w",
+   "dotnet": "2 E:ArgumentOutOfRangeException 1 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException T F E:InvalidOperationException T"
+  },
+  {
+   "ops": "4 u3 w w w",
+   "dotnet": "T F F F"
+  },
+  {
+   "ops": "7 d3 n n r n w d1 r",
+   "dotnet": "4 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 4 E:ArgumentOutOfRangeException F 3 3"
+  },
+  {
+   "ops": "0 w u3 r w",
+   "dotnet": "T F 0 T"
+  },
+  {
+   "ops": "5 r w u1 d1 n d0 w d1 u2 d6 r d1 d0 r",
+   "dotnet": "5 F T 5 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F 4 T 0 0 E:InvalidOperationException E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "0 u1 d2 u3 w n",
+   "dotnet": "F E:InvalidOperationException F T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d6 d0 d0 u0",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d2 d3 d1 w d1 u3 d6 d2 u1 d0",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d2 w r r u2 r n r d6 w",
+   "dotnet": "E:InvalidOperationException F 1 1 T 3 E:ArgumentOutOfRangeException 3 E:InvalidOperationException F"
+  },
+  {
+   "ops": "0 u1 r w r d1",
+   "dotnet": "F 0 T 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 d2 n u0 u1 d0 r u0 w r d6 w w u3 d2",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 w d0 w d0 r u0 w d1 w n d0",
+   "dotnet": "F E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException 7 E:ArgumentOutOfRangeException F 6 F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 d6 d1 r d1 w u3 w r r r d1 r r n",
+   "dotnet": "E:InvalidOperationException 3 3 2 F T F 5 5 5 4 4 4 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 u3 n r d2 r d1 u2 w r r r d1 r",
+   "dotnet": "T E:ArgumentOutOfRangeException 10 8 8 7 T F 9 9 9 8 8"
+  },
+  {
+   "ops": "3 d1 r u0 r w u0 r d1 w d3 d1 w u3",
+   "dotnet": "2 2 E:ArgumentOutOfRangeException 2 F E:ArgumentOutOfRangeException 2 1 F E:InvalidOperationException 0 T F"
+  },
+  {
+   "ops": "1 n u1 u2 d1 d2",
+   "dotnet": "E:ArgumentOutOfRangeException T T 3 1"
+  },
+  {
+   "ops": "0 w d1 n d3 n u3 n r r d1 n",
+   "dotnet": "T E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 w w r u3 r u2 w",
+   "dotnet": "F F 3 T 6 T F"
+  },
+  {
+   "ops": "0 u1 d1 w u2 d1 d0 d3 u2 d0 u0 d1 d3 d6 u2",
+   "dotnet": "F E:InvalidOperationException T F E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F"
+  },
+  {
+   "ops": "5 u1 u2 d2 d3 d1",
+   "dotnet": "T T 6 3 2"
+  },
+  {
+   "ops": "1 u1 d1 w d3 n u2 u0",
+   "dotnet": "T 1 F E:InvalidOperationException E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 u1 d2 u1 u1 r w n n r u2 d0 d1",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 d1 d3 r d1 w u3 r u1 d2 n w r w",
+   "dotnet": "3 0 0 E:InvalidOperationException T F 0 F E:InvalidOperationException E:ArgumentOutOfRangeException T 0 T"
+  },
+  {
+   "ops": "0 r d1 d1 d0 d0",
+   "dotnet": "0 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d6 r n",
+   "dotnet": "1 1 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d1 d1 d3 d1 n u1 d1 r r d1 d1",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException F E:InvalidOperationException 0 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 r d2 n d6 n r u3 d1 d6 d1 r d0 r",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d1 w r u1 d2 u1 n d1 d1 d3 d3",
+   "dotnet": "E:InvalidOperationException T 0 F E:InvalidOperationException F E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 w n d2 u0 d3",
+   "dotnet": "F E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 u3 d2 d2 d1 d1 d1 d2 w d1 w d1",
+   "dotnet": "T 6 4 3 2 1 E:InvalidOperationException F 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d0 u3 r r r",
+   "dotnet": "E:ArgumentOutOfRangeException T 10 10 10"
+  },
+  {
+   "ops": "2 r d6 u1 u3 n",
+   "dotnet": "2 E:InvalidOperationException T T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 n u3 r r u1 d1 w r d1 r u2 d1",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d6 r u0",
+   "dotnet": "E:InvalidOperationException 1 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 w w u1 d1 d6",
+   "dotnet": "T T F E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d3 u1 d3 d1 d6 u1",
+   "dotnet": "E:InvalidOperationException F E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F"
+  },
+  {
+   "ops": "0 r d1 w r d0 d2 r u1 u1 d1 d6 w d3",
+   "dotnet": "0 E:InvalidOperationException T 0 E:ArgumentOutOfRangeException E:InvalidOperationException 0 F F E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException"
+  },
+  {
+   "ops": "1 u1 n d6 d3 n d1 r u3 d6 d2 n d1 w r",
+   "dotnet": "T E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException 1 1 T E:InvalidOperationException 2 E:ArgumentOutOfRangeException 1 F 1"
+  },
+  {
+   "ops": "3 d0 r r d3 d1 w d1 r w u0 d1 d1 d1 u1",
+   "dotnet": "E:ArgumentOutOfRangeException 3 3 0 E:InvalidOperationException T E:InvalidOperationException 0 T E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F"
+  },
+  {
+   "ops": "3 n d0 w d1 r",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F 2 2"
+  },
+  {
+   "ops": "0 w n u1 w",
+   "dotnet": "T E:ArgumentOutOfRangeException F T"
+  },
+  {
+   "ops": "7 u1 d1 d1 d1 n w d3 d6 d6 u0",
+   "dotnet": "T 7 6 5 E:ArgumentOutOfRangeException F 2 E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 u3 r u3",
+   "dotnet": "T 4 T"
+  },
+  {
+   "ops": "4 d6 w d6 d2 u1 d6 r d2",
+   "dotnet": "E:InvalidOperationException F E:InvalidOperationException 2 T E:InvalidOperationException 3 1"
+  },
+  {
+   "ops": "1 r n d1 w",
+   "dotnet": "1 E:ArgumentOutOfRangeException 0 T"
+  },
+  {
+   "ops": "0 d0 d1 d2 w u0 d1 d1 d1 u2 d1",
+   "dotnet": "E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException T E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F E:InvalidOperationException"
+  },
+  {
+   "ops": "1 u3 d2 n d3 d3 r d0 r u1 d3 d3",
+   "dotnet": "T 2 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException 2 E:ArgumentOutOfRangeException 2 T 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "5 u1 u1 r r n",
+   "dotnet": "T T 7 7 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 w u1 d6 w d6 n d0 w w",
+   "dotnet": "F T E:InvalidOperationException F E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F F"
+  },
+  {
+   "ops": "1 d6 d3 u1 n",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d0 d6 n r r",
+   "dotnet": "E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException 3 3"
+  },
+  {
+   "ops": "1 d1 d6 n d1 u0 r u0 d1 d3 d1 d1 u1",
+   "dotnet": "0 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F"
+  },
+  {
+   "ops": "1 w d6 d2",
+   "dotnet": "F E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 w d2 w u2 w u3 u2 d1 d6",
+   "dotnet": "F 5 F T F T T 11 5"
+  },
+  {
+   "ops": "0 r w d3 d1 u2 d2 r d1 n",
+   "dotnet": "0 T E:InvalidOperationException E:InvalidOperationException F E:InvalidOperationException 0 E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 w d0 u1 d1 w d2 u1 d1 u0 d2 d1 d2",
+   "dotnet": "F E:ArgumentOutOfRangeException T 5 F 3 T 3 E:ArgumentOutOfRangeException 1 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r d6 n",
+   "dotnet": "4 E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d1 d1 d0 u1 u2 n n u1",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException F F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F"
+  },
+  {
+   "ops": "0 w d1 r u1 r",
+   "dotnet": "T E:InvalidOperationException 0 F 0"
+  },
+  {
+   "ops": "2 d1 d1 d0 r d6 w u3 w d0",
+   "dotnet": "1 0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException T F T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 d3 d1 u2",
+   "dotnet": "2 1 T"
+  },
+  {
+   "ops": "7 u3 d0 d2 d1 d1 r u1 d1 n n",
+   "dotnet": "T E:ArgumentOutOfRangeException 8 7 6 6 T 6 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 r u3 n d6",
+   "dotnet": "2 T E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r u0 r d1 u2 d1 d2 r r u1 r r w d1",
+   "dotnet": "0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException F E:InvalidOperationException E:InvalidOperationException 0 0 F 0 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "0 u1 r u3 r u1 d0",
+   "dotnet": "F 0 F 0 F E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d1 r d0 u2 w r",
+   "dotnet": "E:InvalidOperationException 0 E:ArgumentOutOfRangeException F T 0"
+  },
+  {
+   "ops": "3 d0 u0 d2 d3 d1 r w d0 r d3 r d6 n u1",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 1 E:InvalidOperationException 0 0 T E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 E:InvalidOperationException E:ArgumentOutOfRangeException F"
+  },
+  {
+   "ops": "-1 u0 u3 w d1 d3 u3 u1 u1 d1 d2 d1 d2",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 d3 w u3 w r n w d0",
+   "dotnet": "1 F T F 4 E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 d1 r d1 d1 w d1 w r d0 d1 r w",
+   "dotnet": "4 4 3 2 F 1 F 1 E:ArgumentOutOfRangeException 0 0 T"
+  },
+  {
+   "ops": "2 n u1 d1 d1",
+   "dotnet": "E:ArgumentOutOfRangeException T 2 1"
+  },
+  {
+   "ops": "5 u0 w u2 u1 d3 w r d3 d2 n",
+   "dotnet": "E:ArgumentOutOfRangeException F T T 5 F 5 2 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d1 w d0 d0 d1 w r u3 d2 w u0 d6 d3 r",
+   "dotnet": "0 T E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException T 0 F E:InvalidOperationException T E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException 0"
+  },
+  {
+   "ops": "3 d2 w u1 d1 u1 n u3 d1 d1 d3 d2 d0 d1 u1",
+   "dotnet": "1 F T 1 T E:ArgumentOutOfRangeException T 4 3 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException F"
+  },
+  {
+   "ops": "4 w u0 d3 r d6 d6 w r d6",
+   "dotnet": "F E:ArgumentOutOfRangeException 1 1 E:InvalidOperationException E:InvalidOperationException F 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d6 d0 d6",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d1 d6 r d1 d0 n",
+   "dotnet": "2 E:InvalidOperationException 2 1 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 w n w d1 d3 n u1 d1 d6 d1",
+   "dotnet": "T E:ArgumentOutOfRangeException T E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException F E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d3 d1 d1 u1",
+   "dotnet": "E:InvalidOperationException 1 0 F"
+  },
+  {
+   "ops": "5 d3 d6 d3 d3",
+   "dotnet": "2 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d0 w d1 d2 u1",
+   "dotnet": "E:ArgumentOutOfRangeException F 4 2 T"
+  },
+  {
+   "ops": "2 d1 u3 r d0 w d1 r d2 n r d1",
+   "dotnet": "1 T 4 E:ArgumentOutOfRangeException F 3 3 1 E:ArgumentOutOfRangeException 1 0"
+  },
+  {
+   "ops": "5 w d0 d2 n r u2 u1 r",
+   "dotnet": "F E:ArgumentOutOfRangeException 3 E:ArgumentOutOfRangeException 3 T T 6"
+  },
+  {
+   "ops": "1 d0 d2 u1 n u1 u0 r d6 d1 w",
+   "dotnet": "E:ArgumentOutOfRangeException E:InvalidOperationException T E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException 3 E:InvalidOperationException 2 F"
+  },
+  {
+   "ops": "5 d1 u0 u3 d3 d1 n u0 w w d1 d1 u0 w u2",
+   "dotnet": "4 E:ArgumentOutOfRangeException T 4 3 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F F 2 1 E:ArgumentOutOfRangeException F T"
+  },
+  {
+   "ops": "7 w d6 d1 d0 w d0 r r d1 d2 d3 w d1 d1",
+   "dotnet": "F 1 0 E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d1 d6 w u0 d1 r d0 r w d3 d1",
+   "dotnet": "4 E:InvalidOperationException F E:ArgumentOutOfRangeException 3 3 E:ArgumentOutOfRangeException 3 F 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 n r d1 u2 d1 u3 n d6 w d1 d1 d0 n",
+   "dotnet": "E:ArgumentOutOfRangeException 0 E:InvalidOperationException F E:InvalidOperationException F E:ArgumentOutOfRangeException E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 r r d0",
+   "dotnet": "2 2 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 w r d2 w r d0",
+   "dotnet": "T 0 E:InvalidOperationException T 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 u3 d1 d0",
+   "dotnet": "F E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d2 u0 w r d1 u3 u0 n d1",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException T 0 E:InvalidOperationException F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 w w d3 d1 d0 r r r d3 r w d6 d1",
+   "dotnet": "F F 4 3 E:ArgumentOutOfRangeException 3 3 3 0 0 T E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "5 r d6 d1 d1 w r d2 u2 u1",
+   "dotnet": "5 E:InvalidOperationException 4 3 F 3 1 T T"
+  },
+  {
+   "ops": "4 w w d3",
+   "dotnet": "F F 1"
+  },
+  {
+   "ops": "4 u0 d1 d1 d1 d1 u0 d1",
+   "dotnet": "E:ArgumentOutOfRangeException 3 2 1 0 E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 w d1 n w d3 d0 u2 d3 w r w d1 w",
+   "dotnet": "F 6 E:ArgumentOutOfRangeException F 3 E:ArgumentOutOfRangeException T 2 F 2 F 1 F"
+  },
+  {
+   "ops": "5 d0 u1 d3",
+   "dotnet": "E:ArgumentOutOfRangeException T 3"
+  },
+  {
+   "ops": "2 r n d1 d3 u1 r u3 w w w r u0",
+   "dotnet": "2 E:ArgumentOutOfRangeException 1 E:InvalidOperationException T 2 T F F F 5 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 r d1 r w r",
+   "dotnet": "4 3 3 F 3"
+  },
+  {
+   "ops": "0 d0 d0 n d3 d6",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d1 u1 u1 d1 u0 d3 d1 d2",
+   "dotnet": "E:InvalidOperationException F F E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d1 d2 d1 d1 w d2 u1",
+   "dotnet": "2 0 E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException F"
+  },
+  {
+   "ops": "0 d2 d2 d2 d2 w r u2 n w u0",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T 0 F E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d2 d6 d1 w n w",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException T E:ArgumentOutOfRangeException T"
+  },
+  {
+   "ops": "5 u2 d3 n u0 d0 d3 r r",
+   "dotnet": "T 4 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 1 1 1"
+  },
+  {
+   "ops": "3 d1 w d3 d2 d1 r",
+   "dotnet": "2 F E:InvalidOperationException 0 E:InvalidOperationException 0"
+  },
+  {
+   "ops": "4 d0 d1 d1 u0",
+   "dotnet": "E:ArgumentOutOfRangeException 3 2 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 r r w d2 u1 d1 r",
+   "dotnet": "0 0 T E:InvalidOperationException F E:InvalidOperationException 0"
+  },
+  {
+   "ops": "0 d0 u1 n d2 u0 u0 d1 d1 u3 r d3",
+   "dotnet": "E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException F 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "1 r u1 d2 w w d1 d1 w d1",
+   "dotnet": "1 T 0 T T E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException"
+  },
+  {
+   "ops": "0 r d0 d1 d0 d6 d0 d3 d0 n r r u0",
+   "dotnet": "0 E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 0 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 w u1 d1 d1 d3 r d3 r d2",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 w d2 u1 d2 w d2 w d1 u3",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d2 d0 d3 d2 r d1 d6 w d1 r d1",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "7 r r d2 d1",
+   "dotnet": "7 7 5 4"
+  },
+  {
+   "ops": "7 d6 r d1 r",
+   "dotnet": "1 1 0 0"
+  },
+  {
+   "ops": "0 u3 u1 u3 d1 w u0 d1 d0",
+   "dotnet": "F F F E:InvalidOperationException T E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 r d1 d6 d1 d3",
+   "dotnet": "4 3 E:InvalidOperationException 2 E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d1 d0 u2 d2 u2 d1 d3 d1 w w u0 d6 r n",
+   "dotnet": "3 E:ArgumentOutOfRangeException T 3 T 4 1 0 T T E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 u1 d0 d1 n u0 d2 u0 u0 w d1 r d6",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 d3 d1 u0 n w n d1 u1",
+   "dotnet": "E:InvalidOperationException 1 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException 0 F"
+  },
+  {
+   "ops": "2 d6 d1 r u1 d6 r r",
+   "dotnet": "E:InvalidOperationException 1 1 T E:InvalidOperationException 2 2"
+  },
+  {
+   "ops": "4 d1 d1 u2 u0 u3",
+   "dotnet": "3 2 T E:ArgumentOutOfRangeException T"
+  },
+  {
+   "ops": "-1 d6 u0 r",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d1 u1 u0 d0 d2 d1 d0 n d1 d0",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d1 d1 w r d2 u0 r d3 w w d6 w w w",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException T 0 E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException T T E:InvalidOperationException T T T"
+  },
+  {
+   "ops": "3 d2 d0 d1 w u0 w n d1 w",
+   "dotnet": "1 E:ArgumentOutOfRangeException 0 T E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException E:InvalidOperationException T"
+  },
+  {
+   "ops": "1 w d1 d3 u3 r",
+   "dotnet": "F 0 E:InvalidOperationException F 0"
+  },
+  {
+   "ops": "0 u1 d1 r u0 d0 r d1",
+   "dotnet": "F E:InvalidOperationException 0 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 d2 u1 d0 d6",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 u2 u1 u2",
+   "dotnet": "T T T"
+  },
+  {
+   "ops": "0 w u2 u3 u0 d1 d6 d6 d1 d2 n d1 d0 d1",
+   "dotnet": "T F F E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d2 d1 u0 d1 w d3 w d6 w",
+   "dotnet": "5 4 E:ArgumentOutOfRangeException 3 F 0 T E:InvalidOperationException T"
+  },
+  {
+   "ops": "0 u1 r w w w d2 u1 w d2 n",
+   "dotnet": "F 0 T T T E:InvalidOperationException F T E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d1 d0 w u1 u2 u2 u0 w",
+   "dotnet": "0 E:ArgumentOutOfRangeException T F F F E:ArgumentOutOfRangeException T"
+  },
+  {
+   "ops": "3 w r d0 w r d3",
+   "dotnet": "F 3 E:ArgumentOutOfRangeException F 3 0"
+  },
+  {
+   "ops": "2 w w w u1 d6 r d6 d0",
+   "dotnet": "F F F T E:InvalidOperationException 3 E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 d2 r d0 d2 d1 u1 d0 u2",
+   "dotnet": "3 3 E:ArgumentOutOfRangeException 1 0 F E:ArgumentOutOfRangeException F"
+  },
+  {
+   "ops": "2 n u0 d3 r d1 n d6 w d0 w d1 u2",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException 2 1 E:ArgumentOutOfRangeException E:InvalidOperationException F E:ArgumentOutOfRangeException F 0 F"
+  },
+  {
+   "ops": "2 r d0 d1",
+   "dotnet": "2 E:ArgumentOutOfRangeException 1"
+  },
+  {
+   "ops": "3 u0 d2 d0 u2 u0 d0 w d1 d1",
+   "dotnet": "E:ArgumentOutOfRangeException 1 E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F 2 1"
+  },
+  {
+   "ops": "3 d1 d6 d2 r r n d6 u3 d1 n r u0 w",
+   "dotnet": "2 E:InvalidOperationException 0 0 0 E:ArgumentOutOfRangeException E:InvalidOperationException F E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:ArgumentOutOfRangeException T"
+  },
+  {
+   "ops": "-1 u1 d3 u3 u3 u2 d6 u1 u1 r d3",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 w n r u0 d1 d0 d1 d0 r r u1 w",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d1 u2 d6 d6 u1 r d1 d1 r d6 r u1 d1 r",
+   "dotnet": "E:InvalidOperationException F E:InvalidOperationException E:InvalidOperationException F 0 E:InvalidOperationException E:InvalidOperationException 0 E:InvalidOperationException 0 F E:InvalidOperationException 0"
+  },
+  {
+   "ops": "1 w r d1 u1 r w",
+   "dotnet": "F 1 0 F 0 T"
+  },
+  {
+   "ops": "-1 u1 r d1 d0 u1 d3 d1 d1 d3 d6 d3 d1 d2 d2",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 r d1 r d3 u2 d1 w",
+   "dotnet": "7 6 6 3 T 4 F"
+  },
+  {
+   "ops": "5 d2 d1 u1 r d6 u2 d6 r w d2 u2 w",
+   "dotnet": "3 2 T 3 E:InvalidOperationException T E:InvalidOperationException 5 F 3 T F"
+  },
+  {
+   "ops": "1 d1 d1 u1 w u0 u2 d3 u1 d1 d2",
+   "dotnet": "0 E:InvalidOperationException F T E:ArgumentOutOfRangeException F E:InvalidOperationException F E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 d3 r d0 r d2 w r",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d2 n n",
+   "dotnet": "1 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 r r u0 u0 d1 r d1 u2 d0 r",
+   "dotnet": "0 0 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:InvalidOperationException F E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "4 d1 u2 r u2 u1 u0 u1 d6 d1 w u2 r w u3",
+   "dotnet": "3 T 5 T T E:ArgumentOutOfRangeException T 3 2 F T 4 F T"
+  },
+  {
+   "ops": "2 d0 d2 d1 n d1 u1 d6 d2 w d3 u1 d2 d1",
+   "dotnet": "E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException F E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException F E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 u1 r u0 w d1",
+   "dotnet": "T 5 E:ArgumentOutOfRangeException F 4"
+  },
+  {
+   "ops": "5 w r d1 d1",
+   "dotnet": "F 5 4 3"
+  },
+  {
+   "ops": "1 d1 r w d1 d6",
+   "dotnet": "0 0 T E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d1 d1 w n n u1 r d1 r u3 w n w u0",
+   "dotnet": "3 2 F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException T 3 2 2 T F E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d1 d1 d2 n d1 d1 d3 d1 d1 r w r w",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 n d1 d1 d0 r d6",
+   "dotnet": "E:ArgumentOutOfRangeException 2 1 E:ArgumentOutOfRangeException 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d0 w r u2 d0 u3 w w d1 u3 d2",
+   "dotnet": "E:ArgumentOutOfRangeException F 2 T E:ArgumentOutOfRangeException T F F 6 T 7"
+  },
+  {
+   "ops": "2 w d3 d1",
+   "dotnet": "F E:InvalidOperationException 1"
+  },
+  {
+   "ops": "5 d1 d0 d6 d1 u1 d3 u1",
+   "dotnet": "4 E:ArgumentOutOfRangeException E:InvalidOperationException 3 T 1 T"
+  },
+  {
+   "ops": "1 d1 r u1 d1 w",
+   "dotnet": "0 0 F E:InvalidOperationException T"
+  },
+  {
+   "ops": "-1 u1 d1 d1 u1",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 n d1 d6 d0 w u1 d6",
+   "dotnet": "E:ArgumentOutOfRangeException 2 E:InvalidOperationException E:ArgumentOutOfRangeException F T E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d1 r d1 u1 r d2 n d1",
+   "dotnet": "6 6 5 T 6 4 E:ArgumentOutOfRangeException 3"
+  },
+  {
+   "ops": "1 r d1 d1 d1 d6 d1",
+   "dotnet": "1 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 w d1 d1 u3 d2 w",
+   "dotnet": "F 1 0 F E:InvalidOperationException T"
+  },
+  {
+   "ops": "7 d1 u2 w d6 w w r d2 u3 d0",
+   "dotnet": "6 T F 2 F F 2 0 F E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 r u2 w d6 u2 d1 d3 u1 u3",
+   "dotnet": "4 T F 0 F E:InvalidOperationException E:InvalidOperationException F F"
+  },
+  {
+   "ops": "7 d1 u0 d3 r d0 r d2 r",
+   "dotnet": "6 E:ArgumentOutOfRangeException 3 3 E:ArgumentOutOfRangeException 3 1 1"
+  },
+  {
+   "ops": "4 d0 w r d0 u1 d0 d1 d2 r r w d1 d6 w",
+   "dotnet": "E:ArgumentOutOfRangeException F 4 E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException 4 2 2 2 F 1 E:InvalidOperationException F"
+  },
+  {
+   "ops": "3 r n r d1 d0 d3 r u1",
+   "dotnet": "3 E:ArgumentOutOfRangeException 3 2 E:ArgumentOutOfRangeException E:InvalidOperationException 2 T"
+  },
+  {
+   "ops": "7 n d1 u0 d1 d3 d3 d6 d6",
+   "dotnet": "E:ArgumentOutOfRangeException 6 E:ArgumentOutOfRangeException 5 2 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "3 u2 n d6 d3 d2 n",
+   "dotnet": "T E:ArgumentOutOfRangeException E:InvalidOperationException 2 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 u3 d3 u3 r r r d2 w n d1 r",
+   "dotnet": "T 2 T 5 5 5 3 F E:ArgumentOutOfRangeException 2 2"
+  },
+  {
+   "ops": "4 w d1 n u2 r d1 d3 r d0 d2",
+   "dotnet": "F 3 E:ArgumentOutOfRangeException T 5 4 1 1 E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 d1 d1 n d0 d3 d1 u3 d1 d1 d1 r r d3",
+   "dotnet": "6 5 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 2 1 T 3 2 1 1 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "5 u1 r w w u3 d3 d3 d1 u0 u1 d0",
+   "dotnet": "T 6 F F T 6 3 2 E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d0 w u1 u1 u0 w",
+   "dotnet": "E:ArgumentOutOfRangeException T F F E:ArgumentOutOfRangeException T"
+  },
+  {
+   "ops": "-1 u2 n r d3 r d3",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 w r d6 d3",
+   "dotnet": "F 7 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d6 r d1 d0 d0 d1 d6 d1 d1 w d1 r d1 u1",
+   "dotnet": "E:InvalidOperationException 5 4 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 3 E:InvalidOperationException 2 1 F 0 0 E:InvalidOperationException F"
+  },
+  {
+   "ops": "3 d1 w d1 d1 d0 d1 w w u1 d1",
+   "dotnet": "2 F 1 0 E:ArgumentOutOfRangeException E:InvalidOperationException T T F E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d2 d0 d1 u2 n w w d2",
+   "dotnet": "2 E:ArgumentOutOfRangeException 1 T E:ArgumentOutOfRangeException F F 1"
+  },
+  {
+   "ops": "-1 d1 d1 d1 n w w r d3 r d1 d3 w d1 u3",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 u2 d6 w r r r w d6 d2 u1 n",
+   "dotnet": "T E:InvalidOperationException F 4 4 4 F E:InvalidOperationException 2 T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 r d0 d1 w u0 d1 d1 d2 r d1 n",
+   "dotnet": "5 E:ArgumentOutOfRangeException 4 F E:ArgumentOutOfRangeException 3 2 0 0 E:InvalidOperationException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 d1 d1 d1 n",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 w r n n u1 d3 n d6 u1 r d0 n",
+   "dotnet": "F 4 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException T 2 E:ArgumentOutOfRangeException E:InvalidOperationException T 3 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d0 d1 d3 w u0 r u1 d2 n u0 d0 r u2",
+   "dotnet": "E:ArgumentOutOfRangeException 6 3 F E:ArgumentOutOfRangeException 3 T 2 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 2 T"
+  },
+  {
+   "ops": "4 d1 w u2 n",
+   "dotnet": "3 F T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 d1 u2 r d1 r w",
+   "dotnet": "2 T 4 3 3 F"
+  },
+  {
+   "ops": "0 r w d1",
+   "dotnet": "0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "4 r d6 d1 w d0 d1 u1 w d3 d1",
+   "dotnet": "4 E:InvalidOperationException 3 F E:ArgumentOutOfRangeException 2 T F 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d1 u0 d6 d2 w d2 d3 d6 u1 w u3",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F T F"
+  },
+  {
+   "ops": "7 d6 d1 u3 u1 u2 w",
+   "dotnet": "1 0 F F F T"
+  },
+  {
+   "ops": "7 d1 d1 r r u1 u1 d2 w d1 w r r d3 d1",
+   "dotnet": "6 5 5 5 T T 5 F 4 F 4 4 1 0"
+  },
+  {
+   "ops": "0 u3 w n u1 d0 n d3",
+   "dotnet": "F T E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d6 r u1 d1 r",
+   "dotnet": "E:InvalidOperationException 0 F E:InvalidOperationException 0"
+  },
+  {
+   "ops": "1 r d3 d0 d3 u1",
+   "dotnet": "1 E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException T"
+  },
+  {
+   "ops": "2 r r d0 u1 r",
+   "dotnet": "2 2 E:ArgumentOutOfRangeException T 3"
+  },
+  {
+   "ops": "0 r u2 d2",
+   "dotnet": "0 F E:InvalidOperationException"
+  },
+  {
+   "ops": "3 n u1 d3 d1 d2 w n w d3 r u3 w",
+   "dotnet": "E:ArgumentOutOfRangeException T 1 0 E:InvalidOperationException T E:ArgumentOutOfRangeException T E:InvalidOperationException 0 F T"
+  },
+  {
+   "ops": "5 d2 d6 u1 d0",
+   "dotnet": "3 E:InvalidOperationException T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d1 d0 d3 u2 u3 w d6 d1",
+   "dotnet": "6 E:ArgumentOutOfRangeException 3 T T F 2 1"
+  },
+  {
+   "ops": "-1 r u1 u0 w d0 d2 d3 d1 d3",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "3 u1 r w d6 d1 r u3 r r",
+   "dotnet": "T 4 F E:InvalidOperationException 3 3 T 6 6"
+  },
+  {
+   "ops": "0 n r r n",
+   "dotnet": "E:ArgumentOutOfRangeException 0 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 u0 d1 d0 n w u3 n r d1 d1 d0 w",
+   "dotnet": "E:ArgumentOutOfRangeException 4 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F T E:ArgumentOutOfRangeException 7 6 5 E:ArgumentOutOfRangeException F"
+  },
+  {
+   "ops": "0 d6 d1 d0 d1 n d1 w r r u2",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException T 0 0 F"
+  },
+  {
+   "ops": "-1 d1 d0 d6 d1 u3 r w w w w w d3 d6 w",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 d1 u1 u1 u2 d1 r d6 d1 w r d1 r u3",
+   "dotnet": "3 T T T 6 6 0 E:InvalidOperationException T 0 E:InvalidOperationException 0 F"
+  },
+  {
+   "ops": "1 u1 u1 u3 w r",
+   "dotnet": "T T T F 6"
+  },
+  {
+   "ops": "0 r d0 u1 r u3 r n d0",
+   "dotnet": "0 E:ArgumentOutOfRangeException F 0 F 0 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d1 r w r d6 d1 w d1 w d2 n d6",
+   "dotnet": "0 0 T 0 E:InvalidOperationException E:InvalidOperationException T E:InvalidOperationException T E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d0 u2 d1 u0 u3 d0 w d1 d2",
+   "dotnet": "E:ArgumentOutOfRangeException T 3 E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException F 5 3"
+  },
+  {
+   "ops": "2 u2 u0 r",
+   "dotnet": "T E:ArgumentOutOfRangeException 4"
+  },
+  {
+   "ops": "7 d2 w n r d0 u1 u1 n d6",
+   "dotnet": "5 F E:ArgumentOutOfRangeException 5 E:ArgumentOutOfRangeException T T E:ArgumentOutOfRangeException 1"
+  },
+  {
+   "ops": "0 d2 u1 d6 w u3 w w d0 u1 r d1",
+   "dotnet": "E:InvalidOperationException F E:InvalidOperationException T F T T E:ArgumentOutOfRangeException F 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "4 d6 u2 u2 d1 n r u1 u1 u0 u3 r u1 d1 d3",
+   "dotnet": "E:InvalidOperationException T T 7 E:ArgumentOutOfRangeException 7 T T E:ArgumentOutOfRangeException T 12 T 12 9"
+  },
+  {
+   "ops": "5 w d3 d1 w u1 n d3 d0 n",
+   "dotnet": "F 2 1 F T E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d3 d1 d2 u1 u2 d2 d6 r u1",
+   "dotnet": "4 3 1 T T 2 E:InvalidOperationException 2 T"
+  },
+  {
+   "ops": "5 d1 d6 d2 n u3 d1 u3 u3 d0 d2",
+   "dotnet": "4 E:InvalidOperationException 2 E:ArgumentOutOfRangeException T 4 T T E:ArgumentOutOfRangeException 8"
+  },
+  {
+   "ops": "4 d1 d1 n w u2 r",
+   "dotnet": "3 2 E:ArgumentOutOfRangeException F T 4"
+  },
+  {
+   "ops": "0 d1 u1 n n d1 u3 r n",
+   "dotnet": "E:InvalidOperationException F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException F 0 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 r d1 u3 r d6 d6",
+   "dotnet": "0 E:InvalidOperationException F 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 n u1 d3 r",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 d1 d0 r d2",
+   "dotnet": "0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d2 u3 u1 d1 w r d1 r d3 d1",
+   "dotnet": "1 T T 4 F 4 3 3 0 E:InvalidOperationException"
+  },
+  {
+   "ops": "2 n u3 u1 d3 n d6 d1",
+   "dotnet": "E:ArgumentOutOfRangeException T T 3 E:ArgumentOutOfRangeException E:InvalidOperationException 2"
+  },
+  {
+   "ops": "7 u1 d3 w w d1 u0 u1 d6 d2 r",
+   "dotnet": "T 5 F F 4 E:ArgumentOutOfRangeException T E:InvalidOperationException 3 3"
+  },
+  {
+   "ops": "4 r w u0 d3 w d3 r d1 d6 w r",
+   "dotnet": "4 F E:ArgumentOutOfRangeException 1 F E:InvalidOperationException 1 0 E:InvalidOperationException T 0"
+  },
+  {
+   "ops": "4 w r d2 d1",
+   "dotnet": "F 4 2 1"
+  },
+  {
+   "ops": "2 r d0 w d3",
+   "dotnet": "2 E:ArgumentOutOfRangeException F E:InvalidOperationException"
+  },
+  {
+   "ops": "-1 u1 n r r d1 d1 r w d6",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 w d3 r d2 d1 n d0 r d1 d1 d1 u0 u1 d2",
+   "dotnet": "F 2 2 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException F E:InvalidOperationException"
+  },
+  {
+   "ops": "2 w w d1",
+   "dotnet": "F F 1"
+  },
+  {
+   "ops": "2 d1 r d1 d3 w",
+   "dotnet": "1 1 0 E:InvalidOperationException T"
+  },
+  {
+   "ops": "0 r d2 u0 r d2 n u0 u3 r u1 w d1 d2 d1",
+   "dotnet": "0 E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F 0 F T E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "0 d1 n n u3 r d1 d6 u2 d1 r u0 w n",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F 0 E:InvalidOperationException E:InvalidOperationException F E:InvalidOperationException 0 E:ArgumentOutOfRangeException T E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 w d1 u2 d0 d1 n u1 r d1 u1 n n",
+   "dotnet": "T E:InvalidOperationException F E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException F 0 E:InvalidOperationException F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d3 u1 w d1 d1 d0 d1",
+   "dotnet": "4 T F 4 3 E:ArgumentOutOfRangeException 2"
+  },
+  {
+   "ops": "2 d1 r u3 u1 d0 n d0 d1",
+   "dotnet": "1 1 T T E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 4"
+  },
+  {
+   "ops": "2 u0 d1 r u1 r d1 d1 r d2 u1",
+   "dotnet": "E:ArgumentOutOfRangeException 1 1 T 2 1 0 0 E:InvalidOperationException F"
+  },
+  {
+   "ops": "5 r u3 d6 d1 u3 d1 d1",
+   "dotnet": "5 T 2 1 T 3 2"
+  },
+  {
+   "ops": "4 d0 u0 w u2",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F T"
+  },
+  {
+   "ops": "1 d2 r w",
+   "dotnet": "E:InvalidOperationException 1 F"
+  },
+  {
+   "ops": "-1 d0 u0 u3 d1 d2",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 w u3 d0 u0 u0 r d2 u1",
+   "dotnet": "F T E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 8 6 T"
+  },
+  {
+   "ops": "0 w r r d1 d6 d1 r w d3",
+   "dotnet": "T 0 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 0 T E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d1 u2 w u1 d3 d1 d1 u2 n",
+   "dotnet": "0 F T F E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException F E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d6 w u3 d1 d1 d3 d3 d0 u2 d0",
+   "dotnet": "E:InvalidOperationException T F E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 d3 r u1",
+   "dotnet": "E:InvalidOperationException 0 F"
+  },
+  {
+   "ops": "3 d0 d1 d1 d0 d3 d0 u3 d2 u1 u1 d3",
+   "dotnet": "E:ArgumentOutOfRangeException 2 1 E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException T 2 T T 1"
+  },
+  {
+   "ops": "5 d0 u1 u1 d1 u0 d2 d1 d0 d0 d1 n d2",
+   "dotnet": "E:ArgumentOutOfRangeException T T 6 E:ArgumentOutOfRangeException 4 3 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 2 E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "-1 r r w w",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "0 u0 r d1 d6 d1 d6 d2 d1",
+   "dotnet": "E:ArgumentOutOfRangeException 0 E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d3 u3 d1 d2 d6 r w u2",
+   "dotnet": "E:InvalidOperationException T 4 2 E:InvalidOperationException 2 F T"
+  },
+  {
+   "ops": "-1 r d1 w d1 d2 w u0 d1 u1",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "2 u3 r n d1 n w d1 d1 d0",
+   "dotnet": "T 5 E:ArgumentOutOfRangeException 4 E:ArgumentOutOfRangeException F 3 2 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "5 u2 d3 d6 u1 d1 r r w u0 d1 d1 n",
+   "dotnet": "T 4 E:InvalidOperationException T 4 4 4 F E:ArgumentOutOfRangeException 3 2 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "7 d1 r n r",
+   "dotnet": "6 6 E:ArgumentOutOfRangeException 6"
+  },
+  {
+   "ops": "1 d1 w r u1 d1 d0 u0 r w d3 u0 d3",
+   "dotnet": "0 T 0 F E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 0 T E:InvalidOperationException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 u1 r w d1 d6 u0 d1 d1 r u1 r r u1 d1",
+   "dotnet": "T 2 F 1 E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 F 0 0 F E:InvalidOperationException"
+  },
+  {
+   "ops": "5 d6 u0 d2 d3 u1 d0 u2 u2 u0 r d2 r d1 d3",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException 3 0 F E:ArgumentOutOfRangeException F F E:ArgumentOutOfRangeException 0 E:InvalidOperationException 0 E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 r r d0 d6 d0 u2 d2 r",
+   "dotnet": "7 7 E:ArgumentOutOfRangeException 1 E:ArgumentOutOfRangeException T 1 1"
+  },
+  {
+   "ops": "1 d6 d6 d6 r u1 d2",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException 1 T 0"
+  },
+  {
+   "ops": "5 w d2 r r d0 d1 d1 d3 u1 d0 w d3 u2",
+   "dotnet": "F 3 3 3 E:ArgumentOutOfRangeException 2 1 E:InvalidOperationException T E:ArgumentOutOfRangeException F E:InvalidOperationException T"
+  },
+  {
+   "ops": "5 d1 u1 d6 d3",
+   "dotnet": "4 T E:InvalidOperationException 2"
+  },
+  {
+   "ops": "0 r d2 u0 n d0 n n d0 u1 u0 r r u0 d1",
+   "dotnet": "0 E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException 0 0 E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 r r d6 u2 w d1 r u3 u2",
+   "dotnet": "2 2 E:InvalidOperationException T F 3 3 T T"
+  },
+  {
+   "ops": "0 u1 d0 r d1 u1 w",
+   "dotnet": "F E:ArgumentOutOfRangeException 0 E:InvalidOperationException F T"
+  },
+  {
+   "ops": "0 d1 d6 d3",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "7 u1 d0 u0 r",
+   "dotnet": "T E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 8"
+  },
+  {
+   "ops": "4 u3 d0 d0 u3 d2",
+   "dotnet": "T E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException T 8"
+  },
+  {
+   "ops": "1 u3 n w d1 d1 u1 d2 r",
+   "dotnet": "T E:ArgumentOutOfRangeException F 3 2 T 1 1"
+  },
+  {
+   "ops": "4 u3 w d6 d1 d0 d6 d1 n w w n d1 d3 d2",
+   "dotnet": "T F 1 0 E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:ArgumentOutOfRangeException T T E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "3 r r u1 u1 n d3 d0 u1 u1",
+   "dotnet": "3 3 T T E:ArgumentOutOfRangeException 2 E:ArgumentOutOfRangeException T T"
+  },
+  {
+   "ops": "0 d2 u2 n d1 d0 n d3",
+   "dotnet": "E:InvalidOperationException F E:ArgumentOutOfRangeException E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:InvalidOperationException"
+  },
+  {
+   "ops": "2 d6 d3 r r r w d1 d1 d1 d6 u3 r r",
+   "dotnet": "E:InvalidOperationException E:InvalidOperationException 2 2 2 F 1 0 E:InvalidOperationException E:InvalidOperationException F 0 0"
+  },
+  {
+   "ops": "3 r d1 d1 u3 w u3 u1 r n w d3 d1 d1",
+   "dotnet": "3 2 1 T F T T 8 E:ArgumentOutOfRangeException F 5 4 3"
+  },
+  {
+   "ops": "5 u2 u3 d3 u3 u1 r u1 w u2 u0 d3 d6",
+   "dotnet": "T T 7 T T 11 T F T E:ArgumentOutOfRangeException 11 5"
+  },
+  {
+   "ops": "3 w d1 d1 u0 d6 d1 d0 r d2 u1 u0 d6 d1",
+   "dotnet": "F 2 1 E:ArgumentOutOfRangeException E:InvalidOperationException 0 E:ArgumentOutOfRangeException 0 E:InvalidOperationException F E:ArgumentOutOfRangeException E:InvalidOperationException E:InvalidOperationException"
+  },
+  {
+   "ops": "1 d1 d6 u1",
+   "dotnet": "0 E:InvalidOperationException F"
+  },
+  {
+   "ops": "1 d1 u1 d2 d0 r d1 w d2 r d0 w",
+   "dotnet": "0 F E:InvalidOperationException E:ArgumentOutOfRangeException 0 E:InvalidOperationException T E:InvalidOperationException 0 E:ArgumentOutOfRangeException T"
+  },
+  {
+   "ops": "3 w d0 d3",
+   "dotnet": "F E:ArgumentOutOfRangeException 0"
+  },
+  {
+   "ops": "1 d0 n u0",
+   "dotnet": "E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "-1 u1 u0 d0 d1 w",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 r n w n d6 r n",
+   "dotnet": "4 E:ArgumentOutOfRangeException F E:ArgumentOutOfRangeException E:InvalidOperationException 4 E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "1 r d1 u0 d0 u3 r r u3 w d6 r",
+   "dotnet": "1 0 E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F 0 0 F T E:InvalidOperationException 0"
+  },
+  {
+   "ops": "4 w w r d2 d1 n w d3",
+   "dotnet": "F F 4 2 1 E:ArgumentOutOfRangeException F E:InvalidOperationException"
+  },
+  {
+   "ops": "3 d6 n d0 w d1 u1 d6 d6 d1 u2",
+   "dotnet": "E:InvalidOperationException E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException F 2 T E:InvalidOperationException E:InvalidOperationException 2 T"
+  },
+  {
+   "ops": "5 w u0 d2 u3 d3",
+   "dotnet": "F E:ArgumentOutOfRangeException 3 T 3"
+  },
+  {
+   "ops": "1 r r d1 w u1 u1",
+   "dotnet": "1 1 0 T F F"
+  },
+  {
+   "ops": "4 d2 r r r r d2 u3 d1",
+   "dotnet": "2 2 2 2 2 0 F E:InvalidOperationException"
+  },
+  {
+   "ops": "2 w n u0 d1 r d6 r",
+   "dotnet": "F E:ArgumentOutOfRangeException E:ArgumentOutOfRangeException 1 1 E:InvalidOperationException 1"
+  },
+  {
+   "ops": "-1 d6 d1 n u1 r d6 w",
+   "dotnet": "E:ArgumentOutOfRangeException"
+  },
+  {
+   "ops": "4 u3 d6 d2 d6 r d2",
+   "dotnet": "T 1 E:InvalidOperationException E:InvalidOperationException 1 E:InvalidOperationException"
+  },
+  {
+   "ops": "5 n d1 d3 d1",
+   "dotnet": "E:ArgumentOutOfRangeException 4 1 0"
+  },
+  {
+   "ops": "3 w d1 w r n d1 n",
+   "dotnet": "F 2 F 2 E:ArgumentOutOfRangeException 1 E:ArgumentOutOfRangeException"
+  }
+ ],
+ "probes": {
+  "java": [
+   "parked 4 4 4",
+   "barrier interrupted true broken",
+   "phaser true true true true"
+  ],
+  "dotnet": [
+   "parked 4 4 4"
+  ]
+ }
+}

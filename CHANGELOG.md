@@ -6,7 +6,59 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
-## [0.2.0]
+## [1.0.0] - 2026-10-17
+
+The API is now stable: every public name, signature, default and error type
+below is kept for the 1.x series. Everything written against 0.2.0 keeps
+working except the stricter argument checks listed under "Changed".
+
+Stable surface: `CountDownLatch`, `Gate`, `OneShotEvent` and their asyncio
+twins `AsyncCountDownLatch`, `AsyncGate`, `AsyncOneShotEvent`, with `wait`,
+`wait_or_raise`, `abort`, `is_broken`, `abort_reason`, `count_down`,
+`try_count_up`, `remaining`, `is_open`, `arrival`, `open`, `opening`, `set` and
+`is_set`; `SignalScope`; the errors `LatchError`, `BrokenLatchError` and
+`LatchTimeoutError`.
+
+### Changed (upgrading from 0.2.0)
+
+- `count` and `n` must be integers (`int` or an object with `__index__`). A
+  `float` such as `2.5` or `2.0`, a `bool`, a string, a `Decimal` or a
+  `Fraction`, all accepted or failing obscurely before, now raise `TypeError`.
+  In 0.2.0 `CountDownLatch(2.5)` opened after three signals.
+  They are now annotated `SupportsIndex` rather than `int`, so type checkers
+  accept the same objects the runtime does. `timeout` is annotated
+  `float | numbers.Real | None` for the same reason (a `Fraction` passes).
+- `timeout` must be `None` or a real number other than `bool`. A string such
+  as `"5"`, `True` (waited one second) and a `Decimal`, all accepted in 0.2.0,
+  now raise `TypeError` with a short message, even on a settled primitive. An integer too large for a
+  float now means "forever" (or zero when negative) instead of raising
+  `OverflowError`.
+- `BrokenLatchError` messages show at most 200 characters of the reason, and
+  the type name in angle brackets when `str(reason)` is blank (a bare
+  `CancelledError` from a cancelled `opening()` block, say). Error messages
+  about wrong arguments never echo the value.
+- The `LatchTimeoutError` message shows the effective timeout (negative values
+  read as 0) rather than the argument as given.
+- `BrokenLatchError` now pickles cleanly; in 0.2.0 the copy's message read
+  `aborted: aborted: ...`.
+- The public classes report `latchkit` as their module, and the package no
+  longer exposes the stray name `annotations`.
+- `repr` of a latch whose count is beyond 64 bits shows the bit size rather
+  than every digit.
+
+### Added
+
+- Docstring examples on every public class, method and property, run as
+  doctests.
+- Ground-truth tests: 400 seeded scenarios recorded from Java 21's
+  `CountDownLatch` and 800 from .NET 9's `CountdownEvent`, replayed on both
+  latches, plus live checks against `threading.Barrier` and `asyncio.Barrier`.
+- `GUIDE.md` sections on argument rules and on how the semantics compare with
+  Java, .NET, C++20 and Go.
+- Python 3.14 in the classifiers; the development status is now
+  Production/Stable.
+
+## [0.2.0] - 2026-10-14
 
 ### Added
 
@@ -38,7 +90,7 @@ All notable changes to this project are documented here. The format follows
 - Abort reasons are formatted outside the primitive's lock, so a reason whose
   `__str__` reads the primitive or raises cannot deadlock or mask the abort.
 
-## [0.1.0]
+## [0.1.0] - 2026-10-11 (never published to PyPI)
 
 - First release.
 - `CountDownLatch(count)` with `count_down(n=1)`, `wait(timeout=None)` and a

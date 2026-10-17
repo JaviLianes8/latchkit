@@ -32,7 +32,7 @@ def run_all(targets: Sequence[Callable[[], object]]) -> None:
 
         return run
 
-    threads = [threading.Thread(target=gated(t)) for t in targets]
+    threads = [threading.Thread(target=gated(t), daemon=True) for t in targets]
     for thread in threads:
         thread.start()
     for thread in threads:
@@ -140,8 +140,8 @@ def test_counted_up_work_in_flight_keeps_the_latch_closed(round_: int) -> None:
     def wait() -> None:
         returned.append(latch.wait(GUARD))
 
-    waiters = [threading.Thread(target=wait) for _ in range(WAITERS)]
-    holders = [threading.Thread(target=holder) for _ in range(SIGNALERS)]
+    waiters = [threading.Thread(target=wait, daemon=True) for _ in range(WAITERS)]
+    holders = [threading.Thread(target=holder, daemon=True) for _ in range(SIGNALERS)]
     for thread in waiters + holders:
         thread.start()
     until(lambda: len(holding) == SIGNALERS)
@@ -162,7 +162,8 @@ def test_parked_waiters_are_all_woken_by_concurrent_signals(round_: int) -> None
     latch = CountDownLatch(SIGNALERS)
     returned: list[bool] = []
     waiters = [
-        threading.Thread(target=lambda: returned.append(latch.wait(GUARD))) for _ in range(WAITERS)
+        threading.Thread(target=lambda: returned.append(latch.wait(GUARD)), daemon=True)
+        for _ in range(WAITERS)
     ]
     for thread in waiters:
         thread.start()

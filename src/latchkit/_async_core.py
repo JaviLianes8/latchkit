@@ -5,8 +5,10 @@ from __future__ import annotations
 import asyncio
 import contextlib
 import threading
+from numbers import Real
 
-from ._errors import normalize_timeout, outcome, timed_out
+from ._check import normalize_timeout
+from ._errors import outcome, timed_out
 from ._state import BROKEN, PENDING, STATE_NAMES
 
 __all__ = ["AsyncOneShot"]
@@ -45,13 +47,25 @@ class AsyncOneShot:
 
     @property
     def is_broken(self) -> bool:
-        """Whether :meth:`abort` broke the primitive before it opened."""
+        """Whether :meth:`abort` broke the primitive before it opened.
+
+        >>> from latchkit import AsyncGate
+        >>> gate = AsyncGate()
+        >>> gate.is_broken, gate.abort(), gate.is_broken
+        (False, True, True)
+        """
         with self._lock:
             return self._state == BROKEN
 
     @property
     def abort_reason(self) -> object:
-        """The reason given to :meth:`abort`, or ``None`` if it is not broken."""
+        """The reason given to :meth:`abort`, or ``None`` if it is not broken.
+
+        >>> from latchkit import AsyncOneShotEvent
+        >>> event = AsyncOneShotEvent()
+        >>> event.abort("late"), event.abort_reason
+        (True, 'late')
+        """
         with self._lock:
             return self._abort_reason
 
@@ -62,10 +76,22 @@ class AsyncOneShot:
         (chained as ``__cause__`` when it is an exception). The first
         transition wins: return ``True`` if this call broke it, ``False`` if it
         was already open or broken. Safe to call from any thread.
+
+        >>> import asyncio
+        >>> from latchkit import AsyncGate, BrokenLatchError
+        >>> async def main() -> object:
+        ...     gate = AsyncGate()
+        ...     gate.abort("shutdown")
+        ...     try:
+        ...         await gate.wait()
+        ...     except BrokenLatchError as error:
+        ...         return error.reason
+        >>> asyncio.run(main())
+        'shutdown'
         """
         return self._settle(BROKEN, reason)
 
-    async def wait(self, timeout: float | None = None) -> bool:
+    async def wait(self, timeout: float | Real | None = None) -> bool:
         """Wait until the primitive opens or breaks.
 
         Return ``True`` once it is open, ``False`` if ``timeout`` seconds
@@ -75,10 +101,45 @@ class AsyncOneShot:
         leaves the primitive untouched; a cancel delivered after the primitive
         opened but before the task resumed still wins, as everywhere in
         asyncio. Timeouts follow the same rules as the threaded classes and
-        use the event loop's monotonic clock. A waiter whose loop stops
-        without closing stays registered until the primitive settles.
+        use the event loop's monotonic clock. A waiter whose loop is stopped
+        or closed while it waits stays registered until the primitive
+        settles; a closed loop is then skipped.
+
+        >>> import asyncio
+        >>> from latchkit import AsyncGate
+        >>> async def main() -> tuple[bool, bool]:
+        ...     gate = AsyncGate()
+        ...     early = await gate.wait(timeout=0.01)
+        ...     gate.open()
+        ...     return early, await gate.wait()
+        >>> asyncio.run(main())
+        (False, True)
+        """
+        return outcome(*await self._wait(normalize_timeout(timeout)))
+
+    async def wait_or_raise(self, timeout: float | Real | None = None) -> None:
+        """Like :meth:`wait`, but raise instead of returning ``False``.
+
+        Raise :class:`~latchkit.LatchTimeoutError` (a :class:`TimeoutError`)
+        when ``timeout`` elapses first, and
+        :class:`~latchkit.BrokenLatchError` when the primitive was aborted.
+
+        >>> import asyncio
+        >>> from latchkit import AsyncCountDownLatch, LatchTimeoutError
+        >>> async def main() -> str:
+        ...     try:
+        ...         await AsyncCountDownLatch(1).wait_or_raise(timeout=0)
+        ...     except LatchTimeoutError as error:
+        ...         return str(error)
+        ...     return "opened"
+        >>> asyncio.run(main())
+        'not opened within 0 seconds'
         """
         limit = normalize_timeout(timeout)
+        if not outcome(*await self._wait(limit)):
+            raise timed_out(limit or 0.0)
+
+    async def _wait(self, limit: float | None) -> tuple[int, object]:
         loop = asyncio.get_running_loop()
         with self._lock:
             state, reason = self._state, self._abort_reason
@@ -86,7 +147,7 @@ class AsyncOneShot:
                 future: asyncio.Future[None] = loop.create_future()
                 self._waiters[future] = loop
         if state != PENDING or limit == 0.0:
-            return outcome(state, reason)
+            return state, reason
         timer = None if limit is None else loop.call_later(limit, _resolve, future)
         try:
             await future
@@ -96,17 +157,7 @@ class AsyncOneShot:
             with self._lock:
                 self._waiters.pop(future, None)
                 state, reason = self._state, self._abort_reason
-        return outcome(state, reason)
-
-    async def wait_or_raise(self, timeout: float | None = None) -> None:
-        """Like :meth:`wait`, but raise instead of returning ``False``.
-
-        Raise :class:`~latchkit.LatchTimeoutError` (a :class:`TimeoutError`)
-        when ``timeout`` elapses first, and
-        :class:`~latchkit.BrokenLatchError` when the primitive was aborted.
-        """
-        if not await self.wait(timeout):
-            raise timed_out(timeout)
+        return state, reason
 
     def __repr__(self) -> str:
         with self._lock:

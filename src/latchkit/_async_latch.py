@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from typing import SupportsIndex
+
 from ._async_core import AsyncOneShot
-from ._latch import check_count, check_step
+from ._check import check_count, check_step, count_text
 from ._scope import SignalScope
 from ._state import OPEN, PENDING
 
@@ -18,9 +20,20 @@ class AsyncCountDownLatch(AsyncOneShot):
     :class:`asyncio.Event`, :meth:`count_down`, :meth:`try_count_up` and
     :meth:`abort` are thread-safe, so worker threads (for example inside
     ``loop.run_in_executor``) can signal coroutines waiting on any loop.
+
+    >>> import asyncio
+    >>> from latchkit import AsyncCountDownLatch
+    >>> async def main() -> bool:
+    ...     latch = AsyncCountDownLatch(4)
+    ...     loop = asyncio.get_running_loop()
+    ...     for _ in range(4):
+    ...         loop.run_in_executor(None, latch.count_down)
+    ...     return await latch.wait(timeout=60)
+    >>> asyncio.run(main())
+    True
     """
 
-    def __init__(self, count: int) -> None:
+    def __init__(self, count: SupportsIndex) -> None:
         super().__init__()
         self._remaining = check_count(count)
         if self._remaining == 0:
@@ -28,23 +41,38 @@ class AsyncCountDownLatch(AsyncOneShot):
 
     @property
     def remaining(self) -> int:
-        """Signals still needed before the latch opens (never negative)."""
+        """Signals still needed before the latch opens (never negative).
+
+        >>> from latchkit import AsyncCountDownLatch
+        >>> AsyncCountDownLatch(3).remaining
+        3
+        """
         with self._lock:
             return self._remaining
 
     @property
     def is_open(self) -> bool:
-        """Whether the count has reached zero."""
+        """Whether the count has reached zero.
+
+        >>> from latchkit import AsyncCountDownLatch
+        >>> AsyncCountDownLatch(0).is_open, AsyncCountDownLatch(1).is_open
+        (True, False)
+        """
         with self._lock:
             return self._state == OPEN
 
-    def count_down(self, n: int = 1) -> int:
+    def count_down(self, n: SupportsIndex = 1) -> int:
         """Record ``n`` signals and return the signals still needed.
 
         Same rules as :meth:`latchkit.CountDownLatch.count_down`. Never blocks
         and is safe to call from any thread.
+
+        >>> from latchkit import AsyncCountDownLatch
+        >>> latch = AsyncCountDownLatch(2)
+        >>> latch.count_down(), latch.count_down(9), latch.is_open
+        (1, 0, True)
         """
-        check_step(n)
+        n = check_step(n)
         with self._lock:
             if self._state != PENDING:
                 return self._remaining
@@ -55,9 +83,15 @@ class AsyncCountDownLatch(AsyncOneShot):
             self._wake_all(waiters)
         return remaining
 
-    def try_count_up(self, n: int = 1) -> bool:
-        """Raise the count by ``n`` while pending; ``False`` once open or broken."""
-        check_step(n)
+    def try_count_up(self, n: SupportsIndex = 1) -> bool:
+        """Raise the count by ``n`` while pending; ``False`` once open or broken.
+
+        >>> from latchkit import AsyncCountDownLatch
+        >>> latch = AsyncCountDownLatch(1)
+        >>> latch.try_count_up(), latch.remaining
+        (True, 2)
+        """
+        n = check_step(n)
         with self._lock:
             if self._state != PENDING:
                 return False
@@ -69,11 +103,21 @@ class AsyncCountDownLatch(AsyncOneShot):
 
         Same rules as :meth:`latchkit.CountDownLatch.arrival`; usable with
         ``with`` and ``async with``.
+
+        >>> import asyncio
+        >>> from latchkit import AsyncCountDownLatch
+        >>> async def main() -> int:
+        ...     latch = AsyncCountDownLatch(2)
+        ...     async with latch.arrival():
+        ...         pass
+        ...     return latch.remaining
+        >>> asyncio.run(main())
+        1
         """
         on_error = self.abort if abort_on_error else None
         return SignalScope(self.count_down, on_error)
 
     def _describe_locked(self) -> str:
         if self._state == PENDING:
-            return f"remaining={self._remaining}"
+            return f"remaining={count_text(self._remaining)}"
         return super()._describe_locked()

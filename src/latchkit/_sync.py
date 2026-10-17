@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import threading
 import time
+from numbers import Real
 
-from ._errors import normalize_timeout, outcome, timed_out
+from ._check import normalize_timeout
+from ._errors import outcome, timed_out
 from ._state import BROKEN, PENDING, STATE_NAMES
 
 __all__ = ["SyncOneShot"]
@@ -27,13 +29,27 @@ class SyncOneShot:
 
     @property
     def is_broken(self) -> bool:
-        """Whether :meth:`abort` broke the primitive before it opened."""
+        """Whether :meth:`abort` broke the primitive before it opened.
+
+        >>> from latchkit import Gate
+        >>> gate = Gate()
+        >>> gate.is_broken, gate.abort(), gate.is_broken
+        (False, True, True)
+        """
         with self._cond:
             return self._state == BROKEN
 
     @property
     def abort_reason(self) -> object:
-        """The reason given to :meth:`abort`, or ``None`` if it is not broken."""
+        """The reason given to :meth:`abort`, or ``None`` if it is not broken.
+
+        >>> from latchkit import OneShotEvent
+        >>> event = OneShotEvent()
+        >>> event.abort(KeyError("k"))
+        True
+        >>> event.abort_reason
+        KeyError('k')
+        """
         with self._cond:
             return self._abort_reason
 
@@ -44,23 +60,62 @@ class SyncOneShot:
         (chained as ``__cause__`` when it is an exception). The first
         transition wins: return ``True`` if this call broke it, ``False`` if it
         was already open or broken, in which case nothing changes.
+
+        >>> from latchkit import CountDownLatch
+        >>> latch = CountDownLatch(1)
+        >>> latch.abort("gave up"), latch.abort("again"), latch.abort_reason
+        (True, False, 'gave up')
+        >>> latch.is_broken, latch.count_down()
+        (True, 1)
         """
         with self._cond:
             return self._settle_locked(BROKEN, reason)
 
-    def wait(self, timeout: float | None = None) -> bool:
+    def wait(self, timeout: float | Real | None = None) -> bool:
         """Block until the primitive opens or breaks.
 
         Return ``True`` once it is open, ``False`` if ``timeout`` seconds
         elapse first, and raise :class:`~latchkit.BrokenLatchError` if it was
-        aborted. Returns at once when already open. ``None`` waits forever;
+        aborted. Returns at once when already settled. ``None`` waits forever;
         the deadline uses the monotonic clock and is immune to wall-clock
         changes and spurious wakeups. Negative timeouts behave like zero,
         infinity means forever, timeouts longer than
-        :data:`threading.TIMEOUT_MAX` are honoured, and ``NaN`` raises
-        :class:`ValueError`.
+        :data:`threading.TIMEOUT_MAX` are honoured, ``NaN`` raises
+        :class:`ValueError`, and a ``timeout`` that is not a real number (or is
+        a ``bool``) raises :class:`TypeError`.
+
+        >>> from latchkit import Gate
+        >>> gate = Gate()
+        >>> gate.wait(timeout=0.01)
+        False
+        >>> gate.open()
+        True
+        >>> gate.wait()
+        True
+        """
+        return outcome(*self._wait(normalize_timeout(timeout)))
+
+    def wait_or_raise(self, timeout: float | Real | None = None) -> None:
+        """Like :meth:`wait`, but raise instead of returning ``False``.
+
+        Raise :class:`~latchkit.LatchTimeoutError` (a :class:`TimeoutError`)
+        when ``timeout`` elapses first, and
+        :class:`~latchkit.BrokenLatchError` when the primitive was aborted.
+
+        >>> from latchkit import Gate
+        >>> gate = Gate()
+        >>> gate.abort(RuntimeError("no network"))
+        True
+        >>> gate.wait_or_raise(timeout=0)
+        Traceback (most recent call last):
+          ...
+        latchkit.BrokenLatchError: aborted: no network
         """
         limit = normalize_timeout(timeout)
+        if not outcome(*self._wait(limit)):
+            raise timed_out(limit or 0.0)
+
+    def _wait(self, limit: float | None) -> tuple[int, object]:
         with self._cond:
             if limit is None:
                 self._cond.wait_for(self._settled)
@@ -71,18 +126,7 @@ class SyncOneShot:
                     if left <= 0:
                         break
                     self._cond.wait(min(left, threading.TIMEOUT_MAX))
-            state, reason = self._state, self._abort_reason
-        return outcome(state, reason)
-
-    def wait_or_raise(self, timeout: float | None = None) -> None:
-        """Like :meth:`wait`, but raise instead of returning ``False``.
-
-        Raise :class:`~latchkit.LatchTimeoutError` (a :class:`TimeoutError`)
-        when ``timeout`` elapses first, and
-        :class:`~latchkit.BrokenLatchError` when the primitive was aborted.
-        """
-        if not self.wait(timeout):
-            raise timed_out(timeout)
+            return self._state, self._abort_reason
 
     def __repr__(self) -> str:
         with self._cond:
