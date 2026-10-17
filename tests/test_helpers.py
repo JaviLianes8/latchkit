@@ -143,3 +143,10 @@ def test_gate_open_returns_the_winner_flag() -> None:
     gate = Gate()
     assert gate.open() is True
     assert gate.open() is False
+
+
+def test_signal_scopes_are_slotted() -> None:
+    scope = SignalScope(lambda: None)
+    assert not hasattr(scope, "__dict__")
+    with pytest.raises(AttributeError):
+        scope.extra = 1  # type: ignore[attr-defined]

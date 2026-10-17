@@ -15,7 +15,14 @@ from typing import Any
 import pytest
 from _kinds import GUARD, parked, until
 
-from latchkit import AsyncGate, AsyncOneShotEvent, CountDownLatch, Gate, OneShotEvent
+from latchkit import (
+    AsyncGate,
+    AsyncOneShotEvent,
+    BrokenLatchError,
+    CountDownLatch,
+    Gate,
+    OneShotEvent,
+)
 
 
 class RecordingCondition(threading.Condition):
@@ -124,3 +131,30 @@ def test_an_abort_right_after_opening_reaches_no_waiter() -> None:
     for thread in threads:
         thread.join(GUARD)
     assert results == [True] * 5
+
+
+def test_an_asyncio_timed_wait_arms_its_timer_for_exactly_the_timeout() -> None:
+    async def main() -> None:
+        loop = asyncio.get_running_loop()
+        for timeout in (0.5, 30.0, 1e6):
+            gate = AsyncGate()
+            before = loop.time()
+            task = asyncio.create_task(gate.wait(timeout))
+            await asyncio.sleep(0)
+            after = loop.time()
+            timers = [h for h in loop._scheduled if not h.cancelled()]  # type: ignore[attr-defined]
+            assert len(timers) == 1
+            assert before + timeout <= timers[0].when() <= after + timeout
+            gate.open()
+            assert await task is True
+
+    asyncio.run(main())
+
+
+def test_a_base_exception_reason_is_chained_too() -> None:
+    gate = Gate()
+    reason = asyncio.CancelledError("stop")
+    gate.abort(reason)
+    with pytest.raises(BrokenLatchError) as info:
+        gate.wait(0)
+    assert info.value.__cause__ is reason
