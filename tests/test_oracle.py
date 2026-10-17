@@ -8,7 +8,6 @@ With ``LATCHKIT_LIVE_ORACLES=1`` and the toolchains on PATH, fresh scenarios als
 
 from __future__ import annotations
 
-import asyncio
 import json
 import os
 import shutil
@@ -16,6 +15,7 @@ from pathlib import Path
 from typing import Any
 
 import pytest
+from _kinds import run_async
 from _oracles import replay, run_dotnet, run_java, scenarios
 
 from latchkit import AsyncCountDownLatch, CountDownLatch
@@ -30,7 +30,7 @@ def _sync_wait(latch: Any, timeout: float) -> bool:
 
 
 def _async_wait(latch: Any, timeout: float) -> bool:
-    return bool(asyncio.run(latch.wait(timeout)))
+    return bool(run_async(latch.wait(timeout)))
 
 
 LATCHES = [(CountDownLatch, _sync_wait), (AsyncCountDownLatch, _async_wait)]

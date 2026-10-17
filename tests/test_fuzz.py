@@ -10,7 +10,7 @@ from decimal import Decimal
 from typing import Any
 
 import pytest
-from _kinds import KIND_IDS, KINDS, Kind
+from _kinds import KIND_IDS, KINDS, Kind, run_async
 
 from latchkit import AsyncGate, BrokenLatchError, LatchTimeoutError
 
@@ -125,7 +125,7 @@ def test_huge_reasons_and_counts_stay_cheap() -> None:
     gate.abort("x" * 50_000_000)
     for _ in range(1000):
         with pytest.raises(BrokenLatchError) as info:
-            asyncio.run(gate.wait(0))
+            run_async(gate.wait(0))
         assert len(str(info.value)) == 212
     assert time.perf_counter() - started < 60, "message building is not bounded"
 

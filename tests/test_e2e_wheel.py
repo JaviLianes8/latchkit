@@ -25,7 +25,9 @@ import latchkit
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 _CONSUMER = Path(__file__).resolve().parent / "e2e" / "consumer.py"
 _IS_WINDOWS = os.name == "nt"
-_CLEAN_ENV = {k: v for k, v in os.environ.items() if k != "PYTHONPATH"}
+# PYTHONPATH would leak the source tree; __PYVENV_LAUNCHER__, set by the Windows venv
+# launcher that runs this suite, would make every child believe it is that venv.
+_CLEAN_ENV = {k: v for k, v in os.environ.items() if k not in ("PYTHONPATH", "__PYVENV_LAUNCHER__")}
 UPGRADE = os.environ.get("LATCHKIT_E2E") == "1"
 CHECKS = ["threads ok", "abort ok", "event ok", "asyncio ok", "all ok"]
 
