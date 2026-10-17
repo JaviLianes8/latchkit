@@ -10,10 +10,10 @@ Progress:
 - [x] Docs: README, GUIDE, CHANGELOG (items 11, 12)
 - [x] Packaging, e2e and upgrade from PyPI 0.2.0 (items 8, 13, 14)
 - [x] Every interpreter on this PC (item 10)
-- [ ] Five QA lenses report PASS (item 19)
+- [x] Five QA lenses report PASS (item 19)
 - [ ] Independent reviewer (item 16)
 - [ ] Gates (item 15)
-- [ ] PR open and trace guard CLEAN (item 17); merge and publish left to the maintainer
+- [x] PR #3 open and trace guard CLEAN (item 17); merge and publish left to the maintainer
 
 ## Baseline on 0.2.0 (before any change)
 
@@ -154,10 +154,11 @@ contract in e46b791. Final: 36 killed, 2 equivalent.
 `requires-python = ">=3.10"`. Wheel and sdist built from a fresh clone, `twine check
 --strict` passed; the sdist's suite run against the installed wheel (`-I`, source path
 removed) on every interpreter of this PC from 3.10 up, each test limited to 180 s and each
-interpreter to 900 s, at 512bf99: CPython 3.10.19 (810 passed, 16 skipped: no
-`asyncio.Barrier`), 3.11.5, 3.12.12, 3.13.2, 3.14.2 and 3.14.2 free-threaded (811 passed,
-15 skipped each: opt-in e2e, live oracles, fetched copies absent). 3.8 and 3.9 are
-installed but below `requires-python`.
+interpreter to 900 s, at 818f5f5: CPython 3.10.19 (861 passed, 17 skipped: no
+`asyncio.Barrier`), 3.11.5, 3.12.12, 3.13.2, 3.14.2 and 3.14.2 free-threaded (862 passed,
+16 skipped each: opt-in e2e, live oracles, fetched copies absent). Lens d ran the same
+matrix independently at f08b2cb with `LATCHKIT_E2E=1`. 3.8 and 3.9 are installed but below
+`requires-python` (pip refuses both archives on 3.9).
 
 A first matrix run hung on CPython 3.13.2. The stack dump showed `asyncio.run` blocked in
 `accept` inside the loopback socket pair every new Windows event loop opens: the suite
